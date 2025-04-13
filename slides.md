@@ -241,27 +241,27 @@ layout: default
 
 # FlowMM: Training and Sampling for Material Generation
 
-<div class="grid grid-cols-12 gap-4">
-<div class="col-span-8">
-<v-clicks>
+<!-- ![alt text](public/image-2.png) -->
+<img src="/image-2.png" class="" />
 
-- **Training the Vector Field:**
-  - Define base distributions for: atom positions (uniform on torus), atom types (binary encoding), lattice parameters (informed priors)
-  - Learn vector field $v_\theta$ that follows optimal transport paths
-  - Incorporates crystal symmetries: translation, rotation, permutation
+<div class="grid grid-cols-2 gap-4">
+<div v-click class="col-span-1">
 
-- **Sampling = Solving an ODE:**
-  - Draw from base distributions
-  - Integrate: $\frac{dx}{dt} = v_\theta(t, x)$ from $t=0$ to $t=1$
-  - Only ~50-250 steps needed (vs. 1000+ for diffusion)
-  - Result: Realistic 3D material structure
+#### **Training the Vector Field:**
+- Define base distributions for: atom positions (uniform on torus), atom types (binary encoding), lattice parameters (informed priors)
+- Learn vector field $v_\theta$ that follows optimal transport paths
+- Incorporates crystal symmetries: translation, rotation, permutation
 
-</v-clicks>
 </div>
 
-<div class="col-span-4 flex flex-col items-center justify-center space-y-4">
-  <img v-click src="https://storage.googleapis.com/qdrant-us/images/7b0f4ab1e9c1c9b2dd8c3f3e5c89e19d.png" class="h-60 rounded shadow" />
-  <div v-click class="text-xs mt-2">The learned vector field transports noise to realistic material structures</div>
+<div v-click class="col-span-1">
+
+#### **Sampling = Solving an ODE:**
+- Draw from base distributions
+- Integrate: $\frac{dx}{dt} = v_\theta(t, x)$ from $t=0$ to $t=1$
+- Only ~50-250 steps needed (vs. 1000+ for diffusion)
+- Result: Realistic 3D material structure
+
 </div>
 </div>
 
