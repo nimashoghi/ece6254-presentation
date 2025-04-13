@@ -183,3 +183,51 @@ CSP is evaluated using:
 
 [click] In our comparative study, we evaluate different generative approaches on both of these tasks to understand their strengths and limitations.
 -->
+
+---
+layout: default
+---
+
+# Flow Matching: A More Efficient Alternative to Diffusion
+
+<div class="grid grid-cols-2 gap-8">
+<div>
+<v-clicks>
+
+- **Diffusion Models:** Stochastic random walks
+  - Add random noise gradually (forward)
+  - Learn to denoise step-by-step (reverse)
+  - Uses SDE (Stochastic Differential Equation)
+
+- **Flow Matching:** Deterministic straight paths
+  - Direct transport from noise → data
+  - Learn vector field for optimal flow
+  - Uses ODE (Ordinary Differential Equation)
+
+- **Advantages:**
+  - More computationally efficient sampling
+  - Simpler to train and implement
+  - More flexible choice of base distribution
+
+</v-clicks>
+</div>
+
+<div class="flex flex-col items-center justify-center">
+  <img v-click src="https://storage.googleapis.com/qdrant-us/images/d3a60ff7cfad84e45c6c9bc3fad8b14b.png" class="h-64 rounded shadow" />
+  <div v-click class="text-xs mt-2">Flow Matching learns deterministic paths from noise to data distribution</div>
+</div>
+</div>
+
+<!--
+Let me explain Flow Matching and how it differs from diffusion models you might be more familiar with.
+
+[click] Diffusion models work by gradually adding random noise to data in the forward process, then learning to reverse this process step by step. They're based on Stochastic Differential Equations, which involve randomness at each step.
+
+[click] Flow Matching, in contrast, learns deterministic straight-line paths from noise to data. Instead of random walks, it focuses on learning a vector field that transports points optimally between distributions. This approach uses Ordinary Differential Equations, which are deterministic.
+
+[click] The advantages of Flow Matching include significantly better computational efficiency during sampling, simpler training (no complex noise schedules to tune), and more flexibility in choosing base distributions, which is especially helpful for materials with complex geometries.
+
+[click] In this illustration, you can see how Flow Matching learns direct paths from the noise distribution to the data distribution. Rather than meandering through a stochastic process, it follows optimal transport trajectories.
+
+[click] This approach is particularly well-suited for our materials generation task because crystal structures have complex symmetries and constraints that are easier to handle with deterministic flows.
+-->
