@@ -314,7 +314,7 @@ layout: default
 <div v-click class="border-2 p-5 rounded-lg bg-blue-50 flex flex-col items-center">
   <h3 class="text-2xl text-blue-700 mb-3">MP-20 Dataset</h3>
   <div class="flex items-center gap-10">
-    <img src="https://storage.googleapis.com/qdrant-us/images/1af552c9354a2c55f8264ec1c0ed4db6.png" class="h-28" />
+    <img src="/image-3.png" class="h-28" />
     <div class="flex flex-col gap-2">
       <div class="text-lg"><b>45,231</b> materials</div>
       <div class="text-lg"><b>89</b> elements</div>
