@@ -307,75 +307,139 @@ The remarkable efficiency advantage is that we only need about 50-250 integratio
 layout: default
 ---
 
-# Dataset and Evaluation Metrics
+# MP-20 Dataset & Evaluation Challenges
 
 <div class="grid grid-rows-2 gap-6 h-full">
 <div v-click class="border-2 p-5 rounded-lg bg-blue-50 flex flex-col items-center">
   <h3 class="text-2xl text-blue-700 mb-3">MP-20 Dataset</h3>
   <div class="flex items-center gap-10">
-  <!-- ![alt text](public/image-3.png) -->
-  <img src="/image-3.png" class="h-28" />
-  <div class="flex flex-col gap-2">
-    <div class="text-lg"><b>45,231</b> materials</div>
-    <div class="text-lg"><b>89</b> elements</div>
-    <div class="text-lg"><b>1-20</b> atoms per unit cell</div>
-  </div>
+    <img src="/image-3.png" class="h-28" />
+    <div class="flex flex-col gap-2">
+      <div class="text-lg"><b>45,231</b> materials</div>
+      <div class="text-lg"><b>89</b> elements</div>
+      <div class="text-lg"><b>1-20</b> atoms per unit cell</div>
+    </div>
   </div>
   <div class="text-sm mt-3 text-gray-700 max-w-3xl">
-    Experimentally known inorganic materials with mostly globally stable structures.
+    A realistic dataset of experimentally known inorganic materials with mostly globally stable structures
   </div>
 </div>
 
-<div class="grid grid-cols-2 gap-8">
-  <div v-click class="border-2 p-4 rounded-lg bg-green-50">
-    <h3 class="text-xl text-green-700 mb-2">DNG Metrics</h3>
-    <div class="grid gap-2 text-sm">
-      <div><b>Validity:</b></div>
-      <div class="pl-4">- Structural (atom spacing)</div>
-      <div class="pl-4">- Compositional (charge neutrality)</div>
-      <div><b>Coverage:</b></div>
-      <div class="pl-4">- Precision (realism of generated)</div>
-      <div class="pl-4">- Recall (diversity of generated)</div>
-      <div><b>Property Distribution:</b></div>
-      <div class="pl-4">- Density</div>
-      <div class="pl-4">- Number of elements</div>
+<div v-click class="border-2 p-4 rounded-lg bg-amber-50">
+  <h3 class="text-2xl text-amber-700 mb-3">Evaluation Challenges</h3>
+  <div class="grid grid-cols-2 gap-4">
+    <div class="flex flex-col gap-2 text-sm">
+      <div><b>Gold Standard Is Prohibitive</b></div>
+      <div class="pl-4">- Quantum mechanical simulations</div>
+      <div class="pl-4">- Verify true stability of structures</div>
+      <div class="pl-4">- Computationally expensive</div>
+    </div>
+    <div class="flex flex-col gap-2 text-sm">
+      <div><b>Material Invariances Complicate Comparison</b></div>
+      <div class="pl-4">- Permutation of atoms</div>
+      <div class="pl-4">- Translation and rotation</div>
+      <div class="pl-4">- Periodic boundary conditions</div>
     </div>
   </div>
-
-  <div v-click class="border-2 p-4 rounded-lg bg-purple-50">
-    <h3 class="text-xl text-purple-700 mb-2">CSP Metrics</h3>
-    <div class="grid gap-2 text-sm">
-      <div><b>Match Rate:</b></div>
-      <div class="pl-4">- % of predictions matching ground truth</div>
-      <div class="pl-4">- Measured within structural tolerance</div>
-      <div><b>RMSE:</b></div>
-      <div class="pl-4">- Error in predicted atom positions</div>
-      <div class="pl-4">- Normalized by unit cell dimensions</div>
-    </div>
+  <div class="text-sm mt-3 text-amber-800">
+    → We rely on computationally efficient <b>proxy metrics</b> that approximate material quality
   </div>
 </div>
 </div>
 
 <!--
-Let's discuss the dataset and metrics we'll be using to evaluate our comparative study.
+Let's begin by looking at our dataset and the unique challenges of evaluating generative models for materials.
 
-[click] Our focus is the MP-20 dataset - a comprehensive collection of 45,231 materials with diverse compositions and structures drawn from the Materials Project database. This dataset includes:
-- 89 different chemical elements
-- Materials with 1 to 20 atoms per unit cell
-- Experimentally verified inorganic materials
+[click] We're working with the MP-20 dataset from the Materials Project, which contains over 45,000 experimentally verified inorganic materials. This dataset is particularly valuable because:
+- It includes materials with up to 20 atoms per unit cell
+- It spans 89 different chemical elements
+- Most importantly, it contains materials that are globally stable and can be synthesized in a lab
 
-What makes MP-20 particularly valuable is that it contains mostly globally stable materials that can actually be synthesized in a laboratory. This means a model that performs well on MP-20 has real potential for practical materials discovery.
+This last point is crucial - a model that performs well on MP-20 has genuine potential for discovering new, synthesizable materials.
 
-[click] For De Novo Generation - where we generate completely new materials from scratch - we evaluate using three families of metrics:
-- Validity: Do the generated structures have reasonable atom spacing and charge-neutral compositions?
-- Coverage: Do we generate diverse materials (recall) that are realistic (precision)?
-- Property Distribution: Do statistical properties like density and elemental diversity match real materials?
+[click] However, evaluating generative models for materials poses significant challenges:
 
-[click] For Crystal Structure Prediction - where we predict the 3D structure given a composition - we use two primary metrics:
-- Match Rate: The percentage of predictions that match ground truth structures within tolerance
-- RMSE: The error in predicted atomic positions, normalized by the unit cell dimensions
+The gold standard for evaluation would be quantum mechanical simulations to verify the stability of generated structures. These calculations would tell us definitively whether a material could exist in reality. Unfortunately, these simulations are computationally prohibitive at scale - we can't run them for thousands of generated structures.
 
-These metrics together give us a comprehensive view of how well different generative approaches perform on the two key tasks in materials discovery.
+Additionally, materials have multiple invariances that complicate direct comparison:
+- Swapping atoms of the same element doesn't change the material
+- Rotating or translating the structure doesn't change it either
+- The choice of unit cell can vary while representing the same infinite crystal
+
+Because of these challenges, we have to rely on proxy metrics that are computationally efficient while approximating the quality of generated materials.
+-->
+
+---
+layout: default
+---
+
+# Proxy Metrics for Material Generation
+
+<div class="grid grid-cols-2 gap-8 h-full">
+  <div v-click class="border-2 p-4 rounded-lg bg-green-50">
+    <h3 class="text-xl text-green-700 mb-2">De Novo Generation Metrics</h3>
+    <div class="grid gap-2 text-sm">
+      <div><b>Validity:</b></div>
+      <div class="pl-4">- Structural: Min. atom distance > 0.5Å</div>
+      <div class="pl-4">- Compositional: Charge neutrality</div>
+      <div><b>Coverage:</b></div>
+      <div class="pl-4">- Recall (COV-R): % of real materials matched</div>
+      <div class="pl-4">- Precision (COV-P): % of generated with high quality</div>
+      <div><b>Property Distribution:</b></div>
+      <div class="pl-4">- Earth Mover's Distance for density ($\rho$)</div>
+      <div class="pl-4">- Earth Mover's Distance for # of elements</div>
+    </div>
+  </div>
+
+  <div v-click class="border-2 p-4 rounded-lg bg-purple-50">
+    <h3 class="text-xl text-purple-700 mb-2">Crystal Structure Prediction Metrics</h3>
+    <div class="grid gap-2 text-sm">
+      <div><b>Match Rate:</b></div>
+      <div class="pl-4">- % of predictions matching ground truth</div>
+      <div class="pl-4">- Uses StructureMatcher from pymatgen</div>
+      <div class="pl-4">- Accounts for all material invariances</div>
+      <div><b>RMSE:</b></div>
+      <div class="pl-4">- Error in predicted atom positions</div>
+      <div class="pl-4">- Normalized by $\sqrt[3]{V/N}$ (avg. atom radius)</div>
+      <div class="pl-4">- Handles varying interatomic distances</div>
+    </div>
+  </div>
+
+  <div v-click class="col-span-2 border-2 p-3 rounded-lg bg-blue-50 text-center">
+    <div class="text-blue-700 text-sm font-bold">
+      These metrics help us compare different generative approaches without requiring prohibitively expensive quantum calculations
+    </div>
+  </div>
+</div>
+
+<!--
+Now let's look at the specific proxy metrics we use to evaluate our generative models.
+
+[click] For De Novo Generation - creating entirely new materials from scratch - we use three families of metrics:
+
+Validity checks assess whether generated structures are physically plausible:
+- Structural validity ensures atoms aren't unrealistically close (minimum distance > 0.5 Angstroms)
+- Compositional validity verifies charge neutrality, a basic requirement for stable materials
+
+Coverage metrics measure both the diversity and quality of generated materials:
+- Recall (COV-R) tells us what percentage of real materials we can match with our generated ones
+- Precision (COV-P) tells us what percentage of our generated materials are high quality
+
+Property distribution metrics assess how well statistical properties of generated materials match real ones:
+- We measure the Earth Mover's Distance for density distribution
+- We also measure how well we match the distribution of number of elements per material
+
+[click] For Crystal Structure Prediction - predicting the 3D structure given a composition - we use:
+
+Match Rate measures the percentage of predictions that match ground truth structures:
+- We use StructureMatcher from the pymatgen library
+- This tool accounts for all material invariances (permutation, rotation, translation, periodicity)
+
+RMSE quantifies the error in predicted atomic positions:
+- We normalize by the average atom radius to handle varying interatomic distances
+- This provides a scale-invariant measure of structural accuracy
+
+[click] Together, these metrics provide a comprehensive evaluation framework that helps us compare different generative approaches without requiring prohibitively expensive quantum calculations.
 -->
 
 ---
