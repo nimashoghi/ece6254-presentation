@@ -1,0 +1,34 @@
+name: Build and deploy slides
+# 'id-token: write' is required to deploy to GitHub Pages.
+permissions: write-all
+on:
+    push:
+        branches:
+            - main
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        env:
+            BUILD_TYPE: production
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+            - uses: pnpm/action-setup@v2
+              with:
+                  version: 8
+            # Install dependencies
+            - run: pnpm install
+            # Build the slides to /dist
+            - run: pnpm slidev build --out dist --base $(basename $GITHUB_REPOSITORY)
+            # Upload the built slides to the artifact store
+            - uses: actions/upload-pages-artifact@v3
+              with:
+                  path: dist
+            # Deploy the slides to GitHub Pages
+            - uses: actions/deploy-pages@v4
+              id: deployment
