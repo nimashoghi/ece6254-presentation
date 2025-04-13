@@ -61,7 +61,7 @@ We'll walk you through why this problem matters, our approach to solving it, and
 </div>
 
 <div class="flex items-center justify-center">
-  <img v-click src="https://storage.googleapis.com/qdrant-us/images/cb92fb6f4beb362f9a1fde4ae0051289.png" class="h-60 rounded shadow" />
+  <video v-click src="https://unified-materials.github.io/unimat/materials/unimat.mp4" class="h-60 rounded shadow" autoplay loop muted />
 </div>
 </div>
 
