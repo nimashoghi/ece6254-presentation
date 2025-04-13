@@ -532,26 +532,26 @@ layout: default
   <table class="w-full text-center">
     <thead class="bg-purple-600 text-white">
       <tr>
-        <th class="p-3">Model</th>
-        <th class="p-3 border-l border-white">Match Rate (%) ↑</th>
-        <th class="p-3 border-l border-white">RMSE ↓</th>
+        <th class="p-2">Model</th>
+        <th class="p-2 border-l border-white">Match Rate (%) ↑</th>
+        <th class="p-2 border-l border-white">RMSE ↓</th>
       </tr>
     </thead>
     <tbody>
       <tr v-click class="hover:bg-gray-100">
-        <td class="p-3 font-bold border-t">LLaMA-2</td>
-        <td class="p-3 border-t border-l">55.85</td>
-        <td class="p-3 border-t border-l"><span class="font-bold text-green-600">0.0437</span></td>
+        <td class="p-2 font-bold border-t">LLaMA-2</td>
+        <td class="p-2 border-t border-l">55.85</td>
+        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">0.0437</span></td>
       </tr>
       <tr v-click class="hover:bg-gray-100">
-        <td class="p-3 font-bold border-t">CDVAE</td>
-        <td class="p-3 border-t border-l">33.90</td>
-        <td class="p-3 border-t border-l">0.1045</td>
+        <td class="p-2 font-bold border-t">CDVAE</td>
+        <td class="p-2 border-t border-l">33.90</td>
+        <td class="p-2 border-t border-l">0.1045</td>
       </tr>
       <tr v-click class="hover:bg-gray-100">
-        <td class="p-3 font-bold border-t">FlowMM</td>
-        <td class="p-3 border-t border-l"><span class="font-bold text-green-600">61.39</span></td>
-        <td class="p-3 border-t border-l">0.0566</td>
+        <td class="p-2 font-bold border-t">FlowMM</td>
+        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">61.39</span></td>
+        <td class="p-2 border-t border-l">0.0566</td>
       </tr>
     </tbody>
   </table>
@@ -561,40 +561,34 @@ layout: default
   <div class="border-2 p-3 rounded-lg bg-blue-50">
     <h3 class="text-lg font-bold text-blue-700">Key Findings</h3>
     <ul class="text-sm mt-2">
-      <li>• <span class="font-bold">FlowMM</span> achieves the highest match rate (61.39%)</li>
-      <li>• <span class="font-bold">LLaMA-2</span> has the lowest position error (RMSE)</li>
-      <li>• <span class="font-bold">CDVAE</span> lags behind in both metrics</li>
+      <li><span class="font-bold">FlowMM</span> achieves highest match rate (61.39%)</li>
+      <li><span class="font-bold">LLaMA-2</span> produces lowest positional error</li>
+      <li><span class="font-bold">CDVAE</span> lags behind in both metrics</li>
     </ul>
   </div>
-  <div class="border-2 p-3 rounded-lg bg-purple-50">
-    <h3 class="text-lg font-bold text-purple-700">Integration Steps Comparison</h3>
-    <div class="text-center p-2">
-      <div class="flex justify-around items-end h-32 mt-2">
-        <div class="w-16 flex flex-col items-center">
-          <div class="bg-purple-300 w-12" style="height: 100px"></div>
-          <div class="mt-1 text-xs font-bold">CDVAE</div>
-          <div class="text-xs">5000 steps</div>
-        </div>
-        <div class="w-16 flex flex-col items-center">
-          <div class="bg-purple-500 w-12" style="height: 20px"></div>
-          <div class="mt-1 text-xs font-bold">FlowMM</div>
-          <div class="text-xs">50 steps</div>
-        </div>
-      </div>
-    </div>
+  <div class="border-2 p-3 rounded-lg bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">LLaMA-2 Advantage</h3>
+    <ul class="text-sm mt-2">
+      <li>Pre-trained on vast GitHub repository data</li>
+      <li>Likely exposed to materials science code/papers</li>
+      <li>May have seen similar structures during pre-training</li>
+    </ul>
   </div>
 </div>
 
 <!--
-Now let's look at how our models perform on Crystal Structure Prediction - predicting 3D structure from a chemical composition.
+Now let's examine how our models perform on Crystal Structure Prediction tasks.
 
-[click] LLaMA-2 demonstrates strong performance with a match rate of 55.85% and the best RMSE at 0.0437, showing its predictions have high positional accuracy.
+[click] LLaMA-2 shows impressive performance with a match rate of 55.85% and the best RMSE of 0.0437, indicating high precision in predicting atomic positions.
 
-[click] CDVAE underperforms in this task with the lowest match rate of 33.9% and highest RMSE of 0.1045, suggesting it struggles with precise structural predictions.
+[click] CDVAE underperforms compared to the other models in both metrics, with a match rate of only 33.9% and the highest positional error.
 
-[click] FlowMM achieves the highest match rate at 61.39%, correctly matching over 60% of test structures. While its RMSE of 0.0566 is slightly higher than LLaMA-2's, it still represents excellent positional accuracy.
+[click] FlowMM achieves the highest match rate at 61.39%, successfully predicting structures for nearly two-thirds of test compositions. Its RMSE is slightly higher than LLaMA-2's but still considerably better than CDVAE's.
 
-[click] The key advantage of FlowMM is not just its accuracy but its efficiency. FlowMM achieves these results with approximately 50 integration steps, compared to CDVAE's 5000 steps - a 100x improvement in computational efficiency.
+[click] The key takeaways are:
+- FlowMM demonstrates superior ability to match ground truth structures
+- LLaMA-2 shows the highest precision in atomic positioning
+- CDVAE lags behind in both structure matching and positional accuracy
 
-This efficiency makes FlowMM particularly valuable for practical materials discovery, where rapid structure prediction is essential for screening large numbers of candidates.
+It's worth noting that LLaMA-2's strong performance may be partially attributed to its pre-training on GitHub's entire repository data. This likely exposed it to materials science code, papers, and possibly even the exact structures in our test set, giving it an inherent advantage in this comparison.
 -->
