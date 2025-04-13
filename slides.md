@@ -379,4 +379,13 @@ These metrics together give us a comprehensive view of how well different genera
 ---
 
 # Generated Samples
-<
+
+---
+
+# Analysis
+
+<!--
+
+TODO:
+- Talk about how evaluation is tricky
+-->
