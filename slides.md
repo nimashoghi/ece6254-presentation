@@ -199,7 +199,7 @@ CSP is evaluated using:
 layout: default
 ---
 
-# Approach 1: Large Language Models
+# Crystal Text LLM: Intro --- Large Language Models
 
 <div class="grid grid-cols-2 gap-4">
 
@@ -212,14 +212,16 @@ layout: default
   - `Input -> LLM -> Next Token`
   - Repeat: `Input + Next Token -> LLM -> ...`
 
-- **Approach:** Fine-tune a pre-trained LLM (LLaMA-2) on text-encoded crystals.
-  - Leverage LLM's existing knowledge & pattern recognition.
+- **Pre-trained on vast text corpora** containing:
+  - Natural language (books, articles, etc.)
+  - Code (Python, JavaScript, etc.)
+  - Scientific literature (papers, patents, etc.)
 
 </v-clicks>
 
 </div>
 
-<div>
+<div v-click="1" class="flex align-center justify-center my-auto">
 
 <!-- ![alt text](public/nlpgif.gif) -->
 <img src="/nlpgif.gif" class="w-100" />
