@@ -518,15 +518,9 @@ These metrics together give us a comprehensive view of performance while working
 layout: default
 ---
 
-# De Novo Generation Results
+<div v-click>
 
-<style>
-
-table thead tr th {
-  text-align: center;
-}
-
-</style>
+### De Novo Generation
 
 <div class="border-2 rounded-lg overflow-hidden">
   <table class="w-full text-center">
@@ -548,7 +542,7 @@ table thead tr th {
       </tr>
     </thead>
     <tbody>
-      <tr v-click class="hover:bg-gray-100">
+      <tr class="hover:bg-gray-100">
         <td class="p-2 font-bold border-t">LLaMA-2</td>
         <td class="p-2 border-t border-l">96.4</td>
         <td class="p-2 border-t border-l"><span class="font-bold text-green-600">93.3</span></td>
@@ -557,7 +551,7 @@ table thead tr th {
         <td class="p-2 border-t border-l">3.61</td>
         <td class="p-2 border-t border-l">1.06</td>
       </tr>
-      <tr v-click class="hover:bg-gray-100">
+      <tr class="hover:bg-gray-100">
         <td class="p-2 font-bold border-t">CDVAE</td>
         <td class="p-2 border-t border-l"><span class="font-bold text-green-600">100</span></td>
         <td class="p-2 border-t border-l">86.7</td>
@@ -566,7 +560,7 @@ table thead tr th {
         <td class="p-2 border-t border-l">0.688</td>
         <td class="p-2 border-t border-l">0.278</td>
       </tr>
-      <tr v-click class="hover:bg-gray-100">
+      <tr class="hover:bg-gray-100">
         <td class="p-2 font-bold border-t">FlowMM</td>
         <td class="p-2 border-t border-l">96.85</td>
         <td class="p-2 border-t border-l">83.19</td>
@@ -579,55 +573,11 @@ table thead tr th {
   </table>
 </div>
 
-<div v-click class="mt-6 grid grid-cols-2 gap-4">
-  <div class="border-2 p-3 rounded-lg bg-blue-50">
-    <h3 class="text-lg font-bold text-blue-700">Key Findings</h3>
-    <ul class="text-sm mt-2">
-      <li><span class="font-bold">CDVAE</span> excels in structural validity (100%)</li>
-      <li><span class="font-bold">LLaMA-2</span> has the best compositional validity</li>
-      <li><span class="font-bold">FlowMM</span> dominates in coverage and property metrics</li>
-    </ul>
-  </div>
-  <div class="border-2 p-3 rounded-lg bg-green-50">
-    <h3 class="text-lg font-bold text-green-700">FlowMM Advantages</h3>
-    <ul class="text-sm mt-2">
-      <li><span class="font-bold">3x better</span> property distribution matching</li>
-      <li>Highest precision and recall for material coverage</li>
-      <li>Best overall property distribution metrics</li>
-    </ul>
-  </div>
 </div>
 
-<!--
-Let's examine the performance of our three models on De Novo Generation tasks.
+<div v-click>
 
-[click] LLaMA-2 shows surprisingly good performance, particularly on compositional validity where it leads at 93.3%. However, it lags behind in coverage metrics and property distribution.
-
-[click] CDVAE achieves perfect structural validity at 100%, ensuring all generated structures have reasonable atom spacing. It also shows strong coverage performance, but its property distribution metrics are not as strong as FlowMM.
-
-[click] FlowMM demonstrates the best overall performance in most metrics. While it doesn't quite match CDVAE's structural validity or LLaMA-2's compositional validity, it excels in both coverage metrics (recall and precision) and dramatically outperforms the other models in property distribution matching.
-
-[click] Looking at the key findings:
-- CDVAE produces the most structurally valid materials
-- LLaMA-2 creates the most charge-neutral compositions
-- FlowMM generates materials that most closely match the statistical properties of real materials, with approximately 3x better performance on property distribution metrics
-
-This suggests that FlowMM's deterministic paths from noise to data distribution result in higher quality material generation that better captures the underlying distribution of real materials, despite slight tradeoffs in validity.
--->
-
----
-layout: default
----
-
-# Crystal Structure Prediction Results
-
-<style>
-
-table thead tr th {
-  text-align: center;
-}
-
-</style>
+### Crystal Structure Prediction
 
 <div class="border-2 rounded-lg overflow-hidden">
   <table class="w-full text-center">
@@ -639,17 +589,17 @@ table thead tr th {
       </tr>
     </thead>
     <tbody>
-      <tr v-click class="hover:bg-gray-100">
+      <tr class="hover:bg-gray-100">
         <td class="p-2 font-bold border-t">LLaMA-2</td>
         <td class="p-2 border-t border-l">55.85</td>
         <td class="p-2 border-t border-l"><span class="font-bold text-green-600">0.0437</span></td>
       </tr>
-      <tr v-click class="hover:bg-gray-100">
+      <tr class="hover:bg-gray-100">
         <td class="p-2 font-bold border-t">CDVAE</td>
         <td class="p-2 border-t border-l">33.90</td>
         <td class="p-2 border-t border-l">0.1045</td>
       </tr>
-      <tr v-click class="hover:bg-gray-100">
+      <tr class="hover:bg-gray-100">
         <td class="p-2 font-bold border-t">FlowMM</td>
         <td class="p-2 border-t border-l"><span class="font-bold text-green-600">61.39</span></td>
         <td class="p-2 border-t border-l">0.0566</td>
@@ -658,41 +608,7 @@ table thead tr th {
   </table>
 </div>
 
-<div v-click class="mt-6 grid grid-cols-2 gap-4">
-  <div class="border-2 p-3 rounded-lg bg-blue-50">
-    <h3 class="text-lg font-bold text-blue-700">Key Findings</h3>
-    <ul class="text-sm mt-2">
-      <li><span class="font-bold">FlowMM</span> achieves highest match rate (61.39%)</li>
-      <li><span class="font-bold">LLaMA-2</span> produces lowest positional error</li>
-      <li><span class="font-bold">CDVAE</span> lags behind in both metrics</li>
-    </ul>
-  </div>
-  <div class="border-2 p-3 rounded-lg bg-yellow-50">
-    <h3 class="text-lg font-bold text-yellow-700">LLaMA-2 Advantage</h3>
-    <ul class="text-sm mt-2">
-      <li>Pre-trained on vast GitHub repository data</li>
-      <li>Likely exposed to materials science code/papers</li>
-      <li>May have seen similar structures during pre-training</li>
-    </ul>
-  </div>
 </div>
-
-<!--
-Now let's examine how our models perform on Crystal Structure Prediction tasks.
-
-[click] LLaMA-2 shows impressive performance with a match rate of 55.85% and the best RMSE of 0.0437, indicating high precision in predicting atomic positions.
-
-[click] CDVAE underperforms compared to the other models in both metrics, with a match rate of only 33.9% and the highest positional error.
-
-[click] FlowMM achieves the highest match rate at 61.39%, successfully predicting structures for nearly two-thirds of test compositions. Its RMSE is slightly higher than LLaMA-2's but still considerably better than CDVAE's.
-
-[click] The key takeaways are:
-- FlowMM demonstrates superior ability to match ground truth structures
-- LLaMA-2 shows the highest precision in atomic positioning
-- CDVAE lags behind in both structure matching and positional accuracy
-
-It's worth noting that LLaMA-2's strong performance may be partially attributed to its pre-training on GitHub's entire repository data. This likely exposed it to materials science code, papers, and possibly even the exact structures in our test set, giving it an inherent advantage in this comparison.
--->
 
 ---
 layout: cover
