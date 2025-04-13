@@ -55,7 +55,7 @@ We'll walk you through why this problem matters, our approach to solving it, and
 </div>
 
 <div class="flex items-center justify-center">
-  <video v-click src="https://unified-materials.github.io/unimat/materials/unimat.mp4" class="h-60 rounded shadow" autoplay loop muted />
+  <video v-click="3" src="https://unified-materials.github.io/unimat/materials/unimat.mp4" class="h-60 rounded shadow" autoplay loop muted />
 </div>
 </div>
 
