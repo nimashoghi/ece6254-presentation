@@ -644,3 +644,72 @@ Each point represents a single generated structure, and the colors indicate whic
 
 You can explore this visualization interactively by visiting our demo site or scanning the QR code. The interactive version allows you to hover over points to see the specific structures and their properties.
 -->
+
+---
+layout: default
+---
+
+# Analysis and Conclusions
+
+<div class="grid grid-cols-3 gap-4">
+  <div v-click class="border-2 p-3 rounded-lg bg-blue-50">
+    <h3 class="text-lg font-bold text-blue-700 mb-2">Key Findings</h3>
+    <ul class="text-sm space-y-2">
+      <li><span class="font-bold">FlowMM</span> outperforms in match rate and property distribution metrics</li>
+      <li><span class="font-bold">LLaMA-2</span> excels at positional accuracy and compositional validity</li>
+      <li><span class="font-bold">CDVAE</span> achieves perfect structural validity but lags in other areas</li>
+      <li>Flow matching offers deterministic paths that better capture real material distributions</li>
+    </ul>
+  </div>
+
+  <div v-click class="border-2 p-3 rounded-lg bg-green-50">
+    <h3 class="text-lg font-bold text-green-700 mb-2">Insights</h3>
+    <ul class="text-sm space-y-2">
+      <li>Deterministic ODE approaches (FlowMM) generate more realistic property distributions than stochastic SDEs</li>
+      <li>Strong performance of LLaMA-2 suggests LLMs contain implicit materials knowledge</li>
+      <li>Choice of base distribution significantly impacts material generation quality</li>
+      <li>Trade-off exists between structural validity and compositional accuracy</li>
+    </ul>
+  </div>
+
+  <div v-click class="border-2 p-3 rounded-lg bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700 mb-2">Future Directions</h3>
+    <ul class="text-sm space-y-2">
+      <li>Hybrid models combining flow matching with large language model capabilities</li>
+      <li>Improve compositional validity in flow-based approaches</li>
+      <li>Explore more complex symmetry constraints for higher fidelity</li>
+      <li>Scale to larger structural units (>20 atoms per cell)</li>
+    </ul>
+  </div>
+</div>
+
+<div v-click class="mt-6 border-2 p-3 rounded-lg bg-amber-50">
+  <h3 class="text-lg font-bold text-amber-700 mb-1">Overall Assessment</h3>
+  <p class="text-sm">
+    Flow matching methods show the most promise for material generation, offering better property distribution matching and competitive performance on stability metrics. The surprising effectiveness of LLMs suggests untapped potential in combining flow-based approaches with language model knowledge. Future materials discovery systems will likely benefit from hybrid approaches that leverage the complementary strengths of these different generative paradigms.
+  </p>
+</div>
+
+<!--
+Let's step back and analyze what we've learned from our comparative study.
+
+[click] Our key findings show clear differences between the three approaches:
+- FlowMM consistently delivers the best match rate for crystal structure prediction and property distributions that closely match real materials
+- LLaMA-2 surprised us with its accuracy in atomic positioning and ability to generate charge-neutral compositions
+- CDVAE achieves perfect structural validity but falls behind in other important metrics
+- The deterministic flow matching approach seems to better capture the underlying distribution of real materials
+
+[click] These results offer several important insights:
+- Deterministic ODE-based approaches like flow matching seem to generate more realistic property distributions than stochastic SDE-based methods like diffusion
+- LLaMA-2's strong performance suggests large language models contain implicit knowledge about materials science that can be leveraged
+- The choice of base distribution significantly impacts generation quality - FlowMM's flexibility in this area is a key advantage
+- We observe a clear trade-off between structural validity and compositional accuracy across the models
+
+[click] Looking toward the future, several promising directions emerge:
+- Hybrid approaches that combine flow matching's efficiency with language models' knowledge could be particularly powerful
+- Improving compositional validity in flow-based models is an important next step
+- Exploring more complex symmetry constraints could lead to higher fidelity generation
+- Scaling to larger structural units beyond 20 atoms per cell will be crucial for discovering novel complex materials
+
+[click] Overall, flow matching methods show the most promise for material generation, offering better property distribution matching and competitive performance on stability metrics. The surprising effectiveness of LLMs suggests untapped potential in combining approaches. Future materials discovery systems will likely benefit from hybrid approaches that leverage complementary strengths of these different generative paradigms.
+-->
