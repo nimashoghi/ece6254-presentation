@@ -520,6 +520,12 @@ layout: default
 
 <div v-click>
 
+<style>
+table thead tr th {
+  text-align: center;
+}
+</style>
+
 ### De Novo Generation
 
 <div class="border-2 rounded-lg overflow-hidden">
