@@ -197,12 +197,12 @@ layout: default
 - **Diffusion Models:** Stochastic random walks
   - Add random noise gradually (forward)
   - Learn to denoise step-by-step (reverse)
-  - Uses SDE (Stochastic Differential Equation)
+  - Uses SDE: $dx = f(x,t)dt + g(t)dw$
 
 - **Flow Matching:** Deterministic straight paths
   - Direct transport from noise → data
   - Learn vector field for optimal flow
-  - Uses ODE (Ordinary Differential Equation)
+  - Uses ODE: $\frac{dx}{dt} = v_\theta(t, x)$
 
 - **Advantages:**
   - More computationally efficient sampling
@@ -221,9 +221,9 @@ layout: default
 <!--
 Let me explain Flow Matching and how it differs from diffusion models you might be more familiar with.
 
-[click] Diffusion models work by gradually adding random noise to data in the forward process, then learning to reverse this process step by step. They're based on Stochastic Differential Equations, which involve randomness at each step.
+[click] Diffusion models work by gradually adding random noise to data in the forward process, then learning to reverse this process step by step. They're based on Stochastic Differential Equations, which involve randomness at each step. The equation shows how the change in x depends on both a deterministic term f and a stochastic term dw.
 
-[click] Flow Matching, in contrast, learns deterministic straight-line paths from noise to data. Instead of random walks, it focuses on learning a vector field that transports points optimally between distributions. This approach uses Ordinary Differential Equations, which are deterministic.
+[click] Flow Matching, in contrast, learns deterministic straight-line paths from noise to data. Instead of random walks, it focuses on learning a vector field that transports points optimally between distributions. This approach uses Ordinary Differential Equations, which are deterministic. The equation shows how the change in x over time depends only on the learned vector field v_θ.
 
 [click] The advantages of Flow Matching include significantly better computational efficiency during sampling, simpler training (no complex noise schedules to tune), and more flexibility in choosing base distributions, which is especially helpful for materials with complex geometries.
 
@@ -238,28 +238,25 @@ layout: default
 
 # FlowMM: Training and Sampling for Material Generation
 
-<div class="grid grid-cols-2 gap-4">
-<div>
+<div class="grid grid-cols-12 gap-4">
+<div class="col-span-8">
 <v-clicks>
 
 - **Training the Vector Field:**
-  - Define base distributions for:
-    - Atom positions (uniform on torus)
-    - Atom types (binary encoding)
-    - Lattice parameters (informed priors)
-  - Learn vector field v_θ that follows optimal transport paths
+  - Define base distributions for: atom positions (uniform on torus), atom types (binary encoding), lattice parameters (informed priors)
+  - Learn vector field $v_\theta$ that follows optimal transport paths
   - Incorporates crystal symmetries: translation, rotation, permutation
 
 - **Sampling = Solving an ODE:**
   - Draw from base distributions
-  - Integrate: dx/dt = v_θ(t, x) from t=0 to t=1
+  - Integrate: $\frac{dx}{dt} = v_\theta(t, x)$ from $t=0$ to $t=1$
   - Only ~50-250 steps needed (vs. 1000+ for diffusion)
   - Result: Realistic 3D material structure
 
 </v-clicks>
 </div>
 
-<div class="flex flex-col items-center justify-center space-y-4">
+<div class="col-span-4 flex flex-col items-center justify-center space-y-4">
   <img v-click src="https://storage.googleapis.com/qdrant-us/images/7b0f4ab1e9c1c9b2dd8c3f3e5c89e19d.png" class="h-60 rounded shadow" />
   <div v-click class="text-xs mt-2">The learned vector field transports noise to realistic material structures</div>
 </div>
