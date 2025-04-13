@@ -243,40 +243,29 @@ layout: default
 <div class="grid grid-cols-2 gap-4">
 
 <div>
-<v-clicks>
-
-- **Approach:** Fine-tune a pre-trained LLM (LLaMA-2) on text-encoded crystals.
-  - Leverage LLM's existing knowledge & pattern recognition.
-
-- **Input:** Crystal structure as a formatted string.
-  ```text
-  # Example String
-  5.0 5.0 5.0 # Lattice lengths
-  90 90 90    # Lattice angles
-  Si 0.0 0.0 0.0 # Atom type & coords
-  Si 0.5 0.5 0.5
-  ...
-  ```
-
-- **Training:** Parameter-Efficient Fine-Tuning (PEFT) using LoRA.
-  - Adapts LLM to crystal data efficiently.
-  - Uses task-specific prompts (generation, conditional, infilling).
-  - Augmentations (e.g., random translations) teach symmetries.
-
-- **Sampling:** Standard autoregressive generation.
-  - Generate the crystal string token by token.
-  - Parse the string back into a 3D structure.
-
-</v-clicks>
+<div class="flex flex-col items-center justify-center">
+<div v-click class="mt-4 p-4 bg-yellow-50 rounded border border-green-200 text-base w-full">
+<span class="font-bold text-yellow-700">Approach:</span> Fine-tune a pre-trained LLM (LLaMA-2) on text-encoded crystals.
+</div>
+<div v-click class="mt-4 p-4 bg-green-50 rounded border border-green-200 text-base w-full">
+<span class="font-bold text-green-700">Input Format:</span> Converts complex 3D structure into a simple text sequence.
+</div>
+<div v-click class="mt-4 p-4 bg-purple-50 rounded border border-purple-200 text-base w-full">
+<span class="font-bold text-purple-700">Training:</span> Efficiently adapts LLM using LoRA and task prompts.
+</div>
+<div v-click class="mt-4 p-4 bg-orange-50 rounded border border-orange-200 text-base w-full">
+<span class="font-bold text-orange-700">Output:</span> Generates a text string representing a novel crystal.
+</div>
+</div>
 </div>
 
 <div class="flex flex-col items-center gap-2">
 
 <!-- ![alt text](public/image-8.png) -->
-<img src="/image-8.png" class="w-75" />
+<img v-click="2" src="/image-8.png" class="w-75" />
 
 <!-- ![alt text](public/image-7.png) -->
-<img src="/image-7.png" class="w-200 mt--10" />
+<img v-click="3" src="/image-7.png" class="w-200 mt--10" />
 
 </div>
 
