@@ -122,3 +122,64 @@ Let's get concrete about what we're actually trying to generate.
 
 [click] And this shows how that unit cell repeats infinitely to form the complete material structure. Our generative models need to learn how to create all three components while ensuring the resulting structure is physically stable.
 -->
+
+---
+layout: default
+---
+
+# Two Key Generative Tasks
+
+<div class="grid grid-cols-2 gap-8">
+<div v-click class="border p-4 rounded-lg bg-blue-50">
+  <h3 class="text-xl text-blue-700 mb-2">De Novo Generation (DNG)</h3>
+  <div class="flex mb-2">
+    <div class="text-5xl font-bold mr-4">?</div>
+    <div class="text-sm">→</div>
+    <img src="https://storage.googleapis.com/qdrant-us/images/9a6b6e9c6c6b45a22dfeb6dc26b51e2e.png" class="h-16" />
+  </div>
+  <div class="text-sm mt-2">
+    <b>Goal:</b> Generate completely new materials (composition + structure)
+  </div>
+  <div class="text-xs mt-2">
+    <b>Evaluation metrics:</b> Validity, Coverage, Property Distribution
+  </div>
+</div>
+
+<div v-click class="border p-4 rounded-lg bg-green-50">
+  <h3 class="text-xl text-green-700 mb-2">Crystal Structure Prediction (CSP)</h3>
+  <div class="flex mb-2">
+    <div class="text-2xl font-bold mr-4">SiO₂</div>
+    <div class="text-sm">→</div>
+    <img src="https://storage.googleapis.com/qdrant-us/images/04eddb6d4bc389ce86f2e9cf33b33850.png" class="h-16" />
+  </div>
+  <div class="text-sm mt-2">
+    <b>Goal:</b> Predict stable structure given a specific composition
+  </div>
+  <div class="text-xs mt-2">
+    <b>Evaluation metrics:</b> RMSE, Match Rate with ground truth
+  </div>
+</div>
+
+<div v-click class="col-span-2 bg-gray-50 p-3 rounded-lg border text-center text-sm">
+  Our study compares different generative approaches across both tasks
+</div>
+</div>
+
+<!--
+Let's understand the two fundamental generative tasks we're exploring in this project.
+
+[click] First is De Novo Generation, or DNG. This is the more ambitious task where we aim to generate completely new materials from scratch. The model must learn to create both the chemical composition (what elements to use) and the 3D structure (how to arrange those atoms).
+
+To evaluate DNG models, we look at:
+- Validity: Are the generated structures physically plausible?
+- Coverage: Do they represent diverse and realistic materials?
+- Property distributions: Do their physical properties match those of real materials?
+
+[click] The second task is Crystal Structure Prediction, or CSP. Here, we already know the chemical composition (like SiO₂ for quartz), but we need to predict the stable 3D arrangement of those atoms.
+
+CSP is evaluated using:
+- RMSE: How close are the predicted atom positions to the ground truth?
+- Match Rate: What percentage of predictions match known structures within a reasonable tolerance?
+
+[click] In our comparative study, we evaluate different generative approaches on both of these tasks to understand their strengths and limitations.
+-->
