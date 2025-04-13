@@ -5,6 +5,7 @@ class: text-center
 theme: neversink
 ---
 
+
 # Generative Models for 3D Atomistic Structure Discovery
 ## A Comparative Study
 
@@ -16,6 +17,12 @@ theme: neversink
   <span class="font-700">
     Nima Shoghi, Timothy Soetojo, Jamshid Hassanpour
   </span>
+
+  Slides: [https://nima.sh/ece6254-presentation](nima.sh/ece6254-presentation)
+</div>
+
+<div class="absolute bottom-15 right-15">
+<QRCode data="https://nima.sh/ece6254-presentation" />
 </div>
 
 <!--
@@ -129,34 +136,36 @@ layout: default
 
 # Two Key Generative Tasks
 
-<div class="grid grid-cols-2 gap-8">
+<div class="grid grid-cols-2 gap-8 mt-8">
 <div v-click class="border p-4 rounded-lg bg-blue-50">
   <h3 class="text-xl text-blue-700 mb-2">De Novo Generation (DNG)</h3>
-  <div class="flex mb-2">
-    <div class="text-5xl font-bold mr-4">?</div>
-    <div class="text-sm">→</div>
-    <img src="https://storage.googleapis.com/qdrant-us/images/9a6b6e9c6c6b45a22dfeb6dc26b51e2e.png" class="h-16" />
+  <div class="flex mb-2 flex-row items-center justify-center">
+  <div class="text-5xl font-bold mr-4">?</div>
+  <div class="text-sm">→</div>
+  <!-- ![alt text](public/Si(NiO2)2-Pnma.png) -->
+  <img src="/Si(NiO2)2-Pnma.png" class="h-32" />
   </div>
   <div class="text-sm mt-2">
-    <b>Goal:</b> Generate completely new materials (composition + structure)
+  <b>Goal:</b> Generate completely new materials (composition + structure)
   </div>
   <div class="text-xs mt-2">
-    <b>Evaluation metrics:</b> Validity, Coverage, Property Distribution
+  <b>Evaluation metrics:</b> Validity, Coverage, Property Distribution
   </div>
 </div>
 
 <div v-click class="border p-4 rounded-lg bg-green-50">
   <h3 class="text-xl text-green-700 mb-2">Crystal Structure Prediction (CSP)</h3>
-  <div class="flex mb-2">
-    <div class="text-2xl font-bold mr-4">SiO₂</div>
-    <div class="text-sm">→</div>
-    <img src="https://storage.googleapis.com/qdrant-us/images/04eddb6d4bc389ce86f2e9cf33b33850.png" class="h-16" />
+  <div class="flex mb-2 flex-row items-center justify-center">
+  <div class="text-2xl font-bold mr-4">SiO₂</div>
+  <div class="text-sm">→</div>
+  <!-- ![alt text](public/SiO2-P3_121-1.png) -->
+  <img src="/SiO2-P3_121-1.png" class="h-32" />
   </div>
   <div class="text-sm mt-2">
-    <b>Goal:</b> Predict stable structure given a specific composition
+  <b>Goal:</b> Predict stable structure given a specific composition (ie., chemical formula)
   </div>
   <div class="text-xs mt-2">
-    <b>Evaluation metrics:</b> RMSE, Match Rate with ground truth
+  <b>Evaluation metrics:</b> RMSE, Match Rate with ground truth
   </div>
 </div>
 
