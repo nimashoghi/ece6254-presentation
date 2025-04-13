@@ -530,15 +530,15 @@ table thead tr th {
 ### De Novo Generation
 
 <div class="border-2 rounded-lg overflow-hidden">
-  <table class="w-full text-center">
+  <table class="w-full text-center text-sm">
     <thead class="bg-blue-600 text-white">
       <tr>
-        <th class="p-2">Model</th>
-        <th colspan="2" class="p-2 border-l border-white">Validity (%) ↑</th>
-        <th colspan="2" class="p-2 border-l border-white">Coverage (%) ↑</th>
-        <th colspan="2" class="p-2 border-l border-white">Property Distribution ↓</th>
+        <th class="p-1">Model</th>
+        <th colspan="2" class="p-1 border-l border-white">Validity (%) ↑</th>
+        <th colspan="2" class="p-1 border-l border-white">Coverage (%) ↑</th>
+        <th colspan="2" class="p-1 border-l border-white">Property Distribution ↓</th>
       </tr>
-      <tr class="bg-blue-500 text-white text-sm">
+      <tr class="bg-blue-500 text-white text-xs">
         <th></th>
         <th class="p-1">Structural</th>
         <th class="p-1">Composition</th>
@@ -548,33 +548,33 @@ table thead tr th {
         <th class="p-1"># Elements</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="text-sm">
       <tr class="hover:bg-gray-100">
-        <td class="p-2 font-bold border-t">LLaMA-2</td>
-        <td class="p-2 border-t border-l">96.4</td>
-        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">93.3</span></td>
-        <td class="p-2 border-t border-l">91.1</td>
-        <td class="p-2 border-t border-l">94.9</td>
-        <td class="p-2 border-t border-l">3.61</td>
-        <td class="p-2 border-t border-l">1.06</td>
+        <td class="p-1 font-bold border-t">LLaMA-2</td>
+        <td class="p-1 border-t border-l">96.4</td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">93.3</span></td>
+        <td class="p-1 border-t border-l">91.1</td>
+        <td class="p-1 border-t border-l">94.9</td>
+        <td class="p-1 border-t border-l">3.61</td>
+        <td class="p-1 border-t border-l">1.06</td>
       </tr>
       <tr class="hover:bg-gray-100">
-        <td class="p-2 font-bold border-t">CDVAE</td>
-        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">100</span></td>
-        <td class="p-2 border-t border-l">86.7</td>
-        <td class="p-2 border-t border-l">99.15</td>
-        <td class="p-2 border-t border-l">99.49</td>
-        <td class="p-2 border-t border-l">0.688</td>
-        <td class="p-2 border-t border-l">0.278</td>
+        <td class="p-1 font-bold border-t">CDVAE</td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">100</span></td>
+        <td class="p-1 border-t border-l">86.7</td>
+        <td class="p-1 border-t border-l">99.15</td>
+        <td class="p-1 border-t border-l">99.49</td>
+        <td class="p-1 border-t border-l">0.688</td>
+        <td class="p-1 border-t border-l">0.278</td>
       </tr>
       <tr class="hover:bg-gray-100">
-        <td class="p-2 font-bold border-t">FlowMM</td>
-        <td class="p-2 border-t border-l">96.85</td>
-        <td class="p-2 border-t border-l">83.19</td>
-        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">99.49</span></td>
-        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">99.58</span></td>
-        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">0.239</span></td>
-        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">0.083</span></td>
+        <td class="p-1 font-bold border-t">FlowMM</td>
+        <td class="p-1 border-t border-l">96.85</td>
+        <td class="p-1 border-t border-l">83.19</td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.49</span></td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.58</span></td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.239</span></td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.083</span></td>
       </tr>
     </tbody>
   </table>
@@ -586,30 +586,30 @@ table thead tr th {
 
 ### Crystal Structure Prediction
 
-<div class="border-2 rounded-lg overflow-hidden">
-  <table class="w-full text-center">
+<div class="border-2 rounded-lg overflow-hidden mt-2">
+  <table class="w-full text-center text-sm">
     <thead class="bg-purple-600 text-white">
       <tr>
-        <th class="p-2">Model</th>
-        <th class="p-2 border-l border-white">Match Rate (%) ↑</th>
-        <th class="p-2 border-l border-white">RMSE ↓</th>
+        <th class="p-1">Model</th>
+        <th class="p-1 border-l border-white">Match Rate (%) ↑</th>
+        <th class="p-1 border-l border-white">RMSE ↓</th>
       </tr>
     </thead>
     <tbody>
       <tr class="hover:bg-gray-100">
-        <td class="p-2 font-bold border-t">LLaMA-2</td>
-        <td class="p-2 border-t border-l">55.85</td>
-        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">0.0437</span></td>
+        <td class="p-1 font-bold border-t">LLaMA-2</td>
+        <td class="p-1 border-t border-l">55.85</td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.0437</span></td>
       </tr>
       <tr class="hover:bg-gray-100">
-        <td class="p-2 font-bold border-t">CDVAE</td>
-        <td class="p-2 border-t border-l">33.90</td>
-        <td class="p-2 border-t border-l">0.1045</td>
+        <td class="p-1 font-bold border-t">CDVAE</td>
+        <td class="p-1 border-t border-l">33.90</td>
+        <td class="p-1 border-t border-l">0.1045</td>
       </tr>
       <tr class="hover:bg-gray-100">
-        <td class="p-2 font-bold border-t">FlowMM</td>
-        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">61.39</span></td>
-        <td class="p-2 border-t border-l">0.0566</td>
+        <td class="p-1 font-bold border-t">FlowMM</td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">61.39</span></td>
+        <td class="p-1 border-t border-l">0.0566</td>
       </tr>
     </tbody>
   </table>
