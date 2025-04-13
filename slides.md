@@ -2,6 +2,7 @@
 layout: cover
 background: https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=1800
 class: text-center
+theme: neversink
 ---
 
 # Generative Models for 3D Atomistic Structure Discovery
@@ -29,23 +30,23 @@ We'll walk you through why this problem matters, our approach to solving it, and
 
 ---
 
-# The Challenge: Discovering New Materials
+# Why Materials Discovery Matters
 
 <div class="grid grid-cols-2 gap-4">
 <div>
 <v-clicks>
 
-- Materials discovery has **transformative potential**
-  - Next-gen batteries
-  - Advanced catalysts
-  - New pharmaceuticals
+- **Every technology starts with a material**
+  - But discovery takes 20+ years lab-to-market
 
-- Traditional discovery is **extremely expensive**
-  - Trial and error approach
-  - Limited by human intuition
-  - Years of laboratory work
+- **Finding the needle in a 10²⁰ haystack**
+  - Only ~1 in 100,000 structures are stable
+  - Vast combinatorial space to explore
 
-- AI can **accelerate discovery** by orders of magnitude
+- **Generative ML: The "Virtual Lab"**
+  - AI trained on known stable structures
+  - Generates novel, physically realistic candidates
+  - Impact: Batteries, Carbon Capture, Drug Delivery
 
 </v-clicks>
 </div>
@@ -56,14 +57,13 @@ We'll walk you through why this problem matters, our approach to solving it, and
 </div>
 
 <!--
-Let's start by understanding why this problem matters.
+Let's understand why materials discovery is so important and challenging.
 
-The discovery of new materials has transformative potential across multiple domains:
-[click] From next-generation batteries that could power electric vehicles for thousands of miles, to advanced catalysts that could make industrial processes more efficient, to new pharmaceuticals that could treat diseases more effectively.
+[click] Every technology we rely on - from smartphones to solar panels - starts with a material discovery. But traditionally, bringing a new material from lab discovery to market application takes over 20 years. This slow cycle limits technological progress.
 
-[click] Traditionally, materials discovery has been extremely expensive and time-consuming. It relies heavily on trial and error approaches, is limited by human intuition about what might work, and can take years of laboratory work to identify a single viable new material.
+[click] The challenge is finding viable materials in an astronomically large search space. There are approximately 10²⁰ possible inorganic materials, but only about 1 in 100,000 structures are chemically stable enough to synthesize. Finding these rare stable structures manually is like finding a needle in a cosmic-sized haystack.
 
-[click] This is where AI comes in. By generating and evaluating potential materials computationally, AI can accelerate discovery by orders of magnitude, potentially screening millions of candidates before any lab work begins.
+[click] This is where generative machine learning becomes our "virtual lab." By training AI on databases of known stable materials, we can generate novel candidates that have a much higher probability of stability. This approach could revolutionize how we discover materials for critical applications like next-generation batteries, carbon capture technologies, and targeted drug delivery systems.
 
-[click] The image on the right shows a computational representation of a crystal structure. Creating realistic, physically valid structures like this is the key challenge our project addresses.
+[click] The image on the right shows a visualization of a crystal structure. Our project specifically compares different state-of-the-art generative methods to determine which approaches best capture the physical constraints that make materials stable in the real world.
 -->
