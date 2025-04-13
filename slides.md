@@ -3,6 +3,7 @@ layout: cover
 background: https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=1800
 class: text-center
 theme: neversink
+transition: slide-left
 ---
 
 
@@ -141,7 +142,7 @@ layout: default
   <h3 class="text-xl text-blue-700 mb-2">De Novo Generation (DNG)</h3>
   <div class="flex mb-2 flex-row items-center justify-center">
   <div class="text-5xl font-bold mr-4">?</div>
-  <div class="text-sm">→</div>
+  <div class="text-2xl mr-1">→</div>
   <!-- ![alt text](public/Si(NiO2)2-Pnma.png) -->
   <img src="/Si(NiO2)2-Pnma.png" class="h-32" />
   </div>
@@ -157,7 +158,7 @@ layout: default
   <h3 class="text-xl text-green-700 mb-2">Crystal Structure Prediction (CSP)</h3>
   <div class="flex mb-2 flex-row items-center justify-center">
   <div class="text-2xl font-bold mr-4">SiO₂</div>
-  <div class="text-sm">→</div>
+  <div class="text-2xl mr-1">→</div>
   <!-- ![alt text](public/SiO2-P3_121-1.png) -->
   <img src="/SiO2-P3_121-1.png" class="h-32" />
   </div>
@@ -370,3 +371,12 @@ What makes MP-20 particularly valuable is that it contains mostly globally stabl
 
 These metrics together give us a comprehensive view of how well different generative approaches perform on the two key tasks in materials discovery.
 -->
+
+---
+
+# Results Table
+
+---
+
+# Generated Samples
+<
