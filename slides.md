@@ -302,75 +302,71 @@ layout: default
 
 # Dataset and Evaluation Metrics
 
-<div class="grid grid-cols-2 gap-8">
-<div v-click class="border p-4 rounded-lg bg-blue-50">
-  <h3 class="text-xl text-blue-700 mb-2">MP-20 Dataset</h3>
-  <div class="flex items-center mb-4">
-    <img src="https://storage.googleapis.com/qdrant-us/images/1af552c9354a2c55f8264ec1c0ed4db6.png" class="h-16 mr-4" />
-    <div>
-      <div class="text-sm"><b>45,231</b> materials</div>
-      <div class="text-sm"><b>89</b> elements</div>
-      <div class="text-sm"><b>1-20</b> atoms per unit cell</div>
+<div class="grid grid-rows-2 gap-6 h-full">
+<div v-click class="border-2 p-5 rounded-lg bg-blue-50 flex flex-col items-center">
+  <h3 class="text-2xl text-blue-700 mb-3">MP-20 Dataset</h3>
+  <div class="flex items-center gap-10">
+    <img src="https://storage.googleapis.com/qdrant-us/images/1af552c9354a2c55f8264ec1c0ed4db6.png" class="h-28" />
+    <div class="flex flex-col gap-2">
+      <div class="text-lg"><b>45,231</b> materials</div>
+      <div class="text-lg"><b>89</b> elements</div>
+      <div class="text-lg"><b>1-20</b> atoms per unit cell</div>
     </div>
   </div>
-  <div class="text-xs mt-1 text-gray-700">
-    A realistic dataset of experimentally known inorganic materials with mostly globally stable structures. Success here suggests potential for generating synthesizable materials.
+  <div class="text-sm mt-3 text-gray-700 max-w-3xl">
+    A realistic dataset of experimentally known inorganic materials with mostly globally stable structures.
+    Success here suggests potential for generating synthesizable materials.
   </div>
 </div>
 
-<div v-click class="border p-4 rounded-lg bg-green-50">
-  <h3 class="text-xl text-green-700 mb-2">De Novo Generation Metrics</h3>
-  <div class="grid grid-cols-2 gap-1 text-sm">
-    <div><b>Validity:</b> Structural & Compositional</div>
-    <div><b>Coverage:</b> Precision & Recall</div>
-    <div><b>Property Distribution:</b></div>
-    <div class="pl-4">- Density</div>
-    <div class="pl-4">- Number of elements</div>
+<div class="grid grid-cols-2 gap-8">
+  <div v-click class="border-2 p-4 rounded-lg bg-green-50">
+    <h3 class="text-xl text-green-700 mb-2">DNG Metrics</h3>
+    <div class="grid gap-2 text-sm">
+      <div><b>Validity:</b></div>
+      <div class="pl-4">- Structural (atom spacing)</div>
+      <div class="pl-4">- Compositional (charge neutrality)</div>
+      <div><b>Coverage:</b></div>
+      <div class="pl-4">- Precision (realism of generated)</div>
+      <div class="pl-4">- Recall (diversity of generated)</div>
+      <div><b>Property Distribution:</b></div>
+      <div class="pl-4">- Density</div>
+      <div class="pl-4">- Number of elements</div>
+    </div>
   </div>
-  <div class="mt-2 text-xs text-gray-700">
-    Measures the physical plausibility, diversity, and realism of generated materials
-  </div>
-</div>
 
-<div v-click class="border p-4 rounded-lg bg-purple-50">
-  <h3 class="text-xl text-purple-700 mb-2">Crystal Structure Prediction Metrics</h3>
-  <div class="grid grid-cols-2 gap-1 text-sm">
-    <div><b>Match Rate:</b> % of predictions matching ground truth structure</div>
-    <div><b>RMSE:</b> Error in predicted atom positions</div>
-  </div>
-  <div class="mt-2 text-xs text-gray-700">
-    Evaluates ability to predict correct structure given a composition
-  </div>
-</div>
-
-<div v-click class="border p-4 rounded-lg bg-amber-50">
-  <h3 class="text-xl text-amber-700 mb-2">Computational Efficiency</h3>
-  <div class="text-sm">
-    <div>Number of integration steps required for:</div>
-    <div class="pl-4">- Generating stable materials</div>
-    <div class="pl-4">- Matching ground truth structures</div>
-  </div>
-  <div class="mt-2 text-xs text-gray-700">
-    Fewer steps = faster inference = more practical for material discovery
+  <div v-click class="border-2 p-4 rounded-lg bg-purple-50">
+    <h3 class="text-xl text-purple-700 mb-2">CSP Metrics</h3>
+    <div class="grid gap-2 text-sm">
+      <div><b>Match Rate:</b></div>
+      <div class="pl-4">- % of predictions matching ground truth</div>
+      <div class="pl-4">- Measured within structural tolerance</div>
+      <div><b>RMSE:</b></div>
+      <div class="pl-4">- Error in predicted atom positions</div>
+      <div class="pl-4">- Normalized by unit cell dimensions</div>
+    </div>
   </div>
 </div>
 </div>
 
 <!--
-Now let's talk about our experimental setup for evaluating different generative approaches.
+Let's discuss the dataset and metrics we'll be using to evaluate our comparative study.
 
-[click] We're focusing on the MP-20 dataset, which contains over 45,000 materials with diverse compositions and structures. What makes this dataset particularly valuable is that it represents realistic, experimentally verified inorganic materials with up to 20 atoms per unit cell.
+[click] Our focus is the MP-20 dataset - a comprehensive collection of 45,231 materials with diverse compositions and structures drawn from the Materials Project database. This dataset includes:
+- 89 different chemical elements
+- Materials with 1 to 20 atoms per unit cell
+- Experimentally verified inorganic materials
 
-Most materials in MP-20 are globally stable, meaning they can actually be synthesized in a lab. This is crucial because a model that performs well on MP-20 has genuine potential for discovering new, synthesizable materials.
+What makes MP-20 particularly valuable is that it contains mostly globally stable materials that can actually be synthesized in a laboratory. This means a model that performs well on MP-20 has real potential for practical materials discovery.
 
-[click] For De Novo Generation - creating entirely new materials from scratch - we evaluate models on several key metrics:
-- Validity checks whether generated structures are physically plausible with no overlapping atoms and charge-neutral compositions
-- Coverage measures both precision (how realistic the generated materials are) and recall (what percentage of real materials can be generated)
-- Property distribution metrics assess how well the statistical properties of generated materials match real ones, particularly density and elemental diversity
+[click] For De Novo Generation - where we generate completely new materials from scratch - we evaluate using three families of metrics:
+- Validity: Do the generated structures have reasonable atom spacing and charge-neutral compositions?
+- Coverage: Do we generate diverse materials (recall) that are realistic (precision)?
+- Property Distribution: Do statistical properties like density and elemental diversity match real materials?
 
-[click] For Crystal Structure Prediction - predicting the 3D structure given a composition - we use:
-- Match Rate, which measures the percentage of predictions that match the ground truth structure within tolerance
-- RMSE, which quantifies the error in predicted atomic positions
+[click] For Crystal Structure Prediction - where we predict the 3D structure given a composition - we use two primary metrics:
+- Match Rate: The percentage of predictions that match ground truth structures within tolerance
+- RMSE: The error in predicted atomic positions, normalized by the unit cell dimensions
 
-[click] Finally, we track computational efficiency - how many integration steps each method requires to generate stable materials or match ground truth structures. This is critical for practical applications since fewer steps means faster inference and more efficient material discovery.
+These metrics together give us a comprehensive view of how well different generative approaches perform on the two key tasks in materials discovery.
 -->
