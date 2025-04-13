@@ -103,16 +103,25 @@ layout: default
 </div>
 
 <div class="flex flex-col items-center justify-center space-y-4 col-span-4">
-  <div v-click class="flex items-center justify-center">
-    <img src="https://storage.googleapis.com/qdrant-us/images/88c8c2c5a7e0e9048f32eb0f6f94a1a1.png" class="h-40 rounded shadow" />
-    <div class="text-xs ml-2">Atoms within one unit cell</div>
+  <div v-click="1" class="flex items-center justify-center mt--10">
+
+  <!-- ![alt text](public/image-4.png) -->
+  <img src="/image-4.png" class="w-40 rounded shadow" />
+  <div class="text-xs ml-2">Atoms within one unit cell</div>
   </div>
-  <div v-click class="flex items-center justify-center">
-    <img src="https://storage.googleapis.com/qdrant-us/images/2b35832d8c95ff55f2ae8c3a5c3b2aef.png" class="h-40 rounded shadow" />
-    <div class="text-xs ml-2">Infinitely repeating structure</div>
+  <div v-click="2" class="flex items-center justify-center">
+
+  <!-- ![alt text](public/image-5.png) -->
+
+  <div class="flex flex-col items-center gap-2 ml--20">
+  <img src="/image-5.png" class="w-159 rounded shadow" />
+  <div class="text-xs ml-2">Infinitely repeating structure</div>
+  </div>
+
   </div>
 </div>
 </div>
+
 
 <!--
 Let's get concrete about what we're actually trying to generate.
@@ -126,9 +135,6 @@ Let's get concrete about what we're actually trying to generate.
 - The atom types: which chemical elements are present in our material
 - The fractional coordinates: where each atom sits within the unit cell, using a 0-1 scale relative to the cell dimensions
 
-[click] Here you see a visualization of atoms within a single unit cell - this is our fundamental building block.
-
-[click] And this shows how that unit cell repeats infinitely to form the complete material structure. Our generative models need to learn how to create all three components while ensuring the resulting structure is physically stable.
 -->
 
 ---
