@@ -394,8 +394,8 @@ layout: default
 
 # Dataset and Evaluation Challenges
 
-<div class="grid grid-rows-2 gap-6 h-full">
-<div v-click class="border-2 p-5 rounded-lg bg-blue-50 flex flex-col items-center">
+<div class="grid grid-rows-2 gap-1">
+<div v-click class="border-2 p-1 rounded-lg bg-blue-50 flex flex-col items-center">
   <h3 class="text-2xl text-blue-700 mb-3">MP-20 Dataset</h3>
   <div class="flex items-center gap-10">
     <img src="/image-3.png" class="h-28" />
@@ -410,7 +410,7 @@ layout: default
   </div>
 </div>
 
-<div v-click class="border-2 p-4 rounded-lg bg-amber-50">
+<div v-click class="border-2 p-3 rounded-lg bg-amber-50">
   <h3 class="text-2xl text-amber-700 mb-2">Evaluation Challenges</h3>
   <div class="grid grid-cols-2 gap-4">
     <div class="flex items-center justify-center flex-col">
@@ -460,33 +460,34 @@ layout: default
 
 # Evaluation Metrics
 
-<div class="grid grid-cols-12 gap-8 h-full">
-<div v-click class="border-2 p-4 rounded-lg bg-green-50 col-span-8">
-<h3 class="text-xl text-green-700 mb-2">De Novo Generation Metrics</h3>
+<div class="grid grid-cols-12 gap-6">
+<div v-click class="border-2 p-3 rounded-lg bg-green-50 col-span-8">
+<h3 class="text-lg text-green-700 mb-2">De Novo Generation Metrics</h3>
 
-**Validity:**
+**Validity:** Are the generated structures physically plausible?
 - Structural: minimum atom distance > 0.5$\text{Å}$
 - Compositional: charge neutrality
 
-**Coverage:**
+**Coverage:** Do they represent diverse and realistic materials?
 - Recall: % of real materials matched
 - Precision: % of generated materials realistic
 
-**Property Distribution:**
+**Property Distribution:** Do their properties match real materials?
 - Density: earth mover's distance to real distribution
 - Number of elements: statistical match to real data
 
 </div>
 
-<div v-click class="border-2 p-4 rounded-lg bg-purple-50 col-span-4">
-<h3 class="text-xl text-purple-700 mb-2">Crystal Structure Prediction Metrics</h3>
+<div v-click class="border-2 p-3 rounded-lg bg-purple-50 col-span-4">
+<h3 class="text-lg text-purple-700 mb-2">Crystal Structure Prediction</h3>
 
-**Match Rate:** % of predictions matching ground truth structure
-
-**RMSE:** Error in predicted atom positions
+**Accuracy**: Similarity to ground truth?
+- **Match Rate:** % of predictions matching ground truth
+- **RMSE:** Error in predicted atom positions
 
 </div>
 </div>
+
 
 <!--
 Now let's look at the specific metrics we use to evaluate our generative models, given the constraints we just discussed.
