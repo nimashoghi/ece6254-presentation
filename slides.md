@@ -435,90 +435,89 @@ layout: default
 
 # De Novo Generation Results
 
-<div class="overflow-auto">
-<table class="border-collapse w-full text-sm">
-  <thead>
-    <tr class="bg-gray-100">
-      <th class="border p-2">Model</th>
-      <th class="border p-2" colspan="2">Validity (%)</th>
-      <th class="border p-2" colspan="2">Coverage (%)</th>
-      <th class="border p-2" colspan="2">Property Distribution ↓</th>
-    </tr>
-    <tr class="bg-gray-50">
-      <th class="border p-2"></th>
-      <th class="border p-2">Comp.</th>
-      <th class="border p-2">Struct.</th>
-      <th class="border p-2">Precision</th>
-      <th class="border p-2">Recall</th>
-      <th class="border p-2">Density</th>
-      <th class="border p-2"># Elements</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-click class="hover:bg-blue-50">
-      <td class="border p-2 font-bold">LLaMA-2</td>
-      <td class="border p-2">91.7%</td>
-      <td class="border p-2">87.8%</td>
-      <td class="border p-2">95.6%</td>
-      <td class="border p-2">94.7%</td>
-      <td class="border p-2">3.850</td>
-      <td class="border p-2">0.959</td>
-    </tr>
-    <tr v-click class="hover:bg-blue-50">
-      <td class="border p-2 font-bold">CDVAE</td>
-      <td class="border p-2 bg-green-100">100.0%</td>
-      <td class="border p-2">86.7%</td>
-      <td class="border p-2">99.5%</td>
-      <td class="border p-2">99.2%</td>
-      <td class="border p-2">0.688</td>
-      <td class="border p-2">0.278</td>
-    </tr>
-    <tr v-click class="hover:bg-blue-50">
-      <td class="border p-2 font-bold">FlowMM</td>
-      <td class="border p-2">81.7%</td>
-      <td class="border p-2 bg-green-100">99.3%</td>
-      <td class="border p-2 bg-green-100">99.7%</td>
-      <td class="border p-2 bg-green-100">99.4%</td>
-      <td class="border p-2 bg-green-100">0.907</td>
-      <td class="border p-2 bg-green-100">0.209</td>
-    </tr>
-  </tbody>
-</table>
+<div class="border-2 rounded-lg overflow-hidden">
+  <table class="w-full text-center">
+    <thead class="bg-blue-600 text-white">
+      <tr>
+        <th class="p-2">Model</th>
+        <th colspan="2" class="p-2 border-l border-white">Validity (%)</th>
+        <th colspan="2" class="p-2 border-l border-white">Coverage (%)</th>
+        <th colspan="2" class="p-2 border-l border-white">Property Distribution ↓</th>
+      </tr>
+      <tr class="bg-blue-500 text-white text-sm">
+        <th></th>
+        <th class="p-1">Structural</th>
+        <th class="p-1">Composition</th>
+        <th class="p-1">Recall</th>
+        <th class="p-1">Precision</th>
+        <th class="p-1">Density</th>
+        <th class="p-1"># Elements</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-click class="hover:bg-gray-100">
+        <td class="p-2 font-bold border-t">LLaMA-2</td>
+        <td class="p-2 border-t border-l">96.4</td>
+        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">93.3</span></td>
+        <td class="p-2 border-t border-l">91.1</td>
+        <td class="p-2 border-t border-l">94.9</td>
+        <td class="p-2 border-t border-l">3.61</td>
+        <td class="p-2 border-t border-l">1.06</td>
+      </tr>
+      <tr v-click class="hover:bg-gray-100">
+        <td class="p-2 font-bold border-t">CDVAE</td>
+        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">100</span></td>
+        <td class="p-2 border-t border-l">86.7</td>
+        <td class="p-2 border-t border-l">99.15</td>
+        <td class="p-2 border-t border-l">99.49</td>
+        <td class="p-2 border-t border-l">0.688</td>
+        <td class="p-2 border-t border-l">0.278</td>
+      </tr>
+      <tr v-click class="hover:bg-gray-100">
+        <td class="p-2 font-bold border-t">FlowMM</td>
+        <td class="p-2 border-t border-l">96.85</td>
+        <td class="p-2 border-t border-l">83.19</td>
+        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">99.49</span></td>
+        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">99.58</span></td>
+        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">0.239</span></td>
+        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">0.083</span></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<div class="grid grid-cols-2 gap-6 mt-8">
-  <div v-click class="border p-3 rounded-lg bg-blue-50">
-    <h3 class="text-lg text-blue-700 mb-1">Key Findings:</h3>
-    <ul class="text-sm">
-      <li>FlowMM excels in structural validity and coverage metrics</li>
-      <li>CDVAE achieves perfect compositional validity</li>
-      <li>LLaMA-2 trails in most metrics despite being a much larger model</li>
+<div v-click class="mt-6 grid grid-cols-2 gap-4">
+  <div class="border-2 p-3 rounded-lg bg-blue-50">
+    <h3 class="text-lg font-bold text-blue-700">Key Findings</h3>
+    <ul class="text-sm mt-2">
+      <li><span class="font-bold">CDVAE</span> excels in structural validity (100%)</li>
+      <li><span class="font-bold">LLaMA-2</span> has the best compositional validity</li>
+      <li><span class="font-bold">FlowMM</span> dominates in coverage and property metrics</li>
     </ul>
   </div>
-
-  <div v-click class="border p-3 rounded-lg bg-green-50">
-    <h3 class="text-lg text-green-700 mb-1">Property Distribution:</h3>
-    <ul class="text-sm">
-      <li>Lower numbers are better (Earth Mover's Distance)</li>
-      <li>FlowMM most closely matches real material property distributions</li>
-      <li>All models struggle more with density than element distribution</li>
+  <div class="border-2 p-3 rounded-lg bg-green-50">
+    <h3 class="text-lg font-bold text-green-700">FlowMM Advantages</h3>
+    <ul class="text-sm mt-2">
+      <li><span class="font-bold">3x better</span> property distribution matching</li>
+      <li>Highest precision and recall for material coverage</li>
+      <li>Best overall property distribution metrics</li>
     </ul>
   </div>
 </div>
 
 <!--
-Let's examine the results of our De Novo Generation experiments across the three models we tested.
+Let's examine the performance of our three models on De Novo Generation tasks.
 
-[click] LLaMA-2, despite being a large language model with billions of parameters, shows decent performance but lags behind the specialized models in most metrics.
+[click] LLaMA-2 shows surprisingly good performance, particularly on compositional validity where it leads at 93.3%. However, it lags behind in coverage metrics and property distribution.
 
-[click] CDVAE achieves perfect compositional validity - every material it generates has a charge-neutral composition. However, it falls a bit short on structural validity compared to FlowMM.
+[click] CDVAE achieves perfect structural validity at 100%, ensuring all generated structures have reasonable atom spacing. It also shows strong coverage performance, but its property distribution metrics are not as strong as FlowMM.
 
-[click] FlowMM demonstrates exceptional performance across most metrics:
-- It achieves the highest structural validity at 99.3%
-- It leads in both coverage metrics, showing it generates diverse yet realistic materials
-- It has the best property distribution scores for both density and element counts
+[click] FlowMM demonstrates the best overall performance in most metrics. While it doesn't quite match CDVAE's structural validity or LLaMA-2's compositional validity, it excels in both coverage metrics (recall and precision) and dramatically outperforms the other models in property distribution matching.
 
-[click] The key takeaway is that FlowMM generally outperforms other models in generating valid, diverse, and realistic materials, though CDVAE maintains an advantage in compositional validity.
+[click] Looking at the key findings:
+- CDVAE produces the most structurally valid materials
+- LLaMA-2 creates the most charge-neutral compositions
+- FlowMM generates materials that most closely match the statistical properties of real materials, with approximately 3x better performance on property distribution metrics
 
-[click] For property distribution metrics, where lower scores indicate better performance, FlowMM most closely matches the statistical properties of real materials from our test set. This suggests that materials generated by FlowMM would be more likely to exhibit realistic physical properties.
--->$$
+This suggests that FlowMM's deterministic paths from noise to data distribution result in higher quality material generation that better captures the underlying distribution of real materials, despite slight tradeoffs in validity.
+-->
