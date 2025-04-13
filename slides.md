@@ -313,7 +313,7 @@ layout: default
 <div v-click class="border-2 p-5 rounded-lg bg-blue-50 flex flex-col items-center">
   <h3 class="text-2xl text-blue-700 mb-3">MP-20 Dataset</h3>
   <div class="flex items-center gap-10">
-    <img src="/image-3.png" class="h-28" />
+    <img src="https://storage.googleapis.com/qdrant-us/images/1af552c9354a2c55f8264ec1c0ed4db6.png" class="h-28" />
     <div class="flex flex-col gap-2">
       <div class="text-lg"><b>45,231</b> materials</div>
       <div class="text-lg"><b>89</b> elements</div>
@@ -328,21 +328,21 @@ layout: default
 <div v-click class="border-2 p-4 rounded-lg bg-amber-50">
   <h3 class="text-2xl text-amber-700 mb-2">Evaluation Challenges</h3>
   <div class="grid grid-cols-2 gap-4">
-    <div>
-      <div class="font-bold mb-1">Gold Standard: DFT Verification</div>
-      <div class="text-sm">Quantum mechanical simulations could directly verify stability but are computationally prohibitive at scale</div>
+    <div class="flex items-center justify-center flex-col">
+      <div class="text-4xl mb-2">⚛️</div>
+      <div class="font-bold text-center">Gold Standard: DFT</div>
     </div>
-    <div>
-      <div class="font-bold mb-1">Physical Invariances</div>
-      <div class="text-sm">Materials remain identical under rotation, translation, permutation, and periodic transformations</div>
+    <div class="flex items-center justify-center flex-col">
+      <div class="text-4xl mb-2">🔄</div>
+      <div class="font-bold text-center">Physical Invariances</div>
     </div>
-    <div>
-      <div class="font-bold mb-1">Proxy Metrics Needed</div>
-      <div class="text-sm">Must rely on surrogate criteria that approximate physical validity and quality</div>
+    <div class="flex items-center justify-center flex-col">
+      <div class="text-4xl mb-2">📊</div>
+      <div class="font-bold text-center">Proxy Metrics Needed</div>
     </div>
-    <div>
-      <div class="font-bold mb-1">Quality vs. Diversity</div>
-      <div class="text-sm">Balancing structural diversity against chemical fidelity requires careful metrics</div>
+    <div class="flex items-center justify-center flex-col">
+      <div class="text-4xl mb-2">⚖️</div>
+      <div class="font-bold text-center">Quality vs. Diversity</div>
     </div>
   </div>
 </div>
@@ -375,36 +375,32 @@ layout: default
 
 # Evaluation Metrics
 
-<div class="grid grid-cols-2 gap-8 h-full">
-  <div v-click class="border-2 p-4 rounded-lg bg-green-50">
-    <h3 class="text-xl text-green-700 mb-2">De Novo Generation Metrics</h3>
-    <div class="grid gap-2 text-sm">
-      <div><b>Validity:</b></div>
-      <div class="pl-4">- Structural: minimum atom distance > 0.5Å</div>
-      <div class="pl-4">- Compositional: charge neutrality</div>
-      <div><b>Coverage:</b></div>
-      <div class="pl-4">- Recall (COV-R): % of real materials matched</div>
-      <div class="pl-4">- Precision (COV-P): % of generated materials realistic</div>
-      <div><b>Property Distribution:</b></div>
-      <div class="pl-4">- Density: earth mover's distance to real distribution</div>
-      <div class="pl-4">- Number of elements: statistical match to real data</div>
-    </div>
-  </div>
+<div class="grid grid-cols-12 gap-8 h-full">
+<div v-click class="border-2 p-4 rounded-lg bg-green-50 col-span-8">
+<h3 class="text-xl text-green-700 mb-2">De Novo Generation Metrics</h3>
 
-  <div v-click class="border-2 p-4 rounded-lg bg-purple-50">
-    <h3 class="text-xl text-purple-700 mb-2">Crystal Structure Prediction Metrics</h3>
-    <div class="grid gap-2 text-sm">
-      <div><b>Match Rate:</b></div>
-      <div class="pl-4">- % of predictions matching ground truth structure</div>
-      <div class="pl-4">- Using StructureMatcher with tolerances for:</div>
-      <div class="pl-6">• Site distance (stol=0.5)</div>
-      <div class="pl-6">• Angle deviation (angle_tol=10°)</div>
-      <div class="pl-6">• Lattice deviation (ltol=0.3)</div>
-      <div><b>RMSE:</b></div>
-      <div class="pl-4">- Error in predicted atom positions</div>
-      <div class="pl-4">- Normalized by $\sqrt[3]{V/N}$ (approx. atom radius)</div>
-    </div>
-  </div>
+**Validity:**
+- Structural: minimum atom distance > 0.5$\text{Å}$
+- Compositional: charge neutrality
+
+**Coverage:**
+- Recall: % of real materials matched
+- Precision: % of generated materials realistic
+
+**Property Distribution:**
+- Density: earth mover's distance to real distribution
+- Number of elements: statistical match to real data
+
+</div>
+
+<div v-click class="border-2 p-4 rounded-lg bg-purple-50 col-span-4">
+<h3 class="text-xl text-purple-700 mb-2">Crystal Structure Prediction Metrics</h3>
+
+**Match Rate:** % of predictions matching ground truth structure
+
+**RMSE:** Error in predicted atom positions
+
+</div>
 </div>
 
 <!--
@@ -426,13 +422,9 @@ Property distribution metrics assess how well statistical properties of generate
 
 [click] For Crystal Structure Prediction - predicting the 3D structure given a composition - we use two primary metrics:
 
-Match Rate measures the percentage of predictions that match ground truth structures within tolerance:
-- We use StructureMatcher from the pymatgen library
-- This accounts for symmetry and invariances with appropriate tolerances for site distances, angles, and lattice parameters
+Match Rate measures the percentage of predictions that match ground truth structures within tolerance.
 
-RMSE quantifies the error in predicted atomic positions:
-- This is normalized by the cube root of volume per atom, which approximates the atom radius
-- This normalization accounts for different material densities and unit cell sizes
+RMSE quantifies the error in predicted atomic positions, normalized by the cube root of volume per atom, which approximates the atom radius.
 
 These metrics together give us a comprehensive view of performance while working within our computational constraints.
 -->
