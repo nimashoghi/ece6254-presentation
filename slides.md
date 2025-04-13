@@ -213,7 +213,10 @@ layout: default
 </div>
 
 <div class="flex flex-col items-center justify-center">
-  <img v-click src="https://storage.googleapis.com/qdrant-us/images/d3a60ff7cfad84e45c6c9bc3fad8b14b.png" class="h-64 rounded shadow" />
+  <!-- ![alt text](public/image-1.png) -->
+  <img v-click="1" src="/image-1.png" class="h-48" />
+  <!-- ![alt text](public/image.png) -->
+  <img v-click="2" src="/image.png" class="h-48 mt-4" />
   <div v-click class="text-xs mt-2">Flow Matching learns deterministic paths from noise to data distribution</div>
 </div>
 </div>
