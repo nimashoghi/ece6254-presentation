@@ -8,18 +8,19 @@ transition: slide-left
 
 
 # Generative Models for 3D Atomistic Structure Discovery
-## A Comparative Study
 
 <div class="flex justify-center">
   <img src="https://storage.googleapis.com/qdrant-us/images/fbd3c73cd62a3c35633a74fad39ec80b.png" class="h-60 rounded shadow" />
 </div>
 
 <div class="absolute bottom-10">
-  <span class="font-700">
-    Nima Shoghi, Timothy Soetojo, Jamshid Hassanpour
-  </span>
 
-  Slides: [https://nima.sh/ece6254-presentation](nima.sh/ece6254-presentation)
+<span class="font-700">
+Nima Shoghi, Timothy Soetojo, Jamshid Hassanpour
+</span>
+
+Slides: [nima.sh/ece6254-presentation](https://nima.sh/ece6254-presentation)
+
 </div>
 
 <div class="absolute bottom-15 right-15">
