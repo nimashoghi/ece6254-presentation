@@ -9,10 +9,6 @@ transition: slide-left
 
 # Generative Models for 3D Atomistic Structure Discovery
 
-<div class="flex justify-center">
-  <img src="https://storage.googleapis.com/qdrant-us/images/fbd3c73cd62a3c35633a74fad39ec80b.png" class="h-60 rounded shadow" />
-</div>
-
 <div class="absolute bottom-10">
 
 <span class="font-700">
@@ -31,8 +27,6 @@ Slides: [nima.sh/ece6254-presentation](https://nima.sh/ece6254-presentation)
 Good afternoon everyone. Today we're presenting our project on generative models for 3D atomistic structure discovery.
 
 This project explores how we can use AI to discover new materials by generating stable 3D atomic structures. Our work compares several cutting-edge deep learning approaches for this challenging task.
-
-[The image shows a visualization of a crystal structure with atoms arranged in a 3D lattice - these complex arrangements determine the properties of materials we use every day, from electronics to medicine.]
 
 We'll walk you through why this problem matters, our approach to solving it, and what we discovered from our experiments.
 -->
