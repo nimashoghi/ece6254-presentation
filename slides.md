@@ -266,23 +266,107 @@ layout: default
 </div>
 
 <!--
-Now let's look at how FlowMM specifically works for generating materials.
+Now let's look at how FlowMM specifically works for generating materials. The image at the top visualizes how the vector field transforms random noise into realistic material structures.
 
-[click] First, let's talk about training. FlowMM needs to learn a vector field that can transform simple distributions into complex material structures. It defines separate base distributions for different components:
+[click] For training, FlowMM needs to learn a vector field that can transform simple distributions into complex material structures. It defines separate base distributions for different components:
 - For atom positions, it uses a uniform distribution on a torus (to handle periodic boundary conditions)
 - For atom types, it uses an efficient binary encoding rather than one-hot vectors
 - For lattice parameters, it uses informed priors based on real materials
 
-The model then learns a vector field that follows optimal transport paths between these base distributions and real materials, while respecting crystal symmetries like translation, rotation, and permutation.
+The model learns a vector field that follows optimal transport paths between these base distributions and real materials, while respecting crystal symmetries like translation, rotation, and permutation.
 
 [click] For sampling, we simply solve an Ordinary Differential Equation. We:
 1. Draw samples from our base distributions
 2. Numerically integrate the ODE dx/dt = v_θ(t,x) from t=0 to t=1
 3. The integration can be done with standard numerical methods like Euler or Runge-Kutta
 
-The remarkable efficiency advantage is that we only need about 50-250 integration steps to get high-quality materials, compared to 1000+ steps typically needed for diffusion models.
+The remarkable efficiency advantage is that we only need about 50-250 integration steps to get high-quality materials, compared to 1000+ steps typically needed for diffusion models. The result is a complete material specification with 3D atomic positions, atom types, and unit cell parameters that respect physical constraints and symmetries.
+-->
 
-[click] Here's a visualization of how the vector field transforms a random noise sample into a realistic material structure.
+---
 
-[click] The result is a complete material specification with 3D atomic positions, atom types, and unit cell parameters that respect physical constraints and symmetries.
+# Evaluation Metrics: How Do We Measure Success?
+
+<div class="grid grid-cols-2 gap-4">
+<div v-click class="border p-4 rounded-lg bg-blue-50">
+<h3 class="text-xl text-blue-700 mb-2">De Novo Generation (DNG)</h3>
+
+<div class="space-y-2">
+<div>
+<p class="font-bold">Validity:</p>
+<ul class="pl-4 list-disc">
+<li>Structural: Min. interatomic distance > 0.5 Å</li>
+<li>Compositional: Charge neutrality</li>
+</ul>
+</div>
+
+<div>
+<p class="font-bold">Coverage:</p>
+<ul class="pl-4 list-disc">
+<li>Recall (COV-R): % of real materials captured</li>
+<li>Precision (COV-P): % of generated materials realistic</li>
+</ul>
+</div>
+
+<div>
+<p class="font-bold">Property Statistics (EMD):</p>
+<ul class="pl-4 list-disc">
+<li>Density (ρ): g/cm³</li>
+<li># Elements: Elemental diversity</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div v-click class="border p-4 rounded-lg bg-green-50">
+<h3 class="text-xl text-green-700 mb-2">Crystal Structure Prediction (CSP)</h3>
+
+<div class="space-y-3">
+<div>
+<p class="font-bold">Match Rate:</p>
+<p>% of predictions matching ground truth structures</p>
+</div>
+
+<div>
+<p class="font-bold">RMSE:</p>
+<p>Average coordinate error, normalized by structure size</p>
+</div>
+
+<div class="flex justify-center mt-2">
+<img src="https://storage.googleapis.com/qdrant-us/images/2dc28eafeeaee8eedeaf6c10a2b87eef.png" class="h-24 rounded shadow" />
+</div>
+</div>
+</div>
+
+<div v-click class="col-span-2 mt-4 bg-yellow-50 p-3 rounded-lg border">
+<p class="font-bold">Computational Efficiency:</p>
+<div class="grid grid-cols-2 gap-2">
+<div>
+<p><b>Integration Steps:</b> Number of steps needed to generate high-quality structures</p>
+</div>
+<div>
+<p><b>Stability Analysis:</b> Energy above hull (E<sub>hull</sub>) from quantum calculations</p>
+</div>
+</div>
+</div>
+</div>
+
+<!--
+Now let's understand how we evaluate the performance of our generative models for materials.
+
+[click] For De Novo Generation, where we're creating entirely new materials, we have three categories of metrics:
+
+First, validity measures whether our generated structures are physically plausible. Structural validity checks that atoms aren't unrealistically close together, while compositional validity ensures the material has a neutral charge overall.
+
+Second, coverage metrics tell us about how well our generated distribution matches real materials. Recall measures what percentage of the space of real materials we can generate, while precision tells us what percentage of our generations look like real materials.
+
+Third, property statistics compare distributions of physical properties between generated and real materials using Earth Mover's Distance (EMD). We look at density and elemental diversity to ensure our generated materials have realistic physical characteristics.
+
+[click] For Crystal Structure Prediction, where we predict structure given a composition, we use two primary metrics:
+
+Match rate tells us what percentage of our predictions match the ground truth structure within a reasonable tolerance.
+
+RMSE measures the average error in atomic positions, normalized by the size of the structure to enable fair comparisons.
+
+[click] Finally, for both tasks, computational efficiency is critical - we want to generate high-quality materials with as few integration steps as possible. This is where flow matching models like FlowMM have a significant advantage over diffusion models. Additionally, we evaluate the physical stability of generated structures using quantum calculations of energy above hull (E_hull), which indicates whether a material would actually be stable in real-world conditions.
 -->
