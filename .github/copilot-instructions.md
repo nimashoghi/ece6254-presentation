@@ -8,6 +8,28 @@
 4. **Text-Visual Balance**: Use text sparingly, let visuals carry the message
 5. **Speaker Notes as Content**: Slides are visual aids, notes contain the full message
 
+## Important HTML and Markdown Formatting Rules
+
+> **CRITICAL:** Do not indent HTML in Slidev markdown files. Unlike regular markdown, indenting HTML in Slidev will completely break the formatting and rendering. Always start HTML tags at the beginning of the line without any spaces or tabs before them.
+
+✅ Correct:
+```markdown
+<div class="flex">
+<div>First column</div>
+<div>Second column</div>
+</div>
+```
+
+❌ Incorrect:
+```markdown
+<div class="flex">
+  <div>First column</div>
+  <div>Second column</div>
+</div>
+```
+
+This applies to all HTML tags within Slidev markdown, including animation wrappers like `<v-click>`, layout containers, and styling elements.
+
 ## Slidev Technical Foundation
 
 ### Basic Structure
@@ -82,7 +104,7 @@ Detailed speaker notes here.
 
 ```markdown
 <v-click>
-  Content revealed on click
+Content revealed on click
 </v-click>
 
 <!-- Or as a directive -->
@@ -170,10 +192,10 @@ function example() {
 
 2. **Grid System**:
    ```markdown
-   <div class="grid grid-cols-2 gap-4">
-     <div>Left content</div>
-     <div>Right content</div>
-   </div>
+<div class="grid grid-cols-2 gap-4">
+<div>Left content</div>
+<div>Right content</div>
+</div>
    ```
 
 3. **Visual Balance**:
@@ -224,17 +246,17 @@ function example() {
 
 3. **Synchronized Narration**:
    ```markdown
-   <v-clicks>
-   - Initial concept
-   - Building detail
-   - Final insight
-   </v-clicks>
+<v-clicks>
+- Initial concept
+- Building detail
+- Final insight
+</v-clicks>
 
-   <!--
-   I'll start by explaining the basic concept.
-   [click] Then, I'll add how this works in practice.
-   [click] Finally, I'll reveal why this matters for our project.
-   -->
+<!--
+I'll start by explaining the basic concept.
+[click] Then, I'll add how this works in practice.
+[click] Finally, I'll reveal why this matters for our project.
+-->
    ```
 
 ### Visual Elements
@@ -262,7 +284,7 @@ function example() {
 <Tweet id="1390115482657726468" />
 
 <div class="flex justify-center">
-  <img src="/images/diagram.png" class="h-60" />
+<img src="/images/diagram.png" class="h-60" />
 </div>
 ```
 
@@ -278,8 +300,8 @@ Common useful classes:
 Example:
 ```markdown
 <div class="flex justify-between items-center p-4 bg-blue-50 rounded-lg shadow">
-  <div class="text-xl font-bold text-blue-800">Key Point</div>
-  <img src="/icon.png" class="h-10 w-10" />
+<div class="text-xl font-bold text-blue-800">Key Point</div>
+<img src="/icon.png" class="h-10 w-10" />
 </div>
 ```
 
@@ -291,7 +313,7 @@ Example:
 
 ```markdown
 <div class="h-40 md:h-60 lg:h-80 w-full bg-gray-100 rounded">
-  Responsive container
+Responsive container
 </div>
 ```
 
@@ -321,7 +343,7 @@ Example:
 </div>
 
 <div class="flex items-center justify-center">
-  <img v-click src="/crystal-structure.png" class="h-60 rounded shadow" />
+<img v-click src="/crystal-structure.png" class="h-60 rounded shadow" />
 </div>
 </div>
 
@@ -344,24 +366,24 @@ Let's understand why materials discovery is so important and challenging.
 # Performance Comparison
 
 <div class="flex justify-center">
-  <div class="w-4/5">
-    <img v-click src="/comparison-chart.png" class="w-full" />
-  </div>
+<div class="w-4/5">
+<img v-click src="/comparison-chart.png" class="w-full" />
+</div>
 </div>
 
 <div class="grid grid-cols-3 gap-4 mt-4">
-  <div v-click class="bg-green-50 p-2 rounded text-center">
-    <div class="text-xl font-bold text-green-700">95%</div>
-    <div class="text-sm">Validity</div>
-  </div>
-  <div v-click class="bg-blue-50 p-2 rounded text-center">
-    <div class="text-xl font-bold text-blue-700">87%</div>
-    <div class="text-sm">Coverage</div>
-  </div>
-  <div v-click class="bg-purple-50 p-2 rounded text-center">
-    <div class="text-xl font-bold text-purple-700">2.3x</div>
-    <div class="text-sm">Speed Improvement</div>
-  </div>
+<div v-click class="bg-green-50 p-2 rounded text-center">
+<div class="text-xl font-bold text-green-700">95%</div>
+<div class="text-sm">Validity</div>
+</div>
+<div v-click class="bg-blue-50 p-2 rounded text-center">
+<div class="text-xl font-bold text-blue-700">87%</div>
+<div class="text-sm">Coverage</div>
+</div>
+<div v-click class="bg-purple-50 p-2 rounded text-center">
+<div class="text-xl font-bold text-purple-700">2.3x</div>
+<div class="text-sm">Speed Improvement</div>
+</div>
 </div>
 
 <!--
@@ -399,6 +421,10 @@ Let's look at how our different models performed.
    - Solution: Use animations purposefully, not decoratively
    - Rule: Each animation should reveal meaningful information
 
+6. **HTML Indentation**
+   - Solution: Never indent HTML in Slidev markdown files
+   - Rule: Place all HTML tags flush left (no spaces/tabs before tags)
+
 ## Conclusion
 
 Creating effective presentations is both art and science. The best slides:
@@ -408,5 +434,6 @@ Creating effective presentations is both art and science. The best slides:
 3. Use visuals strategically
 4. Maintain consistent visual language
 5. Respect audience cognitive load
+6. Follow proper HTML formatting (no indentation)
 
 Slidev provides powerful tools to implement these principles through markdown-based slides, tailwind styling, and animation capabilities. By combining technical features with solid design principles, you can create presentations that are both visually compelling and intellectually engaging.

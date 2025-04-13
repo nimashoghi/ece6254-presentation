@@ -205,6 +205,101 @@ CSP is evaluated using:
 layout: default
 ---
 
+# Approach 1: Large Language Models
+
+<div class="grid grid-cols-2 gap-4">
+
+<div>
+
+<v-clicks>
+
+- **Core Idea:** Predict the next word (token) given the previous ones:  $p(w_{t+1} | w_{0:t})$
+- **Generation:** Sample tokens sequentially.
+  - `Input -> LLM -> Next Token`
+  - Repeat: `Input + Next Token -> LLM -> ...`
+
+- **Approach:** Fine-tune a pre-trained LLM (LLaMA-2) on text-encoded crystals.
+  - Leverage LLM's existing knowledge & pattern recognition.
+
+</v-clicks>
+
+</div>
+
+<div>
+
+<!-- ![alt text](public/nlpgif.gif) -->
+<img src="/nlpgif.gif" class="w-100" />
+
+</div>
+
+</div>
+
+---
+layout: default
+---
+
+# Crystal Text LLM: Fine-tuning & Sampling
+
+<div class="grid grid-cols-2 gap-4">
+
+<div>
+<v-clicks>
+
+- **Approach:** Fine-tune a pre-trained LLM (LLaMA-2) on text-encoded crystals.
+  - Leverage LLM's existing knowledge & pattern recognition.
+
+- **Input:** Crystal structure as a formatted string.
+  ```text
+  # Example String
+  5.0 5.0 5.0 # Lattice lengths
+  90 90 90    # Lattice angles
+  Si 0.0 0.0 0.0 # Atom type & coords
+  Si 0.5 0.5 0.5
+  ...
+  ```
+
+- **Training:** Parameter-Efficient Fine-Tuning (PEFT) using LoRA.
+  - Adapts LLM to crystal data efficiently.
+  - Uses task-specific prompts (generation, conditional, infilling).
+  - Augmentations (e.g., random translations) teach symmetries.
+
+- **Sampling:** Standard autoregressive generation.
+  - Generate the crystal string token by token.
+  - Parse the string back into a 3D structure.
+
+</v-clicks>
+</div>
+
+<div class="flex flex-col items-center gap-2">
+
+<!-- ![alt text](public/image-8.png) -->
+<img src="/image-8.png" class="w-75" />
+
+<!-- ![alt text](public/image-7.png) -->
+<img src="/image-7.png" class="w-200 mt--10" />
+
+</div>
+
+
+</div>
+
+<!--
+So, how do we apply LLMs to generate crystals? The Crystal Text LLM paper proposes a straightforward approach.
+
+[click] Instead of designing complex architectures, they fine-tune a large, pre-trained LLM (LLaMA-2) on crystal data. The idea is to leverage the powerful pattern recognition abilities the LLM already possesses from its text pre-training.
+
+[click] They represent the crystal structure – lattice parameters, atom types, and fractional coordinates – as a simple, formatted string. This converts the 3D problem into a 1D sequence generation task that LLMs excel at.
+
+[click] Fine-tuning is done efficiently using techniques like LoRA (Low-Rank Adaptation), which only modifies a small fraction of the model's parameters. They use specific prompts to train the model for different tasks like unconditional generation, generating based on desired properties (conditional), or filling in missing atoms (infilling). Data augmentations, like randomly shifting coordinates, help the model learn physical symmetries.
+
+[click] Generating a new crystal is then just standard autoregressive sampling. The model generates the formatted string token by token, and this string is then parsed back into a 3D crystal structure. This method achieved surprisingly good results, generating stable materials at high rates.
+-->
+
+
+---
+layout: default
+---
+
 # Flow Matching: A More Efficient Alternative to Diffusion
 
 <div class="grid grid-cols-2 gap-8">
