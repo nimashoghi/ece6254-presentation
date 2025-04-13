@@ -10,10 +10,15 @@
   "dependencies": {
     "@slidev/cli": "latest",
     "@slidev/theme-default": "latest",
-    "slidev-theme-eloc": "latest",
+    "slidev-theme-neversink": "latest",
     "vue": "latest"
   },
   "devDependencies": {
     "prettier": "latest"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
