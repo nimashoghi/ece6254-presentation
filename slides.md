@@ -307,7 +307,7 @@ The remarkable efficiency advantage is that we only need about 50-250 integratio
 layout: default
 ---
 
-# MP-20 Dataset & Evaluation Challenges
+# Dataset and Evaluation Challenges
 
 <div class="grid grid-rows-2 gap-6 h-full">
 <div v-click class="border-2 p-5 rounded-lg bg-blue-50 flex flex-col items-center">
@@ -321,73 +321,73 @@ layout: default
     </div>
   </div>
   <div class="text-sm mt-3 text-gray-700 max-w-3xl">
-    A realistic dataset of experimentally known inorganic materials with mostly globally stable structures
+    A realistic dataset of experimentally known inorganic materials with mostly globally stable structures.
   </div>
 </div>
 
 <div v-click class="border-2 p-4 rounded-lg bg-amber-50">
-  <h3 class="text-2xl text-amber-700 mb-3">Evaluation Challenges</h3>
+  <h3 class="text-2xl text-amber-700 mb-2">Evaluation Challenges</h3>
   <div class="grid grid-cols-2 gap-4">
-    <div class="flex flex-col gap-2 text-sm">
-      <div><b>Gold Standard Is Prohibitive</b></div>
-      <div class="pl-4">- Quantum mechanical simulations</div>
-      <div class="pl-4">- Verify true stability of structures</div>
-      <div class="pl-4">- Computationally expensive</div>
+    <div>
+      <div class="font-bold mb-1">Gold Standard: DFT Verification</div>
+      <div class="text-sm">Quantum mechanical simulations could directly verify stability but are computationally prohibitive at scale</div>
     </div>
-    <div class="flex flex-col gap-2 text-sm">
-      <div><b>Material Invariances Complicate Comparison</b></div>
-      <div class="pl-4">- Permutation of atoms</div>
-      <div class="pl-4">- Translation and rotation</div>
-      <div class="pl-4">- Periodic boundary conditions</div>
+    <div>
+      <div class="font-bold mb-1">Physical Invariances</div>
+      <div class="text-sm">Materials remain identical under rotation, translation, permutation, and periodic transformations</div>
     </div>
-  </div>
-  <div class="text-sm mt-3 text-amber-800">
-    → We rely on computationally efficient <b>proxy metrics</b> that approximate material quality
+    <div>
+      <div class="font-bold mb-1">Proxy Metrics Needed</div>
+      <div class="text-sm">Must rely on surrogate criteria that approximate physical validity and quality</div>
+    </div>
+    <div>
+      <div class="font-bold mb-1">Quality vs. Diversity</div>
+      <div class="text-sm">Balancing structural diversity against chemical fidelity requires careful metrics</div>
+    </div>
   </div>
 </div>
 </div>
 
 <!--
-Let's begin by looking at our dataset and the unique challenges of evaluating generative models for materials.
+Let's start by understanding our dataset and the challenges in evaluating generative models for materials.
 
-[click] We're working with the MP-20 dataset from the Materials Project, which contains over 45,000 experimentally verified inorganic materials. This dataset is particularly valuable because:
-- It includes materials with up to 20 atoms per unit cell
-- It spans 89 different chemical elements
-- Most importantly, it contains materials that are globally stable and can be synthesized in a lab
+[click] Our study uses the MP-20 dataset - a comprehensive collection of 45,231 materials drawn from the Materials Project database. This dataset includes:
+- 89 different chemical elements
+- Materials with 1 to 20 atoms per unit cell
+- Experimentally verified inorganic materials
 
-This last point is crucial - a model that performs well on MP-20 has genuine potential for discovering new, synthesizable materials.
+What makes MP-20 particularly valuable is that it contains mostly globally stable materials that can actually be synthesized in a laboratory. This means a model that performs well on MP-20 has real potential for practical materials discovery.
 
-[click] However, evaluating generative models for materials poses significant challenges:
+[click] However, evaluating generative models for materials presents unique challenges:
 
-The gold standard for evaluation would be quantum mechanical simulations to verify the stability of generated structures. These calculations would tell us definitively whether a material could exist in reality. Unfortunately, these simulations are computationally prohibitive at scale - we can't run them for thousands of generated structures.
+First, while Density Functional Theory (DFT) calculations would be the gold standard for verifying if generated materials are truly stable, these quantum mechanical simulations are computationally prohibitive to run at scale.
 
-Additionally, materials have multiple invariances that complicate direct comparison:
-- Swapping atoms of the same element doesn't change the material
-- Rotating or translating the structure doesn't change it either
-- The choice of unit cell can vary while representing the same infinite crystal
+Second, materials have multiple physical invariances - they remain identical under rotation, translation, permutation of atoms, and different choices of unit cell. This makes direct comparison difficult.
 
-Because of these challenges, we have to rely on proxy metrics that are computationally efficient while approximating the quality of generated materials.
+Third, because of these constraints, we must rely on proxy metrics that approximate physical validity and quality without running full quantum simulations.
+
+Finally, there's an inherent trade-off between generating diverse structures and ensuring they're all physically realistic. Our metrics need to balance these considerations carefully.
 -->
 
 ---
 layout: default
 ---
 
-# Proxy Metrics for Material Generation
+# Evaluation Metrics
 
 <div class="grid grid-cols-2 gap-8 h-full">
   <div v-click class="border-2 p-4 rounded-lg bg-green-50">
     <h3 class="text-xl text-green-700 mb-2">De Novo Generation Metrics</h3>
     <div class="grid gap-2 text-sm">
       <div><b>Validity:</b></div>
-      <div class="pl-4">- Structural: Min. atom distance > 0.5Å</div>
-      <div class="pl-4">- Compositional: Charge neutrality</div>
+      <div class="pl-4">- Structural: minimum atom distance > 0.5Å</div>
+      <div class="pl-4">- Compositional: charge neutrality</div>
       <div><b>Coverage:</b></div>
       <div class="pl-4">- Recall (COV-R): % of real materials matched</div>
-      <div class="pl-4">- Precision (COV-P): % of generated with high quality</div>
+      <div class="pl-4">- Precision (COV-P): % of generated materials realistic</div>
       <div><b>Property Distribution:</b></div>
-      <div class="pl-4">- Earth Mover's Distance for density ($\rho$)</div>
-      <div class="pl-4">- Earth Mover's Distance for # of elements</div>
+      <div class="pl-4">- Density: earth mover's distance to real distribution</div>
+      <div class="pl-4">- Number of elements: statistical match to real data</div>
     </div>
   </div>
 
@@ -395,67 +395,44 @@ layout: default
     <h3 class="text-xl text-purple-700 mb-2">Crystal Structure Prediction Metrics</h3>
     <div class="grid gap-2 text-sm">
       <div><b>Match Rate:</b></div>
-      <div class="pl-4">- % of predictions matching ground truth</div>
-      <div class="pl-4">- Uses StructureMatcher from pymatgen</div>
-      <div class="pl-4">- Accounts for all material invariances</div>
+      <div class="pl-4">- % of predictions matching ground truth structure</div>
+      <div class="pl-4">- Using StructureMatcher with tolerances for:</div>
+      <div class="pl-6">• Site distance (stol=0.5)</div>
+      <div class="pl-6">• Angle deviation (angle_tol=10°)</div>
+      <div class="pl-6">• Lattice deviation (ltol=0.3)</div>
       <div><b>RMSE:</b></div>
       <div class="pl-4">- Error in predicted atom positions</div>
-      <div class="pl-4">- Normalized by $\sqrt[3]{V/N}$ (avg. atom radius)</div>
-      <div class="pl-4">- Handles varying interatomic distances</div>
-    </div>
-  </div>
-
-  <div v-click class="col-span-2 border-2 p-3 rounded-lg bg-blue-50 text-center">
-    <div class="text-blue-700 text-sm font-bold">
-      These metrics help us compare different generative approaches without requiring prohibitively expensive quantum calculations
+      <div class="pl-4">- Normalized by $\sqrt[3]{V/N}$ (approx. atom radius)</div>
     </div>
   </div>
 </div>
 
 <!--
-Now let's look at the specific proxy metrics we use to evaluate our generative models.
+Now let's look at the specific metrics we use to evaluate our generative models, given the constraints we just discussed.
 
-[click] For De Novo Generation - creating entirely new materials from scratch - we use three families of metrics:
+[click] For De Novo Generation - creating entirely new materials from scratch - we evaluate using three families of metrics:
 
-Validity checks assess whether generated structures are physically plausible:
-- Structural validity ensures atoms aren't unrealistically close (minimum distance > 0.5 Angstroms)
-- Compositional validity verifies charge neutrality, a basic requirement for stable materials
+Validity checks whether generated structures are physically plausible:
+- Structural validity requires minimum atom distances greater than 0.5 Ångströms
+- Compositional validity requires overall charge neutrality
 
-Coverage metrics measure both the diversity and quality of generated materials:
-- Recall (COV-R) tells us what percentage of real materials we can match with our generated ones
-- Precision (COV-P) tells us what percentage of our generated materials are high quality
+Coverage measures both diversity and quality:
+- Recall (COV-R) tells us what percentage of real materials are matched by our generated set
+- Precision (COV-P) tells us what percentage of our generated materials are realistic
 
 Property distribution metrics assess how well statistical properties of generated materials match real ones:
-- We measure the Earth Mover's Distance for density distribution
-- We also measure how well we match the distribution of number of elements per material
+- We use earth mover's distance to compare density distributions
+- We measure how well the distribution of number of elements matches real materials
 
-[click] For Crystal Structure Prediction - predicting the 3D structure given a composition - we use:
+[click] For Crystal Structure Prediction - predicting the 3D structure given a composition - we use two primary metrics:
 
-Match Rate measures the percentage of predictions that match ground truth structures:
+Match Rate measures the percentage of predictions that match ground truth structures within tolerance:
 - We use StructureMatcher from the pymatgen library
-- This tool accounts for all material invariances (permutation, rotation, translation, periodicity)
+- This accounts for symmetry and invariances with appropriate tolerances for site distances, angles, and lattice parameters
 
 RMSE quantifies the error in predicted atomic positions:
-- We normalize by the average atom radius to handle varying interatomic distances
-- This provides a scale-invariant measure of structural accuracy
+- This is normalized by the cube root of volume per atom, which approximates the atom radius
+- This normalization accounts for different material densities and unit cell sizes
 
-[click] Together, these metrics provide a comprehensive evaluation framework that helps us compare different generative approaches without requiring prohibitively expensive quantum calculations.
--->
-
----
-
-# Results Table
-
----
-
-# Generated Samples
-
----
-
-# Analysis
-
-<!--
-
-TODO:
-- Talk about how evaluation is tricky
+These metrics together give us a comprehensive view of performance while working within our computational constraints.
 -->
