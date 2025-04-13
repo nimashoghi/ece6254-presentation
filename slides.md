@@ -74,8 +74,8 @@ layout: default
 
 # What Defines a Material Structure?
 
-<div class="grid grid-cols-2 gap-4">
-<div>
+<div class="grid grid-cols-12 gap-4">
+<div class="col-span-8">
 <v-clicks>
 
 - **Fundamentally: Atoms in 3D Space**
@@ -94,7 +94,7 @@ layout: default
 </v-clicks>
 </div>
 
-<div class="flex flex-col items-center justify-center space-y-4">
+<div class="flex flex-col items-center justify-center space-y-4 col-span-4">
   <div v-click class="flex items-center justify-center">
     <img src="https://storage.googleapis.com/qdrant-us/images/88c8c2c5a7e0e9048f32eb0f6f94a1a1.png" class="h-40 rounded shadow" />
     <div class="text-xs ml-2">Atoms within one unit cell</div>
