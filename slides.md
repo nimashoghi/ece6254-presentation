@@ -217,7 +217,11 @@ layout: default
   <img v-click="1" src="/image-1.png" class="h-48" />
   <!-- ![alt text](public/image.png) -->
   <img v-click="2" src="/image.png" class="h-48 mt-4" />
-  <div v-click class="text-xs mt-2">Flow Matching learns deterministic paths from noise to data distribution</div>
+  <div v-click="2" class="text-xs mt-2 ml--5">
+
+  FM learns **deterministic paths** from noise to data distribution
+
+  </div>
 </div>
 </div>
 
@@ -284,89 +288,65 @@ The remarkable efficiency advantage is that we only need about 50-250 integratio
 -->
 
 ---
+layout: default
+---
 
-# Evaluation Metrics: How Do We Measure Success?
+# Dataset and Evaluation Metrics
 
-<div class="grid grid-cols-2 gap-4">
-<div v-click class="border p-4 rounded-lg bg-blue-50">
-<h3 class="text-xl text-blue-700 mb-2">De Novo Generation (DNG)</h3>
-
-<div class="space-y-2">
+<div class="grid grid-cols-2 gap-6">
 <div>
-<p class="font-bold">Validity:</p>
-<ul class="pl-4 list-disc">
-<li>Structural: Min. interatomic distance > 0.5 Å</li>
-<li>Compositional: Charge neutrality</li>
-</ul>
+<v-clicks>
+
+- **MP-20 Dataset:**
+  - 45,231 materials with varied structures & compositions
+  - 89 possible elements
+  - 1-20 atoms per unit cell
+  - Realistic materials from QM simulations
+  - Most are globally stable & synthesizable
+  - 60-20-20 train-validation-test split
+
+- **De Novo Generation (DNG) Metrics:**
+  - **Validity:** Structural & Compositional
+  - **Coverage:** Recall (diversity) & Precision (quality)
+  - **Property Distribution:** Density, # Elements (EMD)
+
+</v-clicks>
 </div>
 
-<div>
-<p class="font-bold">Coverage:</p>
-<ul class="pl-4 list-disc">
-<li>Recall (COV-R): % of real materials captured</li>
-<li>Precision (COV-P): % of generated materials realistic</li>
-</ul>
-</div>
+<div class="mt-4">
+<v-clicks>
 
-<div>
-<p class="font-bold">Property Statistics (EMD):</p>
-<ul class="pl-4 list-disc">
-<li>Density (ρ): g/cm³</li>
-<li># Elements: Elemental diversity</li>
-</ul>
-</div>
-</div>
-</div>
+- **Crystal Structure Prediction (CSP) Metrics:**
+  - **Match Rate:** % predictions matching ground truth
+  - **RMSE:** Error in predicted atomic positions
 
-<div v-click class="border p-4 rounded-lg bg-green-50">
-<h3 class="text-xl text-green-700 mb-2">Crystal Structure Prediction (CSP)</h3>
+- **Why These Metrics Matter:**
+  - Validity ensures physical realizability
+  - Coverage measures diversity & quality
+  - Property distribution shows statistical realism
+  - Goal: Generate stable, novel, synthesizable materials
 
-<div class="space-y-3">
-<div>
-<p class="font-bold">Match Rate:</p>
-<p>% of predictions matching ground truth structures</p>
-</div>
-
-<div>
-<p class="font-bold">RMSE:</p>
-<p>Average coordinate error, normalized by structure size</p>
-</div>
-
-<div class="flex justify-center mt-2">
-<img src="https://storage.googleapis.com/qdrant-us/images/2dc28eafeeaee8eedeaf6c10a2b87eef.png" class="h-24 rounded shadow" />
-</div>
-</div>
-</div>
-
-<div v-click class="col-span-2 mt-4 bg-yellow-50 p-3 rounded-lg border">
-<p class="font-bold">Computational Efficiency:</p>
-<div class="grid grid-cols-2 gap-2">
-<div>
-<p><b>Integration Steps:</b> Number of steps needed to generate high-quality structures</p>
-</div>
-<div>
-<p><b>Stability Analysis:</b> Energy above hull (E<sub>hull</sub>) from quantum calculations</p>
-</div>
-</div>
+</v-clicks>
 </div>
 </div>
 
 <!--
-Now let's understand how we evaluate the performance of our generative models for materials.
+Before we look at our experimental results, let me explain our dataset and evaluation metrics.
 
-[click] For De Novo Generation, where we're creating entirely new materials, we have three categories of metrics:
+[click] For this project, we focused on the MP-20 dataset, which contains over 45,000 inorganic materials with diverse structures and compositions. It includes 89 possible elements, with materials having anywhere from 1 to 20 atoms in their unit cells.
 
-First, validity measures whether our generated structures are physically plausible. Structural validity checks that atoms aren't unrealistically close together, while compositional validity ensures the material has a neutral charge overall.
+What makes this dataset particularly valuable is that these are realistic materials derived from quantum mechanical simulations. Most of them are globally stable and could actually be synthesized in a lab. This means models that perform well on MP-20 have real-world potential for materials discovery.
 
-Second, coverage metrics tell us about how well our generated distribution matches real materials. Recall measures what percentage of the space of real materials we can generate, while precision tells us what percentage of our generations look like real materials.
+[click] For evaluating De Novo Generation, where we're creating completely new materials, we use several metrics:
+- Validity measures whether generated structures are physically plausible (no atom overlaps) and have charge-neutral compositions
+- Coverage assesses how well our generated materials span the space of real materials (recall) and how many of our generated materials resemble real ones (precision)
+- Property distribution metrics use Earth Mover's Distance (EMD) to measure how well statistical properties like density and number of elements match real material distributions
 
-Third, property statistics compare distributions of physical properties between generated and real materials using Earth Mover's Distance (EMD). We look at density and elemental diversity to ensure our generated materials have realistic physical characteristics.
+[click] For Crystal Structure Prediction, where we predict structure given a composition, we use:
+- Match rate: the percentage of predictions that match the ground truth structure within tolerance
+- RMSE: the root mean square error in predicted atomic positions
 
-[click] For Crystal Structure Prediction, where we predict structure given a composition, we use two primary metrics:
+[click] These metrics are carefully chosen to evaluate different aspects of material generation. Validity ensures our generated materials could actually exist physically. Coverage measures both diversity and quality. Property distributions ensure our generated materials statistically resemble real ones.
 
-Match rate tells us what percentage of our predictions match the ground truth structure within a reasonable tolerance.
-
-RMSE measures the average error in atomic positions, normalized by the size of the structure to enable fair comparisons.
-
-[click] Finally, for both tasks, computational efficiency is critical - we want to generate high-quality materials with as few integration steps as possible. This is where flow matching models like FlowMM have a significant advantage over diffusion models. Additionally, we evaluate the physical stability of generated structures using quantum calculations of energy above hull (E_hull), which indicates whether a material would actually be stable in real-world conditions.
+The ultimate goal is to generate stable, novel, and synthesizable materials that could advance technology in areas like energy storage, catalysis, and electronics.
 -->
