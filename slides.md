@@ -521,3 +521,75 @@ Let's examine the performance of our three models on De Novo Generation tasks.
 
 This suggests that FlowMM's deterministic paths from noise to data distribution result in higher quality material generation that better captures the underlying distribution of real materials, despite slight tradeoffs in validity.
 -->
+
+---
+layout: default
+---
+
+# Crystal Structure Prediction Results
+
+<div class="border-2 rounded-lg overflow-hidden">
+  <table class="w-full text-center">
+    <thead class="bg-purple-600 text-white">
+      <tr>
+        <th class="p-2">Model</th>
+        <th class="p-2 border-l border-white">Match Rate (%) ↑</th>
+        <th class="p-2 border-l border-white">RMSE ↓</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-click class="hover:bg-gray-100">
+        <td class="p-2 font-bold border-t">LLaMA-2</td>
+        <td class="p-2 border-t border-l">55.85</td>
+        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">0.0437</span></td>
+      </tr>
+      <tr v-click class="hover:bg-gray-100">
+        <td class="p-2 font-bold border-t">CDVAE</td>
+        <td class="p-2 border-t border-l">33.90</td>
+        <td class="p-2 border-t border-l">0.1045</td>
+      </tr>
+      <tr v-click class="hover:bg-gray-100">
+        <td class="p-2 font-bold border-t">FlowMM</td>
+        <td class="p-2 border-t border-l"><span class="font-bold text-green-600">61.39</span></td>
+        <td class="p-2 border-t border-l">0.0566</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div v-click class="mt-6 grid grid-cols-2 gap-4">
+  <div class="border-2 p-3 rounded-lg bg-blue-50">
+    <h3 class="text-lg font-bold text-blue-700">Key Findings</h3>
+    <ul class="text-sm mt-2">
+      <li><span class="font-bold">FlowMM</span> achieves highest match rate (61.39%)</li>
+      <li><span class="font-bold">LLaMA-2</span> produces lowest positional error</li>
+      <li><span class="font-bold">CDVAE</span> lags behind in both metrics</li>
+    </ul>
+  </div>
+  <div class="border-2 p-3 rounded-lg bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700">Integration Steps Comparison</h3>
+    <div v-click class="mt-2">
+      <img src="https://storage.googleapis.com/qdrant-us/images/5deea1e97a3a0c7fed1effc42566c81c.png" class="h-28 mx-auto" />
+      <div class="text-xs text-center mt-1">FlowMM reaches peak match rate in ~50 steps vs. 1000+ for diffusion</div>
+    </div>
+  </div>
+</div>
+
+<!--
+Now let's examine how our models perform on Crystal Structure Prediction tasks.
+
+[click] LLaMA-2 shows impressive performance with a match rate of 55.85% and the best RMSE of 0.0437, indicating high precision in predicting atomic positions.
+
+[click] CDVAE underperforms compared to the other models in both metrics, with a match rate of only 33.9% and the highest positional error.
+
+[click] FlowMM achieves the highest match rate at 61.39%, successfully predicting structures for nearly two-thirds of test compositions. Its RMSE is slightly higher than LLaMA-2's but still considerably better than CDVAE's.
+
+[click] The key takeaways are:
+- FlowMM demonstrates superior ability to match ground truth structures
+- LLaMA-2 shows the highest precision in atomic positioning
+- CDVAE lags behind in both structure matching and positional accuracy
+
+[click] Perhaps most importantly, FlowMM achieves its results with significantly fewer integration steps. As shown in this graph, FlowMM reaches its peak match rate in approximately 50 steps, while diffusion-based models typically require 1000+ steps to converge.
+
+This computational efficiency makes FlowMM not only more accurate but also much faster for real-world materials discovery applications.
+-->
