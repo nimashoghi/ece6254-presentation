@@ -435,13 +435,21 @@ layout: default
 
 # De Novo Generation Results
 
+<style>
+
+table thead tr th {
+  text-align: center;
+}
+
+</style>
+
 <div class="border-2 rounded-lg overflow-hidden">
   <table class="w-full text-center">
     <thead class="bg-blue-600 text-white">
       <tr>
         <th class="p-2">Model</th>
-        <th colspan="2" class="p-2 border-l border-white">Validity (%)</th>
-        <th colspan="2" class="p-2 border-l border-white">Coverage (%)</th>
+        <th colspan="2" class="p-2 border-l border-white">Validity (%) ↑</th>
+        <th colspan="2" class="p-2 border-l border-white">Coverage (%) ↑</th>
         <th colspan="2" class="p-2 border-l border-white">Property Distribution ↓</th>
       </tr>
       <tr class="bg-blue-500 text-white text-sm">
@@ -527,6 +535,14 @@ layout: default
 ---
 
 # Crystal Structure Prediction Results
+
+<style>
+
+table thead tr th {
+  text-align: center;
+}
+
+</style>
 
 <div class="border-2 rounded-lg overflow-hidden">
   <table class="w-full text-center">
