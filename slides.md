@@ -231,3 +231,58 @@ Let me explain Flow Matching and how it differs from diffusion models you might 
 
 [click] This approach is particularly well-suited for our materials generation task because crystal structures have complex symmetries and constraints that are easier to handle with deterministic flows.
 -->
+
+---
+layout: default
+---
+
+# FlowMM: Training and Sampling for Material Generation
+
+<div class="grid grid-cols-2 gap-4">
+<div>
+<v-clicks>
+
+- **Training the Vector Field:**
+  - Define base distributions for:
+    - Atom positions (uniform on torus)
+    - Atom types (binary encoding)
+    - Lattice parameters (informed priors)
+  - Learn vector field v_θ that follows optimal transport paths
+  - Incorporates crystal symmetries: translation, rotation, permutation
+
+- **Sampling = Solving an ODE:**
+  - Draw from base distributions
+  - Integrate: dx/dt = v_θ(t, x) from t=0 to t=1
+  - Only ~50-250 steps needed (vs. 1000+ for diffusion)
+  - Result: Realistic 3D material structure
+
+</v-clicks>
+</div>
+
+<div class="flex flex-col items-center justify-center space-y-4">
+  <img v-click src="https://storage.googleapis.com/qdrant-us/images/7b0f4ab1e9c1c9b2dd8c3f3e5c89e19d.png" class="h-60 rounded shadow" />
+  <div v-click class="text-xs mt-2">The learned vector field transports noise to realistic material structures</div>
+</div>
+</div>
+
+<!--
+Now let's look at how FlowMM specifically works for generating materials.
+
+[click] First, let's talk about training. FlowMM needs to learn a vector field that can transform simple distributions into complex material structures. It defines separate base distributions for different components:
+- For atom positions, it uses a uniform distribution on a torus (to handle periodic boundary conditions)
+- For atom types, it uses an efficient binary encoding rather than one-hot vectors
+- For lattice parameters, it uses informed priors based on real materials
+
+The model then learns a vector field that follows optimal transport paths between these base distributions and real materials, while respecting crystal symmetries like translation, rotation, and permutation.
+
+[click] For sampling, we simply solve an Ordinary Differential Equation. We:
+1. Draw samples from our base distributions
+2. Numerically integrate the ODE dx/dt = v_θ(t,x) from t=0 to t=1
+3. The integration can be done with standard numerical methods like Euler or Runge-Kutta
+
+The remarkable efficiency advantage is that we only need about 50-250 integration steps to get high-quality materials, compared to 1000+ steps typically needed for diffusion models.
+
+[click] Here's a visualization of how the vector field transforms a random noise sample into a realistic material structure.
+
+[click] The result is a complete material specification with 3D atomic positions, atom types, and unit cell parameters that respect physical constraints and symmetries.
+-->
