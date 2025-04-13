@@ -10,7 +10,7 @@
   "dependencies": {
     "@slidev/cli": "latest",
     "@slidev/theme-default": "latest",
-    "slidev-theme-neversink": "latest",
+    "slidev-theme-eloc": "latest",
     "vue": "latest"
   },
   "devDependencies": {
