@@ -207,7 +207,7 @@ layout: default
 
 <v-clicks>
 
-- **Core Idea:** Predict the next word (token) given the previous ones:  $p(w_{t+1} | w_{0:t})$
+- **Core Idea:** Predict next words given previous ones
 - **Generation:** Sample tokens sequentially.
   - `Input -> LLM -> Next Token`
   - Repeat: `Input + Next Token -> LLM -> ...`
