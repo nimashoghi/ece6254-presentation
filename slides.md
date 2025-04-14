@@ -59,7 +59,9 @@ We'll walk you through why this problem matters, our approach to solving it, and
 </div>
 
 <div class="flex items-center justify-center">
-  <video v-click="3" src="https://unified-materials.github.io/unimat/materials/unimat.mp4" class="h-60 rounded shadow" autoplay loop muted />
+  <!-- <video v-click="3" src="https://unified-materials.github.io/unimat/materials/unimat.mp4" class="h-60 rounded shadow" autoplay loop muted /> -->
+  <!-- ![alt text](public/image-14.png) -->
+  <img v-click="3" src="/image-14.png" class="w-100 rounded shadow" />
 </div>
 </div>
 
@@ -148,7 +150,8 @@ layout: default
 <div v-click="1" class="flex align-center justify-center my-auto">
 
 <!-- ![alt text](public/nlpgif.gif) -->
-<img src="/nlpgif.gif" class="w-100" />
+<!-- ![alt text](public/image-13.png) -->
+<img src="/image-13.png" class="w-100" />
 
 </div>
 
