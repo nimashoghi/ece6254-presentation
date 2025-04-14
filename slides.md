@@ -551,7 +551,7 @@ table thead tr th {
         <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.98</span></td>
         <td class="p-1 border-t border-l">86.08</td>
         <td class="p-1 border-t border-l">99.09</td>
-        <td class="p-1 border-t border-l">99.61</td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.61</span></td>
         <td class="p-1 border-t border-l">0.56</td>
         <td class="p-1 border-t border-l">1.11</td>
       </tr>
@@ -560,7 +560,7 @@ table thead tr th {
         <td class="p-1 border-t border-l">99.27</td>
         <td class="p-1 border-t border-l">82.61</td>
         <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.68</span></td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.50</span></td>
+        <td class="p-1 border-t border-l">99.50</td>
         <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.16</span></td>
         <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.17</span></td>
       </tr>
