@@ -627,17 +627,17 @@ Let's examine the performance of our three models on both generative tasks.
 
 [click] For De Novo Generation:
 
-LLaMA-2 shows strong compositional validity at 91.11%, meaning it generates materials with appropriate charge neutrality. However, its property distribution metrics lag behind other models.
+- LLaMA-2 shows strong compositional validity at 91.11%, meaning it generates materials with appropriate charge neutrality. However, its worse coverage metrics indicates that it doesn't strictly adhere to the underlying distribution of real materials from MP-20, possibly due to its LLM pre-training.
 
-CDVAE achieves nearly perfect structural validity at 99.98%, ensuring all generated structures have reasonable atom spacing. However, its property distribution metrics are mediocre.
+- CDVAE achieves nearly perfect structural validity at 99.98%, ensuring all generated structures have reasonable atom spacing. However, this seems to be a fairly easy task that FlowMM can match as well. CDVAE's property distribution metrics are mediocre.
 
-FlowMM demonstrates excellent performance across most metrics. It has high structural validity, the best coverage metrics, and dramatically outperforms other models in property distribution matching. This suggests FlowMM generates materials that most closely match the statistical properties of real materials.
+- FlowMM demonstrates excellent performance across most metrics. It has high structural validity, the best coverage metrics, and dramatically outperforms other models in property distribution matching. This suggests FlowMM generates materials that most closely match the statistical properties of real materials.
 
 [click] For Crystal Structure Prediction:
 
-Here we see FlowMM dominates with both the highest match rate at 62.51% and the lowest RMSE at 0.0472. This means FlowMM is best at predicting the correct structure for a given composition and with the highest accuracy.
+- Here we see FlowMM dominates with both the highest match rate at 62.51% and the lowest RMSE at 0.0472. This means FlowMM is best at predicting the correct structure for a given composition and with the highest accuracy.
 
-LLaMA-2 performs reasonably well but falls behind FlowMM, while CDVAE significantly underperforms in this task.
+- LLaMA-2 performs reasonably well but falls behind FlowMM, while CDVAE significantly underperforms in this task.
 
 These results suggest that flow matching's deterministic approach to learning transformations between distributions is particularly well-suited for material structure tasks, outperforming both diffusion-based approaches and large language models on most key metrics.
 -->
