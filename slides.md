@@ -79,6 +79,7 @@ Let's understand why materials discovery is so important and challenging.
 
 ---
 layout: default
+clicksStart: 2
 ---
 
 # Material Structure
@@ -123,6 +124,7 @@ Let's get concrete about what we're actually trying to generate.
 
 ---
 layout: default
+clicksStart: 3
 ---
 
 # Crystal Text LLM: Intro --- Large Language Models
@@ -218,6 +220,7 @@ So, how do we apply LLMs to generate crystals? The Crystal Text LLM paper propos
 ---
 layout: default
 ---
+
 # CDVAE: Crystal Diffusion Variational AutoEncoder
 
 <div class="grid grid-cols-2 gap-8">
@@ -253,22 +256,23 @@ layout: default
 ---
 layout: default
 ---
+
 # CDVAE: Training and Inference
 
 <div class="grid grid-cols-2 gap-4">
 <div v-click class="col-span-1">
 
 #### **Training Stage:**
-- Full crystal is encoded into z to predict coarse properties.
+- Full crystal is encoded into $z$ to predict coarse properties.
 - Atom type and coordination is perturbed by noise.
-- Diffusion model denoises the structure conditioned on z, noisy structure and predicted properties.
+- Diffusion model denoises the structure conditioned on $z$, noisy structure and predicted properties.
 
 </div>
 
 <div v-click class="col-span-1">
 
 #### **Sampling Stage:**
-- Sample latent vector z with Gaussian distribution.
+- Sample latent vector $z$ with Gaussian distribution.
 - VAE predicts atoms, lattice and composition distribution.
 - Coorinations in the unit cell are initialized randomly.
 - Score model refined the noisy structure for a more precise output.
@@ -446,7 +450,7 @@ layout: default
 
 <div class="grid grid-cols-2 gap-8 mt-8">
 <div v-click class="border p-4 rounded-lg bg-blue-50">
-  <h3 class="text-xl text-blue-700 mb-2">De Novo Generation (DNG)</h3>
+  <h3 class="text-xl text-blue-700 mb-2">De Novo Generation</h3>
   <div class="flex mb-2 flex-row items-center justify-center">
   <div class="text-5xl font-bold mr-4">?</div>
   <div class="text-2xl mr-1">→</div>
@@ -462,7 +466,7 @@ layout: default
 </div>
 
 <div v-click class="border p-4 rounded-lg bg-green-50">
-  <h3 class="text-xl text-green-700 mb-2">Crystal Structure Prediction (CSP)</h3>
+  <h3 class="text-xl text-green-700 mb-2">Crystal Structure Prediction</h3>
   <div class="flex mb-2 flex-row items-center justify-center">
   <div class="text-2xl font-bold mr-4">SiO₂</div>
   <div class="text-2xl mr-1">→</div>
