@@ -198,13 +198,14 @@ layout: default
 </div>
 </div>
 
-<div class="flex flex-col items-center gap-2">
+<div class="flex flex-col items-center gap-2 mt-5">
 
 <!-- ![alt text](public/image-8.png) -->
 <img v-click="2" src="/image-8.png" class="w-75" />
 
 <!-- ![alt text](public/image-7.png) -->
-<img v-click="3" src="/image-7.png" class="w-200 mt--10" />
+<!-- ![alt text](public/image-12.png) -->
+<img v-click="3" src="/image-12.png" class="w-65 mt-10" />
 
 </div>
 
