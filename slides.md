@@ -136,69 +136,6 @@ Let's get concrete about what we're actually trying to generate.
 layout: default
 ---
 
-# Two Key Generative Tasks
-
-<div class="grid grid-cols-2 gap-8 mt-8">
-<div v-click class="border p-4 rounded-lg bg-blue-50">
-  <h3 class="text-xl text-blue-700 mb-2">De Novo Generation (DNG)</h3>
-  <div class="flex mb-2 flex-row items-center justify-center">
-  <div class="text-5xl font-bold mr-4">?</div>
-  <div class="text-2xl mr-1">→</div>
-  <!-- ![alt text](public/Si(NiO2)2-Pnma.png) -->
-  <img src="/Si(NiO2)2-Pnma.png" class="h-32" />
-  </div>
-  <div class="text-sm mt-2">
-  <b>Goal:</b> Generate completely new materials (composition + structure)
-  </div>
-  <div class="text-xs mt-2">
-  <b>Evaluation metrics:</b> Validity, Coverage, Property Distribution
-  </div>
-</div>
-
-<div v-click class="border p-4 rounded-lg bg-green-50">
-  <h3 class="text-xl text-green-700 mb-2">Crystal Structure Prediction (CSP)</h3>
-  <div class="flex mb-2 flex-row items-center justify-center">
-  <div class="text-2xl font-bold mr-4">SiO₂</div>
-  <div class="text-2xl mr-1">→</div>
-  <!-- ![alt text](public/SiO2-P3_121-1.png) -->
-  <img src="/SiO2-P3_121-1.png" class="h-32" />
-  </div>
-  <div class="text-sm mt-2">
-  <b>Goal:</b> Predict stable structure given a specific composition (ie., chemical formula)
-  </div>
-  <div class="text-xs mt-2">
-  <b>Evaluation metrics:</b> RMSE, Match Rate with ground truth
-  </div>
-</div>
-
-<div v-click class="col-span-2 bg-gray-50 p-3 rounded-lg border text-center text-sm">
-  Our study compares different generative approaches across both tasks
-</div>
-</div>
-
-<!--
-Let's understand the two fundamental generative tasks we're exploring in this project.
-
-[click] First is De Novo Generation, or DNG. This is the more ambitious task where we aim to generate completely new materials from scratch. The model must learn to create both the chemical composition (what elements to use) and the 3D structure (how to arrange those atoms).
-
-To evaluate DNG models, we look at:
-- Validity: Are the generated structures physically plausible?
-- Coverage: Do they represent diverse and realistic materials?
-- Property distributions: Do their physical properties match those of real materials?
-
-[click] The second task is Crystal Structure Prediction, or CSP. Here, we already know the chemical composition (like SiO₂ for quartz), but we need to predict the stable 3D arrangement of those atoms.
-
-CSP is evaluated using:
-- RMSE: How close are the predicted atom positions to the ground truth?
-- Match Rate: What percentage of predictions match known structures within a reasonable tolerance?
-
-[click] In our comparative study, we evaluate different generative approaches on both of these tasks to understand their strengths and limitations.
--->
-
----
-layout: default
----
-
 # Crystal Text LLM: Intro --- Large Language Models
 
 <div class="grid grid-cols-2 gap-4">
@@ -458,7 +395,7 @@ The remarkable efficiency advantage is that we only need about 50-250 integratio
 layout: default
 ---
 
-# Dataset and Evaluation Challenges
+# Experiments: Dataset and Evaluation Challenges
 
 <div class="grid grid-rows-2 gap-1">
 <div v-click class="border-2 p-1 rounded-lg bg-blue-50 flex flex-col items-center">
@@ -524,61 +461,63 @@ Finally, there's an inherent trade-off between generating diverse structures and
 layout: default
 ---
 
-# Evaluation Metrics
+# Experiments: Generative Tasks
 
-<div class="grid grid-cols-12 gap-6">
-<div v-click class="border-2 p-3 rounded-lg bg-green-50 col-span-8">
-<h3 class="text-lg text-green-700 mb-2">De Novo Generation Metrics</h3>
-
-**Validity:** Are the generated structures physically plausible?
-- Structural: minimum atom distance > 0.5$\text{Å}$
-- Compositional: charge neutrality
-
-**Coverage:** Do they represent diverse and realistic materials?
-- Recall: % of real materials matched
-- Precision: % of generated materials realistic
-
-**Property Distribution:** Do their properties match real materials?
-- Density: earth mover's distance to real distribution
-- Number of elements: statistical match to real data
-
+<div class="grid grid-cols-2 gap-8 mt-8">
+<div v-click class="border p-4 rounded-lg bg-blue-50">
+  <h3 class="text-xl text-blue-700 mb-2">De Novo Generation (DNG)</h3>
+  <div class="flex mb-2 flex-row items-center justify-center">
+  <div class="text-5xl font-bold mr-4">?</div>
+  <div class="text-2xl mr-1">→</div>
+  <!-- ![alt text](public/Si(NiO2)2-Pnma.png) -->
+  <img src="/Si(NiO2)2-Pnma.png" class="h-32" />
+  </div>
+  <div class="text-sm mt-2">
+  <b>Goal:</b> Generate completely new materials (composition + structure)
+  </div>
+  <div class="text-xs mt-2">
+  <b>Evaluation metrics:</b> Validity, Coverage, Property Distribution
+  </div>
 </div>
 
-<div v-click class="border-2 p-3 rounded-lg bg-purple-50 col-span-4">
-<h3 class="text-lg text-purple-700 mb-2">Crystal Structure Prediction</h3>
+<div v-click class="border p-4 rounded-lg bg-green-50">
+  <h3 class="text-xl text-green-700 mb-2">Crystal Structure Prediction (CSP)</h3>
+  <div class="flex mb-2 flex-row items-center justify-center">
+  <div class="text-2xl font-bold mr-4">SiO₂</div>
+  <div class="text-2xl mr-1">→</div>
+  <!-- ![alt text](public/SiO2-P3_121-1.png) -->
+  <img src="/SiO2-P3_121-1.png" class="h-32" />
+  </div>
+  <div class="text-sm mt-2">
+  <b>Goal:</b> Predict stable structure given a specific composition (ie., chemical formula)
+  </div>
+  <div class="text-xs mt-2">
+  <b>Evaluation metrics:</b> RMSE, Match Rate with ground truth
+  </div>
+</div>
 
-**Accuracy**: Similarity to ground truth?
-- **Match Rate:** % of predictions matching ground truth
-- **RMSE:** Error in predicted atom positions
-
+<div v-click class="col-span-2 bg-gray-50 p-3 rounded-lg border text-center text-sm">
+  Our study compares different generative approaches across both tasks
 </div>
 </div>
-
 
 <!--
-Now let's look at the specific metrics we use to evaluate our generative models, given the constraints we just discussed.
+Let's understand the two fundamental generative tasks we're exploring in this project.
 
-[click] For De Novo Generation - creating entirely new materials from scratch - we evaluate using three families of metrics:
+[click] First is De Novo Generation, or DNG. This is the more ambitious task where we aim to generate completely new materials from scratch. The model must learn to create both the chemical composition (what elements to use) and the 3D structure (how to arrange those atoms).
 
-Validity checks whether generated structures are physically plausible:
-- Structural validity requires minimum atom distances greater than 0.5 Ångströms
-- Compositional validity requires overall charge neutrality
+To evaluate DNG models, we look at:
+- Validity: Are the generated structures physically plausible?
+- Coverage: Do they represent diverse and realistic materials?
+- Property distributions: Do their physical properties match those of real materials?
 
-Coverage measures both diversity and quality:
-- Recall (COV-R) tells us what percentage of real materials are matched by our generated set
-- Precision (COV-P) tells us what percentage of our generated materials are realistic
+[click] The second task is Crystal Structure Prediction, or CSP. Here, we already know the chemical composition (like SiO₂ for quartz), but we need to predict the stable 3D arrangement of those atoms.
 
-Property distribution metrics assess how well statistical properties of generated materials match real ones:
-- We use earth mover's distance to compare density distributions
-- We measure how well the distribution of number of elements matches real materials
+CSP is evaluated using:
+- RMSE: How close are the predicted atom positions to the ground truth?
+- Match Rate: What percentage of predictions match known structures within a reasonable tolerance?
 
-[click] For Crystal Structure Prediction - predicting the 3D structure given a composition - we use two primary metrics:
-
-Match Rate measures the percentage of predictions that match ground truth structures within tolerance.
-
-RMSE quantifies the error in predicted atomic positions, normalized by the cube root of volume per atom, which approximates the atom radius.
-
-These metrics together give us a comprehensive view of performance while working within our computational constraints.
+[click] In our comparative study, we evaluate different generative approaches on both of these tasks to understand their strengths and limitations.
 -->
 
 ---
