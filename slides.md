@@ -9,6 +9,10 @@ transition: slide-left
 
 # Generative Models for 3D Atomistic Structure Discovery
 
+<div class="absolute top-5 w-full flex flex-row items-center justify-center right-2">
+<img src="/image-9.png" class="w-105" />
+</div>
+
 <div class="absolute bottom-10">
 
 <span class="font-700">
@@ -664,28 +668,6 @@ Scaling to Complex Structures
 </div>
 </div>
 </div>
-
-<!--
-Let's analyze what we've learned from our comparative study of these three approaches to material generation.
-
-[click] CDVAE was the pioneering work that introduced generative models to 3D material structure. It achieves nearly perfect structural validity, ensuring generated structures have reasonable atom spacing. However, while it established important benchmarks for the field, it's now been surpassed by newer approaches in most metrics.
-
-CDVAE's diffusion-based approach was innovative but has limitations in capturing the full distribution of material properties. It performs adequately on coverage metrics but struggles with match rate in crystal structure prediction tasks.
-
-[click] LLaMA-2 delivers surprisingly strong performance, particularly in compositional validity where it leads. This suggests that large language models contain substantial implicit knowledge about materials science, likely due to pre-training on vast repositories of scientific code and papers.
-
-LLaMA-2's strength in compositional validity indicates it has learned important chemical rules about which elements can combine in stable ways. Its strong performance despite not being specifically designed for this task opens interesting avenues for leveraging LLMs in scientific domains.
-
-[click] FlowMM emerges as the clear winner across most metrics. It dominates in property distribution matching - approximately 6 times better than CDVAE on certain metrics. It also achieves both the highest match rate and lowest RMSE for crystal structure prediction.
-
-FlowMM's deterministic ODE-based approach seems fundamentally better suited to capturing the real distribution of materials compared to stochastic SDE-based methods. Its flexible choice of base distributions allows it to model the underlying physics more effectively.
-
-[click] Looking to the future, the most promising directions appear to be:
-
-1. Developing hybrid approaches that combine FlowMM's efficient flow matching capabilities with the vast knowledge embedded in large language models. This could leverage the complementary strengths of each approach.
-
-2. Scaling these models to handle larger and more complex structures beyond 20 atoms per unit cell, improving compositional validity in flow-based models, and incorporating more sophisticated symmetry constraints would further advance the field of computational materials discovery.
--->
 
 <!--
 Let's analyze what we've learned from our comparative study of these three approaches to material generation.
