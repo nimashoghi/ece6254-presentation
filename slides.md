@@ -230,6 +230,12 @@ layout: default
 
 </div>
 
+<!--
+
+Crystal Text LLM uses large language model techniques to predict the next token from the previous text, generating content one step at a time. It’s trained on massive data—books, code, and technical papers—giving it broad capabilities to understand and produce human-like text.
+
+-->
+
 ---
 layout: default
 ---
@@ -611,30 +617,30 @@ table thead tr th {
     <tbody class="text-sm">
       <tr class="hover:bg-gray-100">
         <td class="p-1 font-bold border-t">LLaMA-2</td>
-        <td class="p-1 border-t border-l">96.4</td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">93.3</span></td>
-        <td class="p-1 border-t border-l">91.1</td>
-        <td class="p-1 border-t border-l">94.9</td>
+        <td class="p-1 border-t border-l">93.46</td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">91.11</span></td>
+        <td class="p-1 border-t border-l">90.69</td>
+        <td class="p-1 border-t border-l">93.60</td>
         <td class="p-1 border-t border-l">3.61</td>
-        <td class="p-1 border-t border-l">1.06</td>
+        <td class="p-1 border-t border-l">1.10</td>
       </tr>
       <tr class="hover:bg-gray-100">
         <td class="p-1 font-bold border-t">CDVAE</td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">100</span></td>
-        <td class="p-1 border-t border-l">86.7</td>
-        <td class="p-1 border-t border-l">99.15</td>
-        <td class="p-1 border-t border-l">99.49</td>
-        <td class="p-1 border-t border-l">0.688</td>
-        <td class="p-1 border-t border-l">0.278</td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.98</span></td>
+        <td class="p-1 border-t border-l">86.08</td>
+        <td class="p-1 border-t border-l">99.09</td>
+        <td class="p-1 border-t border-l">99.61</td>
+        <td class="p-1 border-t border-l">0.56</td>
+        <td class="p-1 border-t border-l">1.11</td>
       </tr>
       <tr class="hover:bg-gray-100">
         <td class="p-1 font-bold border-t">FlowMM</td>
-        <td class="p-1 border-t border-l">96.85</td>
-        <td class="p-1 border-t border-l">83.19</td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.49</span></td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.58</span></td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.239</span></td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.083</span></td>
+        <td class="p-1 border-t border-l">99.27</td>
+        <td class="p-1 border-t border-l">82.61</td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.68</span></td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.50</span></td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.16</span></td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.17</span></td>
       </tr>
     </tbody>
   </table>
@@ -658,24 +664,44 @@ table thead tr th {
     <tbody>
       <tr class="hover:bg-gray-100">
         <td class="p-1 font-bold border-t">LLaMA-2</td>
-        <td class="p-1 border-t border-l">55.85</td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.0437</span></td>
+        <td class="p-1 border-t border-l">54.79</td>
+        <td class="p-1 border-t border-l">0.0626</td>
       </tr>
       <tr class="hover:bg-gray-100">
         <td class="p-1 font-bold border-t">CDVAE</td>
-        <td class="p-1 border-t border-l">33.90</td>
-        <td class="p-1 border-t border-l">0.1045</td>
+        <td class="p-1 border-t border-l">28.01</td>
+        <td class="p-1 border-t border-l">0.1909</td>
       </tr>
       <tr class="hover:bg-gray-100">
         <td class="p-1 font-bold border-t">FlowMM</td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">61.39</span></td>
-        <td class="p-1 border-t border-l">0.0566</td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">62.51</span></td>
+        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.0472</span></td>
       </tr>
     </tbody>
   </table>
 </div>
 
 </div>
+
+<!--
+Let's examine the performance of our three models on both generative tasks.
+
+[click] For De Novo Generation:
+
+LLaMA-2 shows strong compositional validity at 91.11%, meaning it generates materials with appropriate charge neutrality. However, its property distribution metrics lag behind other models.
+
+CDVAE achieves nearly perfect structural validity at 99.98%, ensuring all generated structures have reasonable atom spacing. However, its property distribution metrics are mediocre.
+
+FlowMM demonstrates excellent performance across most metrics. It has high structural validity, the best coverage metrics, and dramatically outperforms other models in property distribution matching. This suggests FlowMM generates materials that most closely match the statistical properties of real materials.
+
+[click] For Crystal Structure Prediction:
+
+Here we see FlowMM dominates with both the highest match rate at 62.51% and the lowest RMSE at 0.0472. This means FlowMM is best at predicting the correct structure for a given composition and with the highest accuracy.
+
+LLaMA-2 performs reasonably well but falls behind FlowMM, while CDVAE significantly underperforms in this task.
+
+These results suggest that flow matching's deterministic approach to learning transformations between distributions is particularly well-suited for material structure tasks, outperforming both diffusion-based approaches and large language models on most key metrics.
+-->
 
 ---
 layout: default
