@@ -75,55 +75,38 @@ Let's understand why materials discovery is so important and challenging.
 layout: default
 ---
 
-# What Defines a Material Structure?
+# Material Structure
 
 <div class="grid grid-cols-12 gap-4">
-<div class="col-span-8">
+<div class="col-span-7">
 <v-clicks>
 
-- **Fundamentally: Atoms in 3D Space**
-  - Positions of atoms in xyz coordinates
-  - Chemical elements at each position (C, Si, O, etc.)
+- **3D Atoms + Periodicity**
+  - Atoms with positions and element types
+  - Infinitely repeating crystalline patterns
 
-- **Materials are Infinite Periodic Structures**
-  - Not just a handful of atoms, but infinitely repeating
-  - Most materials form ordered, crystalline arrangements
-
-- **Three Essential Components**
-  - Unit Cell/Lattice: The repeating 3D "box"
-  - Atom Types: Elements present in the material
-  - Fractional Coordinates: Positions within the cell (0-1)
+- **Efficient Representation:**
+  - **Unit Cell/Lattice:** Repeating 3D box
+  - **Atom Types:** Elements in the material
+  - **Fractional Coords:** Positions (0-1)
 
 </v-clicks>
 </div>
 
-<div class="flex flex-col items-center justify-center space-y-4 col-span-4">
-  <div v-click="1" class="flex items-center justify-center mt--10">
-
-  <!-- ![alt text](public/image-4.png) -->
-  <img src="/image-4.png" class="w-40 rounded shadow" />
-  <div class="text-xs ml-2">Atoms within one unit cell</div>
-  </div>
-  <div v-click="2" class="flex items-center justify-center">
-
-  <!-- ![alt text](public/image-5.png) -->
-
-  <div class="flex flex-col items-center gap-2 ml--20">
-  <img src="/image-5.png" class="w-159 rounded shadow" />
-  <div class="text-xs ml-2">Infinitely repeating structure</div>
-  </div>
-
-  </div>
+<div v-click="1" class="col-span-5 flex flex-col justify-center items-center gap-4">
+  <img src="/image-4.png" class="w-full max-h-48 object-contain" />
+  <img src="/image-5.png" class="w-full max-h-100 object-contain" />
 </div>
 </div>
-
 
 <!--
 Let's get concrete about what we're actually trying to generate.
 
-[click] At the most basic level, materials are collections of atoms positioned in 3D space. Each atom has a specific location and a chemical identity (like carbon, silicon, or oxygen). This is an intuitive way to think about materials - just atoms arranged in space.
+[click] At the most basic level, materials are collections of atoms positioned in 3D space with specific chemical identities. But what makes materials science challenging is that real materials aren't just a handful of atoms - they're infinitely repeating structures. Most solid materials form ordered, crystalline arrangements where the same pattern repeats throughout space.
 
-[click] But what makes materials science challenging is that real materials aren't just a handful of atoms - they're infinitely repeating structures. Most solid materials form ordered, crystalline arrangements where the same pattern of atoms repeats in all directions throughout space. This periodic nature is fundamental to understanding and generating materials.
+- Here you see atoms arranged within a single unit cell - this is our fundamental building block.
+
+- And this shows how that unit cell repeats infinitely to form the complete material structure. Our generative models need to learn how to create all three components while ensuring the resulting structure is physically stable.
 
 [click] To efficiently represent these infinite structures, we need three components:
 - The unit cell or lattice: a 3D "box" defined by vectors that repeats throughout space
