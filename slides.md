@@ -284,6 +284,70 @@ So, how do we apply LLMs to generate crystals? The Crystal Text LLM paper propos
 ---
 layout: default
 ---
+# CDVAE: Crystal Diffusion Variational AutoEncoder
+
+<div class="grid grid-cols-2 gap-8">
+<div>
+<v-clicks>
+
+- **VAE:** What to generate?
+  - Captures overall structure of a crystal (atom, coordinates, lattice) and encodes it into a fixed latent space.
+  - The latent space is modeled by a Gaussian distribution.
+
+- **Score-based Diffusion:** How to generate accurately?
+  - Learns a score function to guide Langevin dynamics.
+  - Iteratively denoises atomic structures.
+
+
+
+</v-clicks>
+</div>
+
+<div class="flex flex-col items-center justify-center">
+  <!-- ![alt text](public/image-10.png) -->
+  <img v-click="1" src="/image-10.png" class="h-48" />
+  <!-- ![alt text](public/image-11.png) -->
+  <img v-click="2" src="/image-11.png" class="h-48 mt-4" />
+  <div v-click="2" class="text-xs mt-2 ml--5">
+
+
+
+  </div>
+</div>
+</div>
+
+---
+layout: default
+---
+# CDVAE: Training and Inference
+
+<div class="grid grid-cols-2 gap-4">
+<div v-click class="col-span-1">
+
+#### **Training Stage:**
+- Full crystal is encoded into z to predict coarse properties.
+- Atom type and coordination is perturbed by noise.
+- Diffusion model denoises the structure conditioned on z, noisy structure and predicted properties.
+
+</div>
+
+<div v-click class="col-span-1">
+
+#### **Sampling Stage:**
+- Sample latent vector z with Gaussian distribution.
+- VAE predicts atoms, lattice and composition distribution.
+- Coorinations in the unit cell are initialized randomly.
+- Score model refined the noisy structure for a more precise output.
+
+</div>
+</div>
+
+
+
+
+---
+layout: default
+---
 
 # Flow Matching: A More Efficient Alternative to Diffusion
 
