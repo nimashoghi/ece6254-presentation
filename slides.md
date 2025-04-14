@@ -649,68 +649,67 @@ layout: default
 # Analysis and Conclusions
 
 <div class="grid grid-cols-3 gap-4">
-<div v-click class="border-2 p-3 rounded-lg bg-blue-50">
-<h3 class="text-lg font-bold text-blue-700 mb-2">Key Findings</h3>
+  <div v-click class="border-2 p-3 rounded-lg bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700 mb-2">CDVAE</h3>
+    <ul class="text-sm space-y-1">
+      <li>Pioneering work in 3D material generation</li>
+      <li>Perfect structural validity (99.98%)</li>
+      <li>Strong in some metrics but surpassed by newer approaches</li>
+      <li>Established important benchmarks for the field</li>
+    </ul>
+  </div>
 
-- FlowMM: Best match rate & property distribution
-- LLaMA-2: Strong positional & compositional accuracy
-- CDVAE: Perfect structural validity
+  <div v-click class="border-2 p-3 rounded-lg bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700 mb-2">LLaMA-2</h3>
+    <ul class="text-sm space-y-1">
+      <li>Surprisingly strong performance</li>
+      <li>Best compositional validity (91.11%)</li>
+      <li>Pre-training on vast GitHub data likely provides unique advantages</li>
+      <li>Demonstrates potential of LLMs for scientific tasks</li>
+    </ul>
+  </div>
 
+  <div v-click class="border-2 p-3 rounded-lg bg-blue-50">
+    <h3 class="text-lg font-bold text-blue-700 mb-2">FlowMM</h3>
+    <ul class="text-sm space-y-1">
+      <li>Clear winner across most metrics</li>
+      <li>Dominates property distribution matching (6x better)</li>
+      <li>Best match rate (62.51%) and RMSE (0.0472)</li>
+      <li>Deterministic ODE approach better captures real distributions</li>
+    </ul>
+  </div>
 </div>
 
-<div v-click class="border-2 p-3 rounded-lg bg-green-50">
-<h3 class="text-lg font-bold text-green-700 mb-2">Insights</h3>
+<div v-click class="mt-4 border-2 p-3 rounded-lg bg-green-50">
+<h3 class="text-lg font-bold text-green-700 mb-1">Future Directions</h3>
+<div class="grid grid-cols-2 gap-2">
+<div class="text-sm">
+<span class="font-bold">
 
-- ODEs > SDEs for realistic distributions
-- LLMs contain implicit materials knowledge
-- Base distribution choice matters
+FlowMM + LLM Hybrid Models (see [FlowLLM @ NeurIPS 24](https://arxiv.org/abs/2410.23405))
 
+</span>
+<p class="text-xs mt-1">Combining flow matching efficiency with LLMs' knowledge could produce even stronger models for material discovery</p>
 </div>
-
-<div v-click class="border-2 p-3 rounded-lg bg-purple-50">
-<h3 class="text-lg font-bold text-purple-700 mb-2">Future Directions</h3>
-
-- Hybrid flow matching + LLM models
-- Improve compositional validity
-- Scale to larger structures (>20 atoms)
-
+<div class="text-sm">
+<span class="font-bold">Scaling and Specialization</span>
+<p class="text-xs mt-1">Targeting larger structures (>20 atoms), improving compositional validity, and exploring domain-specific constraints</p>
 </div>
 </div>
-
-<div v-click class="mt-6 border-2 p-3 rounded-lg bg-amber-50">
-<h3 class="text-lg font-bold text-amber-700 mb-1">Overall Assessment</h3>
-<p class="text-sm">
-Flow matching shows most promise for materials generation, but LLMs' vast pre-trained knowledge is a powerful resource.
-</p>
 </div>
 
 <!--
-Let's step back and analyze what we've learned from our comparative study.
+Let's analyze what we've learned from our comparative study of these three approaches to material generation.
 
-[click] Our key findings show clear differences between the three approaches:
-- FlowMM consistently delivers the best match rate for crystal structure prediction and property distributions that closely match real materials
-- LLaMA-2 surprised us with its accuracy in atomic positioning and ability to generate charge-neutral compositions
-- CDVAE achieves perfect structural validity but falls behind in other important metrics
-- The deterministic flow matching approach seems to better capture the underlying distribution of real materials
+[click] CDVAE was the pioneering work that introduced generative models to 3D material structure. It achieves nearly perfect structural validity at 99.98%, ensuring all generated structures have reasonable atom spacing. However, while it established important benchmarks for the field, it's now been surpassed by newer approaches in most metrics.
 
-[click] These results offer several important insights:
-- Deterministic ODE-based approaches like flow matching seem to generate more realistic property distributions than stochastic SDE-based methods like diffusion
-- LLaMA-2's strong performance suggests large language models contain implicit knowledge about materials science that can be leveraged
-- The choice of base distribution significantly impacts generation quality - FlowMM's flexibility in this area is a key advantage
-- We observe a clear trade-off between structural validity and compositional accuracy across the models
+[click] LLaMA-2 delivers surprisingly strong performance, particularly in compositional validity where it leads at 91.11%. This suggests that large language models contain substantial implicit knowledge about materials science, likely due to pre-training on vast repositories of scientific code and papers. This finding opens interesting avenues for leveraging LLMs in scientific domains.
 
-[click] Looking toward the future, several promising directions emerge:
-- Hybrid approaches that combine flow matching's efficiency with language models' knowledge could be particularly powerful
-- Improving compositional validity in flow-based models is an important next step
-- Exploring more complex symmetry constraints could lead to higher fidelity generation
-- Scaling to larger structural units beyond 20 atoms per cell will be crucial for discovering novel complex materials
+[click] FlowMM emerges as the clear winner across most metrics. It dominates in property distribution matching - approximately 6 times better than CDVAE on certain metrics. It also achieves both the highest match rate at 62.51% and the lowest RMSE at 0.0472 for crystal structure prediction. Its deterministic ODE-based approach seems fundamentally better suited to capturing the real distribution of materials compared to stochastic SDE-based methods.
 
-[click] Overall, flow matching methods show the most promise for material generation, offering better property distribution matching and competitive performance on stability metrics. The surprising effectiveness of LLMs suggests untapped potential in combining approaches. Future materials discovery systems will likely benefit from hybrid approaches that leverage complementary strengths of these different generative paradigms.
+[click] Looking to the future, the most promising direction appears to be developing hybrid approaches that combine FlowMM's efficient flow matching capabilities with the vast knowledge embedded in large language models. Additionally, scaling these models to handle larger structures beyond 20 atoms per unit cell and improving compositional validity in flow-based models would further advance the field of computational materials discovery.
 -->
 
----
-layout: cover
-class: text-center
 ---
 
 # Thank you! --- Questions?
