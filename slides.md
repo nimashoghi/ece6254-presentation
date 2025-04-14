@@ -688,7 +688,11 @@ class: text-center
 
 <div class="grid grid-cols-5 gap-4 items-center">
   <div class="col-span-4">
-    <img src="/image-6.png" class="rounded-lg shadow-xl" />
+    <div class="bg-white p-4 rounded-lg shadow">
+      <img v-click="[0,1]" src="/image-9.png" class="vclick-display-none" />
+      <img v-click="1" src="/image-6.png" class="vclick-display-none" />
+    </div>
+
   </div>
   <div class="col-span-1 flex flex-col items-center gap-4">
     <div class="bg-white p-3 rounded-lg">

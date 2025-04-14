@@ -1,0 +1,16 @@
+.slidev-vclick-hidden.vclick-display-none {
+    display: none !important;
+}
+
+/* margin from ul, ol */
+.slidev-layout ul,
+.slidev-layout ol {
+    margin-top: 0.7em !important;
+}
+
+/* Reduce spacing between list items */
+.slidev-layout ul li,
+.slidev-layout ol li {
+    margin-top: 0.3rem !important;
+    margin-bottom: 0.3rem !important;
+}
