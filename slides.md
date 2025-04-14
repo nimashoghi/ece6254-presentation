@@ -285,62 +285,51 @@ layout: default
 </div>
 </div>
 
-
-
-
 ---
 layout: default
 ---
 
-# Flow Matching: A More Efficient Alternative to Diffusion
+# Flow Matching vs. Diffusion
 
-<div class="grid grid-cols-2 gap-8">
+<div class="grid grid-cols-2 gap-6">
 <div>
 <v-clicks>
 
-- **Diffusion Models:** Stochastic random walks
-  - Add random noise gradually (forward)
-  - Learn to denoise step-by-step (reverse)
-  - Uses SDE: $dx = f(x,t)dt + g(t)dw$
+- **Diffusion:** Stochastic process
+  - Random noise + gradual denoising
+  - SDE: $dx = f(x,t)dt + g(t)dw$
 
-- **Flow Matching:** Deterministic straight paths
-  - Direct transport from noise → data
-  - Learn vector field for optimal flow
-  - Uses ODE: $\frac{dx}{dt} = v_\theta(t, x)$
+- **Flow Matching:** Deterministic transport
+  - Direct paths from noise → data
+  - ODE: $\frac{dx}{dt} = v_\theta(t, x)$
 
-- **Advantages:**
-  - More computationally efficient sampling
-  - Simpler to train and implement
-  - More flexible choice of base distribution
+- **Key Advantages:**
+  - Faster sampling (fewer steps)
+  - Flexible base distributions
+  - Better for complex geometries
 
 </v-clicks>
 </div>
 
 <div class="flex flex-col items-center justify-center">
-  <!-- ![alt text](public/image-1.png) -->
   <img v-click="1" src="/image-1.png" class="h-48" />
-  <!-- ![alt text](public/image.png) -->
-  <img v-click="2" src="/image.png" class="h-48 mt-4" />
-  <div v-click="2" class="text-xs mt-2 ml--5">
-
-  FM learns **deterministic paths** from noise to data distribution
-
-  </div>
+  <img v-click="2" src="/image.png" class="h-48 mt-3" />
 </div>
 </div>
 
 <!--
-Let me explain Flow Matching and how it differs from diffusion models you might be more familiar with.
+Let me explain how Flow Matching differs from diffusion models and why it's better for our materials task.
 
-[click] Diffusion models work by gradually adding random noise to data in the forward process, then learning to reverse this process step by step. They're based on Stochastic Differential Equations, which involve randomness at each step. The equation shows how the change in x depends on both a deterministic term f and a stochastic term dw.
+[click] Diffusion models use a stochastic process - they gradually add random noise to data, then learn to reverse this noise step by step. They're based on Stochastic Differential Equations which incorporate both deterministic and random components. This randomness makes them less efficient and harder to control.
 
-[click] Flow Matching, in contrast, learns deterministic straight-line paths from noise to data. Instead of random walks, it focuses on learning a vector field that transports points optimally between distributions. This approach uses Ordinary Differential Equations, which are deterministic. The equation shows how the change in x over time depends only on the learned vector field v_θ.
+[click] Flow Matching instead learns deterministic paths directly from noise to data. It focuses on learning a vector field that optimally transports points between distributions using Ordinary Differential Equations. The paths are smooth and direct, following principles of optimal transport.
 
-[click] The advantages of Flow Matching include significantly better computational efficiency during sampling, simpler training (no complex noise schedules to tune), and more flexibility in choosing base distributions, which is especially helpful for materials with complex geometries.
+[click] This approach offers several key advantages:
+- Sampling requires significantly fewer steps (50-250 vs 1000+ for diffusion)
+- It allows more flexible choice of base distributions, which is crucial for modeling physical structures
+- The deterministic nature makes it better suited for handling the complex symmetries and constraints of crystal structures
 
-[click] In this illustration, you can see how Flow Matching learns direct paths from the noise distribution to the data distribution. Rather than meandering through a stochastic process, it follows optimal transport trajectories.
-
-[click] This approach is particularly well-suited for our materials generation task because crystal structures have complex symmetries and constraints that are easier to handle with deterministic flows.
+The visualizations show how diffusion takes a meandering path through noise, while flow matching follows direct trajectories. This efficiency translates directly to faster material generation with better physical properties.
 -->
 
 ---
