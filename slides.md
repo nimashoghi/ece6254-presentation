@@ -480,10 +480,6 @@ layout: default
   <b>Evaluation metrics:</b> RMSE, Match Rate with ground truth
   </div>
 </div>
-
-<div v-click class="col-span-2 bg-gray-50 p-3 rounded-lg border text-center text-sm">
-  Our study compares different generative approaches across both tasks
-</div>
 </div>
 
 <!--
@@ -509,6 +505,8 @@ CSP is evaluated using:
 layout: default
 ---
 
+# Results
+
 <div v-click>
 
 <style>
@@ -517,7 +515,7 @@ table thead tr th {
 }
 </style>
 
-### De Novo Generation
+#### De Novo Generation
 
 <div class="border-2 rounded-lg overflow-hidden">
   <table class="w-full text-center text-sm">
@@ -574,7 +572,7 @@ table thead tr th {
 
 <div v-click>
 
-### Crystal Structure Prediction
+#### Crystal Structure Prediction
 
 <div class="border-2 rounded-lg overflow-hidden mt-2">
   <table class="w-full text-center text-sm">
@@ -629,6 +627,7 @@ These results suggest that flow matching's deterministic approach to learning tr
 
 ---
 layout: default
+clicksStart: 4
 ---
 
 # Analysis and Conclusions
