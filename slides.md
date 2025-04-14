@@ -336,48 +336,49 @@ The visualizations show how diffusion takes a meandering path through noise, whi
 layout: default
 ---
 
-# FlowMM: Training and Sampling for Material Generation
+# FlowMM: Training and Sampling
 
-<!-- ![alt text](public/image-2.png) -->
-<img src="/image-2.png" class="" />
+<img src="/image-2.png" class="h-56 mx-auto" />
 
-<div class="grid grid-cols-2 gap-4">
-<div v-click class="col-span-1">
+<div class="grid grid-cols-2 gap-4 mt-4">
+<div v-click class="col-span-1 border-l-4 border-blue-500 pl-3">
 
-#### **Training the Vector Field:**
-- Define base distributions for: atom positions (uniform on torus), atom types (binary encoding), lattice parameters (informed priors)
-- Learn vector field $v_\theta$ that follows optimal transport paths
-- Incorporates crystal symmetries: translation, rotation, permutation
+### Training
+
+- Define physics-informed base distributions
+- Learn vector field $v_\theta$ for optimal transport
+- Preserve crystal symmetries
 
 </div>
 
-<div v-click class="col-span-1">
+<div v-click class="col-span-1 border-l-4 border-green-500 pl-3">
 
-#### **Sampling = Solving an ODE:**
+### Sampling
+
 - Draw from base distributions
-- Integrate: $\frac{dx}{dt} = v_\theta(t, x)$ from $t=0$ to $t=1$
-- Only ~50-250 steps needed (vs. 1000+ for diffusion)
-- Result: Realistic 3D material structure
+- Solve ODE: $\frac{dx}{dt} = v_\theta(t, x)$
+- 50-250 steps → realistic 3D structures
 
 </div>
 </div>
 
 <!--
-Now let's look at how FlowMM specifically works for generating materials. The image at the top visualizes how the vector field transforms random noise into realistic material structures.
+Now let's look at how FlowMM specifically works for generating materials. The image visualizes how the vector field transforms random noise into realistic material structures.
 
-[click] For training, FlowMM needs to learn a vector field that can transform simple distributions into complex material structures. It defines separate base distributions for different components:
-- For atom positions, it uses a uniform distribution on a torus (to handle periodic boundary conditions)
-- For atom types, it uses an efficient binary encoding rather than one-hot vectors
-- For lattice parameters, it uses informed priors based on real materials
+[click] For training, FlowMM learns a vector field that transforms simple distributions into complex material structures:
 
-The model learns a vector field that follows optimal transport paths between these base distributions and real materials, while respecting crystal symmetries like translation, rotation, and permutation.
+- It uses physics-informed base distributions: uniform on torus for atom positions, binary encoding for atom types, and informed priors for lattice parameters
+- The model learns a vector field following optimal transport principles between these simple distributions and real materials
+- Throughout this process, it maintains critical crystal symmetries: translation, rotation, and permutation invariance
 
-[click] For sampling, we simply solve an Ordinary Differential Equation. We:
-1. Draw samples from our base distributions
-2. Numerically integrate the ODE dx/dt = v_θ(t,x) from t=0 to t=1
-3. The integration can be done with standard numerical methods like Euler or Runge-Kutta
+[click] For sampling, the process is elegantly simple - we solve an Ordinary Differential Equation:
 
-The remarkable efficiency advantage is that we only need about 50-250 integration steps to get high-quality materials, compared to 1000+ steps typically needed for diffusion models. The result is a complete material specification with 3D atomic positions, atom types, and unit cell parameters that respect physical constraints and symmetries.
+- First draw samples from the base distributions
+- Then numerically integrate the ODE from t=0 to t=1
+- This needs only 50-250 integration steps compared to 1000+ for diffusion models
+- The result is a physically realistic material with proper atomic positions, types, and unit cell parameters
+
+The deterministic nature of flow matching allows for this significant efficiency gain while producing high-quality structures that respect physical constraints.
 -->
 
 ---
