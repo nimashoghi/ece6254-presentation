@@ -68,13 +68,12 @@ We'll walk you through why this problem matters, our approach to solving it, and
 <!--
 Let's understand why materials discovery is so important and challenging.
 
-[click] Every technology we rely on - from smartphones to solar panels - starts with a material discovery. But traditionally, bringing a new material from lab discovery to market application takes over 20 years. This slow cycle limits technological progress.
+[click] Every technology we rely on - from smartphones to solar panels - starts with a material discovery. Traditionally, bringing a new material from lab discovery to market application takes over 20 years. This slow cycle limits technological progress.
 
-[click] The challenge is finding viable materials in an astronomically large search space. There are approximately 10²⁰ possible inorganic materials, but only about 1 in 100,000 structures are chemically stable enough to synthesize. Finding these rare stable structures manually is like finding a needle in a cosmic-sized haystack.
+[click] The challenge is finding viable materials in an astronomically large search space. There are approximately 10²⁰ possible inorganic materials, but only about 1 in 100,000 structures are chemically stable enough to synthesize.
 
 [click] This is where generative machine learning becomes our "virtual lab." By training AI on databases of known stable materials, we can generate novel candidates that have a much higher probability of stability. This approach could revolutionize how we discover materials for critical applications like next-generation batteries, carbon capture technologies, and targeted drug delivery systems.
 
-[click] The image on the right shows a visualization of a crystal structure. Our project specifically compares different state-of-the-art generative methods to determine which approaches best capture the physical constraints that make materials stable in the real world.
 -->
 
 ---
@@ -107,18 +106,17 @@ clicksStart: 2
 </div>
 
 <!--
-Let's get concrete about what we're actually trying to generate.
+Let me explain what materials are at the atomic level.
 
-[click] At the most basic level, materials are collections of atoms positioned in 3D space with specific chemical identities. But what makes materials science challenging is that real materials aren't just a handful of atoms - they're infinitely repeating structures. Most solid materials form ordered, crystalline arrangements where the same pattern repeats throughout space.
+[click] Materials are collections of atoms arranged in 3D space. What makes this complex is that real materials form infinitely repeating crystalline structures.
 
-- Here you see atoms arranged within a single unit cell - this is our fundamental building block.
+- This unit cell shows the basic building block of atoms
+- The pattern repeats infinitely to form the complete material
 
-- And this shows how that unit cell repeats infinitely to form the complete material structure. Our generative models need to learn how to create all three components while ensuring the resulting structure is physically stable.
-
-[click] To efficiently represent these infinite structures, we need three components:
-- The unit cell or lattice: a 3D "box" defined by vectors that repeats throughout space
-- The atom types: which chemical elements are present in our material
-- The fractional coordinates: where each atom sits within the unit cell, using a 0-1 scale relative to the cell dimensions
+[click] To generate a new material, our AI needs to learn the three key components:
+- The unit cell/lattice: A repeating 3D box defined by vectors
+- The atom types: Chemical elements present in the material
+- The fractional coordinates: Positions of atoms within the cell (0-1 scale)
 
 -->
 
@@ -362,9 +360,10 @@ Now let's look at how FlowMM specifically works for generating materials. The im
 
 [click] For training, FlowMM learns a vector field that transforms simple distributions into complex material structures:
 
-- It uses physics-informed base distributions: uniform on torus for atom positions, binary encoding for atom types, and informed priors for lattice parameters
-- The model learns a vector field following optimal transport principles between these simple distributions and real materials
-- Throughout this process, it maintains critical crystal symmetries: translation, rotation, and permutation invariance
+- We begin with physics-informed base distributions: uniform on torus for atom positions, binary encoding for atom types, and informed priors for lattice parameters
+- For each of these distributions, we define paths between the initial and target distributions, e.g., simple linear interpolation
+- Then, define a velocity field $u(x, t)$ that induces this path, and learn it using a neural network
+- With careful base distribution and path design, we maintain critical crystal symmetries: translation, rotation, and permutation invariance
 
 [click] For sampling, the process is elegantly simple - we solve an Ordinary Differential Equation:
 
@@ -424,10 +423,7 @@ layout: default
 <!--
 Let's start by understanding our dataset and the challenges in evaluating generative models for materials.
 
-[click] Our study uses the MP-20 dataset - a comprehensive collection of 45,231 materials drawn from the Materials Project database. This dataset includes:
-- 89 different chemical elements
-- Materials with 1 to 20 atoms per unit cell
-- Experimentally verified inorganic materials
+[click] Our study uses the MP-20 dataset - a comprehensive collection of 45,231 experimentally verified inorganic materials drawn from the Materials Project database.
 
 What makes MP-20 particularly valuable is that it contains mostly globally stable materials that can actually be synthesized in a laboratory. This means a model that performs well on MP-20 has real potential for practical materials discovery.
 
@@ -483,22 +479,18 @@ layout: default
 </div>
 
 <!--
-Let's understand the two fundamental generative tasks we're exploring in this project.
+Our experiments evaluate the three models across two main generative tasks:
 
-[click] First is De Novo Generation, or DNG. This is the more ambitious task where we aim to generate completely new materials from scratch. The model must learn to create both the chemical composition (what elements to use) and the 3D structure (how to arrange those atoms).
+[click] First is De Novo Generation. This is the more ambitious task where we aim to generate completely new materials from scratch. The model must learn to create both the chemical composition (what elements to use) and the 3D structure (how to arrange those atoms).
 
 To evaluate DNG models, we look at:
 - Validity: Are the generated structures physically plausible?
 - Coverage: Do they represent diverse and realistic materials?
 - Property distributions: Do their physical properties match those of real materials?
 
-[click] The second task is Crystal Structure Prediction, or CSP. Here, we already know the chemical composition (like SiO₂ for quartz), but we need to predict the stable 3D arrangement of those atoms.
+[click] The second task is Crystal Structure Prediction. Here, we already know the chemical composition (like SiO₂ for quartz), but we need to predict the stable 3D arrangement of those atoms.
 
-CSP is evaluated using:
-- RMSE: How close are the predicted atom positions to the ground truth?
-- Match Rate: What percentage of predictions match known structures within a reasonable tolerance?
-
-[click] In our comparative study, we evaluate different generative approaches on both of these tasks to understand their strengths and limitations.
+CSP is evaluated using RMSE and Match Rate, both of which compare the predicted structure against a known ground truth structure.
 -->
 
 ---
@@ -606,8 +598,6 @@ table thead tr th {
 </div>
 
 <!--
-Let's examine the performance of our three models on both generative tasks.
-
 [click] For De Novo Generation:
 
 - LLaMA-2 shows strong compositional validity at 91.11%, meaning it generates materials with appropriate charge neutrality. However, its worse coverage metrics indicates that it doesn't strictly adhere to the underlying distribution of real materials from MP-20, possibly due to its LLM pre-training.
