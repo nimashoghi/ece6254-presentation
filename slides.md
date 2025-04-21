@@ -64,9 +64,11 @@ Good morning. This project explores how we can use AI to discover new materials 
 <!--
 [click] Every technology starts with a material discovery, but the traditional path from lab to market takes 20+ years.
 
-[click] The challenge is enormous - finding viable candidates among 10²⁰ possible structures when only 1 in 100,000 are stable.
+[click] The core challenge is the vastness of the combinatorial space.
 
-[click] By training generative models on known stable structures, we can create a "virtual lab" that generates novel, physically realistic candidates. This has the potential to revolutionize fields like batteries, carbon capture, and drug delivery.
+[click] By training generative models on known stable structures, we can create a "virtual lab" that generates novel, physically realistic candidates.
+
+This has the potential to revolutionize fields like batteries, carbon capture, and drug delivery.
 -->
 
 ---
@@ -99,12 +101,9 @@ clicksStart: 2
 </div>
 
 <!--
-[click] Materials consist of atoms arranged in 3D space that form infinitely repeating crystalline structures. What we call a "unit cell" is the smallest repeating unit that defines the material's structure, which then repeats infinitely in all directions, as shown in these figures.
 
-[click] To generate a new material, our AI needs to learn the three key components:
-- The unit cell/lattice: A repeating 3D box defined by vectors
-- The atom types: Chemical elements present in the material
-- The fractional coordinates: Positions of atoms within the cell (0-1 scale)
+A bulk material is simply atoms arranged in a tiny three‑dimensional building block called a unit cell that repeats endlessly in all directions to form the whole solid.
+
 -->
 
 ---
@@ -146,7 +145,7 @@ clicksStart: 3
 
 <!--
 
-Crystal Text LLM uses large language model techniques to predict the next token from the previous text, generating content one step at a time. It’s trained on massive data—books, code, and technical papers—giving it broad capabilities to understand and produce human-like text.
+Our first method involves fine-tuning LLMs for crystal generation. LLMs like LLaMA are trained to complete text sequences one word at a time.
 
 -->
 
@@ -190,15 +189,9 @@ layout: default
 </div>
 
 <!--
-So, how do we apply LLMs to generate crystals? The Crystal Text LLM paper proposes a straightforward approach.
 
-[click] Instead of designing complex architectures, they fine-tune a large, pre-trained LLM (LLaMA-2) on crystal data. The idea is to leverage the powerful pattern recognition abilities the LLM already possesses from its text pre-training.
+To generate crystals with LLMs, we start by converting 3D crystal structures into simple text strings. This turns a complex 3D problem into a 1D sequence generation task. We fine-tune the model using Low-Rank Adaptation. Sampling works just like text generation—token by token—until we decode the output back into a 3D crystal.
 
-[click] They represent the crystal structure – lattice parameters, atom types, and fractional coordinates – as a simple, formatted string. This converts the 3D problem into a 1D sequence generation task that LLMs excel at.
-
-[click] Fine-tuning is done efficiently using techniques like LoRA (Low-Rank Adaptation), which only modifies a small fraction of the model's parameters. They use specific prompts to train the model for different tasks like unconditional generation, generating based on desired properties (conditional), or filling in missing atoms (infilling). Data augmentations, like randomly shifting coordinates, help the model learn physical symmetries.
-
-[click] Generating a new crystal is then just standard autoregressive sampling. The model generates the formatted string token by token, and this string is then parsed back into a 3D crystal structure. This method achieved surprisingly good results, generating stable materials at high rates.
 -->
 
 
@@ -298,7 +291,7 @@ layout: default
 </div>
 
 <!--
-The third approach we explore is Flow Matching, which offers a fundamentally more efficient way to generate materials.
+The third approach we explore is FlowMM.
 
 [click] Diffusion models like CDVAE follow Stochastic Differential Equations that combine deterministic drift with random Brownian motion. This approach uses Langevin dynamics which performs a non-optimal random walk through probability space, requiring many sampling steps and making generation less efficient (as shown in the top figure).
 
@@ -306,8 +299,7 @@ The third approach we explore is Flow Matching, which offers a fundamentally mor
 
 [click] Flow Matching offers key advantages:
 - Faster sampling (50-250 steps vs 1000+ for diffusion)
-- Flexible base distributions for physical modeling
-- Better handling of crystal symmetries and constraints
+- Flexible base distributions
 
 -->
 
@@ -343,8 +335,7 @@ layout: default
 
 <!--
 [click] For training, FlowMM learns a vector field that transforms simple distributions into complex material structures:
-- Define physics-informed base distributions for atom positions, types, and lattice parameters
-- Define paths between the initial and target distributions, e.g., simple linear interpolation
+- Define physics-informed base distributions and deterministic paths between initial and target distributions, e.g., simple linear interpolation
 - Learn vector field $v_\theta$ that transforms these distributions into realistic crystal structures
 - Carefully designed to preserve crystal symmetries (translation, rotation, permutation)
 
@@ -352,7 +343,6 @@ layout: default
 
 - Draw samples from base distributions
 - Solve an ODE from t=0 to t=1 using 50-250 steps (vs. 1000+ for diffusion)
-- The result is a physically realistic material with proper structure
 
 -->
 
@@ -622,13 +612,12 @@ Scaling to Complex Structures
 </div>
 
 <!--
-[click] CDVAE: Pioneering approach with excellent structural validity (99.98%), but now surpassed by newer methods.
+[click] CDVAE: Pioneering approach with reasonable results, but now surpassed by newer methods.
 
 [click] LLaMA-2: Strong performance, generates valid structures outside the training distribution. Showing LLMs have implicit materials knowledge. Impressive given LLMs are just using text.
 
-[click] FlowMM: Overall winner with superior or similar validity, coverage, and property distribution matching (6x better than CDVAE) and best structure prediction.
+[click] FlowMM: Overall winner with superior or similar validity, coverage, and property distribution matching and best structure prediction.
 
-[click] Future: Hybrid FlowMM+LLM approaches and scaling to larger, more complex structures.
 -->
 
 ---
