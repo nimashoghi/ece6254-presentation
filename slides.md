@@ -317,7 +317,6 @@ The third approach we explore is Flow Matching, which offers a fundamentally mor
 - It allows more flexible choice of base distributions, which is crucial for modeling physical structures
 - The deterministic nature makes it better suited for handling the complex symmetries and constraints of crystal structures
 
-The visualizations show how diffusion takes a meandering path through noise, while flow matching follows direct trajectories. This efficiency translates directly to faster material generation with better physical properties.
 -->
 
 ---
