@@ -334,12 +334,12 @@ layout: default
 </div>
 
 <!--
-[click] For training, FlowMM learns a vector field that transforms simple distributions into complex material structures:
+[click] For training:
 - Define physics-informed base distributions and deterministic paths between initial and target distributions, e.g., simple linear interpolation
 - Learn vector field $v_\theta$ that transforms these distributions into realistic crystal structures
 - Carefully designed to preserve crystal symmetries (translation, rotation, permutation)
 
-[click] For sampling, the process is elegantly simple:
+[click] For sampling:
 
 - Draw samples from base distributions
 - Solve an ODE from t=0 to t=1 using 50-250 steps (vs. 1000+ for diffusion)
