@@ -28,9 +28,7 @@ Slides: [nima.sh/ece6254-presentation](https://nima.sh/ece6254-presentation)
 </div>
 
 <!--
-Good afternoon everyone. My name is Nima, and I'm here with my colleagues Timothy and Jamshid.
-
-Our project explores how we can use AI to discover new materials via generative approaches. We'll walk you through why this problem matters, introduce 3 cutting-edge deep learning approaches for solving it, and what we discovered from our experiments.
+Good morning. This project explores how we can use AI to discover new materials via generative approaches.
 -->
 
 ---
@@ -64,14 +62,11 @@ Our project explores how we can use AI to discover new materials via generative 
 </div>
 
 <!--
-Let's understand why materials discovery is so important and challenging.
+[click] Every technology starts with a material discovery, but the traditional path from lab to market takes 20+ years.
 
-[click] Every technology we rely on - from smartphones to solar panels - starts with a material discovery. Traditionally, bringing a new material from lab discovery to market application takes over 20 years. This slow cycle limits technological progress.
+[click] The challenge is enormous - finding viable candidates among 10²⁰ possible structures when only 1 in 100,000 are stable.
 
-[click] The challenge is finding viable materials in an astronomically large search space. There are approximately 10²⁰ possible inorganic materials, but only about 1 in 100,000 structures are chemically stable enough to synthesize.
-
-[click] This is where generative machine learning becomes our "virtual lab." By training AI on databases of known stable materials, such as the ones on this slide, we can generate novel candidates that have a much higher probability of stability. This approach could revolutionize how we discover materials for critical applications like next-generation batteries, carbon capture technologies, and targeted drug delivery systems.
-
+[click] By training generative models on known stable structures, we can create a "virtual lab" that generates novel, physically realistic candidates. This has the potential to revolutionize fields like batteries, carbon capture, and drug delivery.
 -->
 
 ---
@@ -104,15 +99,12 @@ clicksStart: 2
 </div>
 
 <!--
-[click] At the lowest level, materials are collections of atoms arranged in 3D space (top figure).
-
-There's 1 caveat: Materials form infinitely repeating crystalline structures. When we think of a material, we think of the smallest repeating unit that defines the material's structure, and this **unit cell** is then assumed to repeat infinitely in all directions (bottom figure).
+[click] Materials consist of atoms arranged in 3D space that form infinitely repeating crystalline structures. What we call a "unit cell" is the smallest repeating unit that defines the material's structure, which then repeats infinitely in all directions, as shown in these figures.
 
 [click] To generate a new material, our AI needs to learn the three key components:
 - The unit cell/lattice: A repeating 3D box defined by vectors
 - The atom types: Chemical elements present in the material
 - The fractional coordinates: Positions of atoms within the cell (0-1 scale)
-
 -->
 
 ---
@@ -308,14 +300,14 @@ layout: default
 <!--
 The third approach we explore is Flow Matching, which offers a fundamentally more efficient way to generate materials.
 
-[click] Diffusion models (like CDVAE) use a stochastic process - they gradually add random noise to data, then learn to reverse this noise step by step. This approach follows Stochastic Differential Equations that incorporate both deterministic drift and random Brownian motion. While effective, Langevin dynamics performs a non-optimal random walk through probability space, requiring many sampling steps and making the generation process less efficient (as seen on the top figure).
+[click] Diffusion models like CDVAE follow Stochastic Differential Equations that combine deterministic drift with random Brownian motion. This approach uses Langevin dynamics which performs a non-optimal random walk through probability space, requiring many sampling steps and making generation less efficient (as shown in the top figure).
 
 [click] Flow Matching instead learns deterministic and smooth paths directly from noise to data. It focuses on learning a vector field that optimally transports points between distributions using Ordinary Differential Equations.
 
-[click] This approach offers several key advantages:
-- Sampling requires significantly fewer steps (50-250 vs 1000+ for diffusion)
-- It allows more flexible choice of base distributions, which is crucial for modeling physical structures
-- The deterministic nature makes it better suited for handling the complex symmetries and constraints of crystal structures
+[click] Flow Matching offers key advantages:
+- Faster sampling (50-250 steps vs 1000+ for diffusion)
+- Flexible base distributions for physical modeling
+- Better handling of crystal symmetries and constraints
 
 -->
 
@@ -350,23 +342,18 @@ layout: default
 </div>
 
 <!--
-Now let's look at how FlowMM specifically works for generating materials. The image visualizes how the vector field transforms random noise into realistic material structures.
-
 [click] For training, FlowMM learns a vector field that transforms simple distributions into complex material structures:
+- Define physics-informed base distributions for atom positions, types, and lattice parameters
+- Define paths between the initial and target distributions, e.g., simple linear interpolation
+- Learn vector field $v_\theta$ that transforms these distributions into realistic crystal structures
+- Carefully designed to preserve crystal symmetries (translation, rotation, permutation)
 
-- We begin with physics-informed base distributions: uniform on torus for atom positions, binary encoding for atom types, and informed priors for lattice parameters
-- For each of these distributions, we define paths between the initial and target distributions, e.g., simple linear interpolation
-- Then, define a velocity field $u(x, t)$ that induces this path, and learn it using a neural network
-- With careful base distribution and path design, we maintain critical crystal symmetries: translation, rotation, and permutation invariance
+[click] For sampling, the process is elegantly simple:
 
-[click] For sampling, the process is elegantly simple - we solve an Ordinary Differential Equation:
+- Draw samples from base distributions
+- Solve an ODE from t=0 to t=1 using 50-250 steps (vs. 1000+ for diffusion)
+- The result is a physically realistic material with proper structure
 
-- First draw samples from the base distributions
-- Then numerically integrate the ODE from t=0 to t=1
-- This needs only 50-250 integration steps compared to 1000+ for diffusion models
-- The result is a physically realistic material with proper atomic positions, types, and unit cell parameters
-
-The deterministic nature of flow matching allows for this significant efficiency gain while producing high-quality structures that respect physical constraints.
 -->
 
 ---
@@ -415,21 +402,17 @@ layout: default
 </div>
 
 <!--
-Let's start by understanding our dataset and the challenges in evaluating generative models for materials.
+[click]
 
-[click] Our study uses the MP-20 dataset - a comprehensive collection of 45,231 experimentally verified inorganic materials drawn from the Materials Project database.
-
-What makes MP-20 particularly valuable is that it contains mostly globally stable materials that can actually be synthesized in a laboratory. This means a model that performs well on MP-20 has real potential for practical materials discovery.
+- **MP-20 dataset**: 45 231 experimentally verified inorganic materials from Materials Project
 
 [click] However, evaluating generative models for materials presents unique challenges:
 
-First, while Density Functional Theory (DFT) calculations would be the gold standard for verifying if generated materials are truly stable, these quantum mechanical simulations are computationally prohibitive to run at scale.
+- **DFT bottleneck**: gold‐standard stability checks are too slow at scale
+- **Proxy metrics**: approximate validity and quality without full quantum sims
+- **Physical invariances**: rotation, translation, atom permutation, cell choice
+- **Key trade‐off**: generating diverse structures vs. ensuring physical realism
 
-Second, materials have multiple physical invariances - they remain identical under rotation, translation, permutation of atoms, and different choices of unit cell. This makes direct comparison difficult.
-
-Third, because of these constraints, we must rely on proxy metrics that approximate physical validity and quality without running full quantum simulations.
-
-Finally, there's an inherent trade-off between generating diverse structures and ensuring they're all physically realistic. Our metrics need to balance these considerations carefully.
 -->
 
 ---
@@ -473,18 +456,11 @@ layout: default
 </div>
 
 <!--
-Our experiments evaluate the three models across two main generative tasks:
+[click] **De Novo Generation**: Creating materials from scratch, both composition and structure.
+- Evaluating with validity (physical plausibility), coverage (diversity), and property distribution (matching real materials).
 
-[click] First is De Novo Generation. This is the more ambitious task where we aim to generate completely new materials from scratch. The model must learn to create both the chemical composition (what elements to use) and the 3D structure (how to arrange those atoms).
-
-To evaluate DNG models, we look at:
-- Validity: Are the generated structures physically plausible?
-- Coverage: Do they represent diverse and realistic materials?
-- Property distributions: Do their physical properties match those of real materials?
-
-[click] The second task is Crystal Structure Prediction. Here, we already know the chemical composition (like SiO₂ for quartz), but we need to predict the stable 3D arrangement of those atoms.
-
-CSP is evaluated using RMSE and Match Rate, both of which compare the predicted structure against a known ground truth structure.
+[click] **Crystal Structure Prediction**: Given a composition (like SiO₂), predict its 3D structure.
+- Evaluated using RMSE and match rate against known structures.
 -->
 
 ---
@@ -592,21 +568,7 @@ table thead tr th {
 </div>
 
 <!--
-[click] For De Novo Generation:
-
-- LLaMA-2 shows strong compositional validity at 91.11%, meaning it generates materials with appropriate charge neutrality. However, its worse coverage metrics indicates that it doesn't strictly adhere to the underlying distribution of real materials from MP-20, possibly due to its LLM pre-training.
-
-- CDVAE achieves nearly perfect structural validity at 99.98%, ensuring all generated structures have reasonable atom spacing. However, this seems to be a fairly easy task that FlowMM can match as well. CDVAE's property distribution metrics are mediocre.
-
-- FlowMM demonstrates excellent performance across most metrics. It has high structural validity, the best coverage metrics, and dramatically outperforms other models in property distribution matching. This suggests FlowMM generates materials that most closely match the statistical properties of real materials.
-
-[click] For Crystal Structure Prediction:
-
-- Here we see FlowMM dominates with both the highest match rate at 62.51% and the lowest RMSE at 0.0472. This means FlowMM is best at predicting the correct structure for a given composition and with the highest accuracy.
-
-- LLaMA-2 performs reasonably well but falls behind FlowMM, while CDVAE significantly underperforms in this task.
-
-These results suggest that flow matching's deterministic approach to learning transformations between distributions is particularly well-suited for material structure tasks, outperforming both diffusion-based approaches and large language models on most key metrics.
+Here are our results. We'll quickly go to the analysis section for our analysis.
 -->
 
 ---
@@ -660,15 +622,13 @@ Scaling to Complex Structures
 </div>
 
 <!--
-Let's analyze what we've learned from our comparative study of these three approaches to material generation.
+[click] CDVAE: Pioneering approach with excellent structural validity (99.98%), but now surpassed by newer methods.
 
-[click] CDVAE was the pioneering work that introduced generative models to 3D material structure. It achieves nearly perfect structural validity at 99.98%, ensuring all generated structures have reasonable atom spacing. However, while it established important benchmarks for the field, it's now been surpassed by newer approaches in most metrics.
+[click] LLaMA-2: Strong performance, generates valid structures outside the training distribution. Showing LLMs have implicit materials knowledge. Impressive given LLMs are just using text.
 
-[click] LLaMA-2 delivers surprisingly strong performance, particularly in compositional validity where it leads at 91.11%. This suggests that large language models contain substantial implicit knowledge about materials science, likely due to pre-training on vast repositories of scientific code and papers. This finding opens interesting avenues for leveraging LLMs in scientific domains.
+[click] FlowMM: Overall winner with superior or similar validity, coverage, and property distribution matching (6x better than CDVAE) and best structure prediction.
 
-[click] FlowMM emerges as the clear winner across most metrics. It dominates in property distribution matching - approximately 6 times better than CDVAE on certain metrics. It also achieves both the highest match rate at 62.51% and the lowest RMSE at 0.0472 for crystal structure prediction. Its deterministic ODE-based approach seems fundamentally better suited to capturing the real distribution of materials compared to stochastic SDE-based methods.
-
-[click] Looking to the future, the most promising direction appears to be developing hybrid approaches that combine FlowMM's efficient flow matching capabilities with the vast knowledge embedded in large language models. Additionally, scaling these models to handle larger structures beyond 20 atoms per unit cell and improving compositional validity in flow-based models would further advance the field of computational materials discovery.
+[click] Future: Hybrid FlowMM+LLM approaches and scaling to larger, more complex structures.
 -->
 
 ---
