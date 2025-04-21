@@ -1,67 +1,51 @@
 ---
 layout: cover
 background: https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=1800
-class: text-center
 theme: neversink
 transition: slide-left
 ---
 
-
 # Generative Models for 3D Atomistic Structure Discovery
 
-<div class="absolute top-5 w-full flex flex-row items-center justify-center right-2">
-<img src="/image-9.png" class="w-105" />
-</div>
+<img src="/image-9.png" />
 
-<div class="absolute bottom-10">
-
-<span class="font-700">
 Nima Shoghi, Timothy Soetojo, Jamshid Hassanpour
-</span>
 
 Slides: [nima.sh/ece6254-presentation](https://nima.sh/ece6254-presentation)
 
-</div>
-
-<div class="absolute bottom-15 right-15">
 <QRCode data="https://nima.sh/ece6254-presentation" />
-</div>
 
 <!--
-Good afternoon everyone. My name is Nima, and I'm here with my colleagues Timothy and Jamshid.
+Good afternoon everyone. Today we're presenting our project on generative models for 3D atomistic structure discovery.
 
-Our project explores how we can use AI to discover new materials via generative approaches. We'll walk you through why this problem matters, introduce 3 cutting-edge deep learning approaches for solving it, and what we discovered from our experiments.
+This project explores how we can use AI to discover new materials by generating stable 3D atomic structures. Our work compares several cutting-edge deep learning approaches for this challenging task.
+
+We'll walk you through why this problem matters, our approach to solving it, and what we discovered from our experiments.
 -->
 
 ---
 
 # Why Materials Discovery Matters
 
-<div class="grid grid-cols-2 gap-4">
-<div>
 <v-clicks>
 
 - **Every technology starts with a material**
-  - But discovery takes 20+ years lab-to-market
+
+    - But discovery takes 20+ years lab-to-market
 
 - **Finding the needle in a $10^{20}$ haystack**
-  - Only ~1 in 100,000 structures are stable
-  - Vast combinatorial space to explore
+
+    - Only ~1 in 100,000 structures are stable
+    - Vast combinatorial space to explore
 
 - **Generative ML: The "Virtual Lab"**
-  - AI trained on known stable structures
-  - Generates novel, physically realistic candidates
-  - Impact: Batteries, Carbon Capture, Drug Delivery
+    - AI trained on known stable structures
+    - Generates novel, physically realistic candidates
+    - Impact: Batteries, Carbon Capture, Drug Delivery
 
 </v-clicks>
-</div>
 
-<div class="flex items-center justify-center">
-  <!-- <video v-click="3" src="https://unified-materials.github.io/unimat/materials/unimat.mp4" class="h-60 rounded shadow" autoplay loop muted /> -->
-  <!-- ![alt text](public/image-14.png) -->
-  <img v-click="3" src="/image-14.png" class="w-100 rounded shadow" />
-</div>
-</div>
+<img v-click="3" src="/image-14.png" />
 
 <!--
 Let's understand why materials discovery is so important and challenging.
@@ -75,32 +59,31 @@ Let's understand why materials discovery is so important and challenging.
 -->
 
 ---
+
 layout: default
 clicksStart: 2
+
 ---
 
 # Material Structure
 
-<div class="grid grid-cols-12 gap-4">
-<div class="col-span-7">
 <v-clicks>
 
 - **3D Atoms + Periodicity**
-  - Atoms with positions and element types
-  - Infinitely repeating crystalline patterns
+
+    - Atoms with positions and element types
+    - Infinitely repeating crystalline patterns
 
 - **Efficient Representation:**
-  - **Unit Cell/Lattice:** Repeating 3D box
-  - **Atom Types:** Elements in the material
-  - **Fractional Coords:** Positions (0-1)
+    - **Unit Cell/Lattice:** Repeating 3D box
+    - **Atom Types:** Elements in the material
+    - **Fractional Coords:** Positions (0-1)
 
 </v-clicks>
-</div>
 
-<div v-click="1" class="col-span-5 flex flex-col justify-center items-center gap-4">
-  <img src="/image-4.png" class="w-full max-h-48 object-contain" />
-  <img src="/image-5.png" class="w-full max-h-100 object-contain" />
-</div>
+<div v-click="1">
+  <img src="/image-4.png" />
+  <img src="/image-5.png" />
 </div>
 
 <!--
@@ -119,40 +102,31 @@ Let me explain what materials are at the atomic level.
 -->
 
 ---
+
 layout: default
 clicksStart: 3
+
 ---
 
 # Crystal Text LLM: Intro --- Large Language Models
-
-<div class="grid grid-cols-2 gap-4">
-
-<div>
 
 <v-clicks>
 
 - **Core Idea:** Predict next words given previous ones
 - **Generation:** Sample tokens sequentially.
-  - `Input -> LLM -> Next Token`
-  - Repeat: `Input + Next Token -> LLM -> ...`
+
+    - `Input -> LLM -> Next Token`
+    - Repeat: `Input + Next Token -> LLM -> ...`
 
 - **Pre-trained on vast text corpora** containing:
-  - Natural language (books, articles, etc.)
-  - Code (Python, JavaScript, etc.)
-  - Scientific literature (papers, patents, etc.)
+    - Natural language (books, articles, etc.)
+    - Code (Python, JavaScript, etc.)
+    - Scientific literature (papers, patents, etc.)
 
 </v-clicks>
 
-</div>
-
-<div v-click="1" class="flex align-center justify-center my-auto">
-
-<!-- ![alt text](public/nlpgif.gif) -->
-<!-- ![alt text](public/image-13.png) -->
-<img src="/image-13.png" class="w-100" />
-
-</div>
-
+<div v-click="1">
+<img src="/image-13.png" />
 </div>
 
 <!--
@@ -162,43 +136,26 @@ Crystal Text LLM uses large language model techniques to predict the next token 
 -->
 
 ---
-layout: default
----
+
+## layout: default
 
 # Crystal Text LLM: Fine-tuning & Sampling
 
-<div class="grid grid-cols-2 gap-4">
-
-<div>
-<div class="flex flex-col items-center justify-center">
-<div v-click class="mt-4 p-4 bg-yellow-50 rounded border border-green-200 text-base w-full">
-<span class="font-bold text-yellow-700">Approach:</span> Fine-tune a pre-trained LLM (LLaMA-2) on text-encoded crystals.
+<div v-click>
+**Approach:** Fine-tune a pre-trained LLM (LLaMA-2) on text-encoded crystals.
 </div>
-<div v-click class="mt-4 p-4 bg-green-50 rounded border border-green-200 text-base w-full">
-<span class="font-bold text-green-700">Input Format:</span> Converts complex 3D structure into a simple text sequence.
+<div v-click>
+**Input Format:** Converts complex 3D structure into a simple text sequence.
 </div>
-<div v-click class="mt-4 p-4 bg-purple-50 rounded border border-purple-200 text-base w-full">
-<span class="font-bold text-purple-700">Training:</span> Efficiently adapts LLM using LoRA and task prompts.
+<div v-click>
+**Training:** Efficiently adapts LLM using LoRA and task prompts.
 </div>
-<div v-click class="mt-4 p-4 bg-orange-50 rounded border border-orange-200 text-base w-full">
-<span class="font-bold text-orange-700">Output:</span> Generates a text string representing a novel crystal.
-</div>
-</div>
+<div v-click>
+**Output:** Generates a text string representing a novel crystal.
 </div>
 
-<div class="flex flex-col items-center gap-2 mt-5">
-
-<!-- ![alt text](public/image-8.png) -->
-<img v-click="2" src="/image-8.png" class="w-75" />
-
-<!-- ![alt text](public/image-7.png) -->
-<!-- ![alt text](public/image-12.png) -->
-<img v-click="3" src="/image-12.png" class="w-65 mt-10" />
-
-</div>
-
-
-</div>
+<img v-click="2" src="/image-8.png" />
+<img v-click="3" src="/image-12.png" />
 
 <!--
 So, how do we apply LLMs to generate crystals? The Crystal Text LLM paper proposes a straightforward approach.
@@ -212,101 +169,82 @@ So, how do we apply LLMs to generate crystals? The Crystal Text LLM paper propos
 [click] Generating a new crystal is then just standard autoregressive sampling. The model generates the formatted string token by token, and this string is then parsed back into a 3D crystal structure. This method achieved surprisingly good results, generating stable materials at high rates.
 -->
 
+---
 
----
-layout: default
----
+## layout: default
 
 # CDVAE: Crystal Diffusion Variational AutoEncoder
 
-<div class="grid grid-cols-2 gap-8">
-<div>
 <v-clicks>
 
 - **VAE:** What to generate?
-  - Captures overall structure of a crystal (atom, coordinates, lattice) and encodes it into a fixed latent space.
-  - The latent space is modeled by a Gaussian distribution.
+
+    - Captures overall structure of a crystal (atom, coordinates, lattice) and encodes it into a fixed latent space.
+    - The latent space is modeled by a Gaussian distribution.
 
 - **Score-based Diffusion:** How to generate accurately?
-  - Learns a score function to guide Langevin dynamics.
-  - Iteratively denoises atomic structures.
-
-
+    - Learns a score function to guide Langevin dynamics.
+    - Iteratively denoises atomic structures.
 
 </v-clicks>
-</div>
 
-<div class="flex flex-col items-center justify-center">
-  <!-- ![alt text](public/image-10.png) -->
-  <img v-click="1" src="/image-10.png" class="h-48" />
-  <!-- ![alt text](public/image-11.png) -->
-  <img v-click="2" src="/image-11.png" class="h-48 mt-4" />
-  <div v-click="2" class="text-xs mt-2 ml--5">
-
-
-
-  </div>
-</div>
-</div>
+<img v-click="1" src="/image-10.png" />
+<img v-click="2" src="/image-11.png" />
 
 ---
-layout: default
----
+
+## layout: default
 
 # CDVAE: Training and Inference
 
-<div class="grid grid-cols-2 gap-4">
-<div v-click class="col-span-1">
+<div v-click>
 
 #### **Training Stage:**
+
 - Full crystal is encoded into $z$ to predict coarse properties.
 - Atom type and coordination is perturbed by noise.
 - Diffusion model denoises the structure conditioned on $z$, noisy structure and predicted properties.
 
 </div>
 
-<div v-click class="col-span-1">
+<div v-click>
 
 #### **Sampling Stage:**
+
 - Sample latent vector $z$ with Gaussian distribution.
 - VAE predicts atoms, lattice and composition distribution.
 - Coorinations in the unit cell are initialized randomly.
 - Score model refined the noisy structure for a more precise output.
 
 </div>
-</div>
 
 ---
-layout: default
----
+
+## layout: default
 
 # Flow Matching vs. Diffusion
 
-<div class="grid grid-cols-2 gap-6">
-<div>
 <v-clicks>
 
 - **Diffusion:** Stochastic process
-  - Random noise + gradual denoising
-  - SDE: $dx = f(x,t)dt + g(t)dw$
+
+    - Random noise + gradual denoising
+    - SDE: $dx = f(x,t)dt + g(t)dw$
 
 - **Flow Matching:** Deterministic transport
-  - Direct paths from noise → data
-  - ODE: $\frac{dx}{dt} = v_\theta(t, x)$
+
+    - Direct paths from noise → data
+    - ODE: $\frac{dx}{dt} = v_\theta(t, x)$
 
 - **Key Advantages:**
-  - Faster sampling (fewer steps)
-  - Flexible base distributions
-  - Better for complex geometries
+    - Faster sampling (fewer steps)
+    - Flexible base distributions
+    - Better for complex geometries
 
 </v-clicks>
-</div>
 
-<div class="flex flex-col items-center justify-center">
-  <img v-click="1" src="/image-1.png" class="h-48" />
-  <img v-click="2" src="/image.png" class="h-48 mt-3" />
-</div>
-</div>
+<img v-click="1" src="/image-1.png" />
+<img v-click="2" src="/image.png" />
 
 <!--
 Let me explain how Flow Matching differs from diffusion models and why it's better for our materials task.
@@ -324,15 +262,14 @@ The visualizations show how diffusion takes a meandering path through noise, whi
 -->
 
 ---
-layout: default
----
+
+## layout: default
 
 # FlowMM: Training and Sampling
 
-<img src="/image-2.png" class="h-56 mx-auto" />
+<img src="/image-2.png" />
 
-<div class="grid grid-cols-2 gap-4 mt-4">
-<div v-click class="col-span-1 border-l-4 border-blue-500 pl-3">
+<div v-click>
 
 ### Training
 
@@ -342,7 +279,7 @@ layout: default
 
 </div>
 
-<div v-click class="col-span-1 border-l-4 border-green-500 pl-3">
+<div v-click>
 
 ### Sampling
 
@@ -350,7 +287,6 @@ layout: default
 - Solve ODE: $\frac{dx}{dt} = v_\theta(t, x)$
 - 50-250 steps → realistic 3D structures
 
-</div>
 </div>
 
 <!--
@@ -374,48 +310,28 @@ The deterministic nature of flow matching allows for this significant efficiency
 -->
 
 ---
-layout: default
----
+
+## layout: default
 
 # Experiments: Dataset and Evaluation Challenges
 
-<div class="grid grid-rows-2 gap-1">
-<div v-click class="border-2 p-1 rounded-lg bg-blue-50 flex flex-col items-center">
-  <h3 class="text-2xl text-blue-700 mb-3">MP-20 Dataset</h3>
-  <div class="flex items-center gap-10">
-    <img src="/image-3.png" class="h-28" />
-    <div class="flex flex-col gap-2">
-      <div class="text-lg"><b>45,231</b> materials</div>
-      <div class="text-lg"><b>89</b> elements</div>
-      <div class="text-lg"><b>1-20</b> atoms per unit cell</div>
-    </div>
-  </div>
-  <div class="text-sm mt-3 text-gray-700 max-w-3xl">
-    A realistic dataset of experimentally known inorganic materials with mostly globally stable structures.
-  </div>
+<div v-click>
+  ### MP-20 Dataset
+  <img src="/image-3.png" />
+  **45,231** materials
+  **89** elements
+  **1-20** atoms per unit cell
+
+A realistic dataset of experimentally known inorganic materials with mostly globally stable structures.
+
 </div>
 
-<div v-click class="border-2 p-3 rounded-lg bg-amber-50">
-  <h3 class="text-2xl text-amber-700 mb-2">Evaluation Challenges</h3>
-  <div class="grid grid-cols-2 gap-4">
-    <div class="flex items-center justify-center flex-col">
-      <div class="text-4xl mb-2">⚛️</div>
-      <div class="font-bold text-center">Gold Standard: DFT</div>
-    </div>
-    <div class="flex items-center justify-center flex-col">
-      <div class="text-4xl mb-2">🔄</div>
-      <div class="font-bold text-center">Physical Invariances</div>
-    </div>
-    <div class="flex items-center justify-center flex-col">
-      <div class="text-4xl mb-2">📊</div>
-      <div class="font-bold text-center">Proxy Metrics Needed</div>
-    </div>
-    <div class="flex items-center justify-center flex-col">
-      <div class="text-4xl mb-2">⚖️</div>
-      <div class="font-bold text-center">Quality vs. Diversity</div>
-    </div>
-  </div>
-</div>
+<div v-click>
+  ### Evaluation Challenges
+  ⚛️ **Gold Standard: DFT**
+  🔄 **Physical Invariances**
+  📊 **Proxy Metrics Needed**
+  ⚖️ **Quality vs. Diversity**
 </div>
 
 <!--
@@ -437,43 +353,23 @@ Finally, there's an inherent trade-off between generating diverse structures and
 -->
 
 ---
-layout: default
----
+
+## layout: default
 
 # Experiments: Generative Tasks
 
-<div class="grid grid-cols-2 gap-8 mt-8">
-<div v-click class="border p-4 rounded-lg bg-blue-50">
-  <h3 class="text-xl text-blue-700 mb-2">De Novo Generation</h3>
-  <div class="flex mb-2 flex-row items-center justify-center">
-  <div class="text-5xl font-bold mr-4">?</div>
-  <div class="text-2xl mr-1">→</div>
-  <!-- ![alt text](public/Si(NiO2)2-Pnma.png) -->
-  <img src="/Si(NiO2)2-Pnma.png" class="h-32" />
-  </div>
-  <div class="text-sm mt-2">
-  <b>Goal:</b> Generate completely new materials (composition + structure)
-  </div>
-  <div class="text-xs mt-2">
-  <b>Evaluation metrics:</b> Validity, Coverage, Property Distribution
-  </div>
+<div v-click>
+  ### De Novo Generation
+  ? → <img src="/Si(NiO2)2-Pnma.png" />
+  **Goal:** Generate completely new materials (composition + structure)
+  **Evaluation metrics:** Validity, Coverage, Property Distribution
 </div>
 
-<div v-click class="border p-4 rounded-lg bg-green-50">
-  <h3 class="text-xl text-green-700 mb-2">Crystal Structure Prediction</h3>
-  <div class="flex mb-2 flex-row items-center justify-center">
-  <div class="text-2xl font-bold mr-4">SiO₂</div>
-  <div class="text-2xl mr-1">→</div>
-  <!-- ![alt text](public/SiO2-P3_121-1.png) -->
-  <img src="/SiO2-P3_121-1.png" class="h-32" />
-  </div>
-  <div class="text-sm mt-2">
-  <b>Goal:</b> Predict stable structure given a specific composition (ie., chemical formula)
-  </div>
-  <div class="text-xs mt-2">
-  <b>Evaluation metrics:</b> RMSE, Match Rate with ground truth
-  </div>
-</div>
+<div v-click>
+  ### Crystal Structure Prediction
+  SiO₂ → <img src="/SiO2-P3_121-1.png" />
+  **Goal:** Predict stable structure given a specific composition (ie., chemical formula)
+  **Evaluation metrics:** RMSE, Match Rate with ground truth
 </div>
 
 <!--
@@ -492,71 +388,20 @@ CSP is evaluated using RMSE and Match Rate, both of which compare the predicted 
 -->
 
 ---
-layout: default
----
+
+## layout: default
 
 # Results
 
 <div v-click>
 
-<style>
-table thead tr th {
-  text-align: center;
-}
-</style>
-
 #### De Novo Generation
 
-<div class="border-2 rounded-lg overflow-hidden">
-  <table class="w-full text-center text-sm">
-    <thead class="bg-blue-600 text-white">
-      <tr>
-        <th class="p-1">Model</th>
-        <th colspan="2" class="p-1 border-l border-white">Validity (%) ↑</th>
-        <th colspan="2" class="p-1 border-l border-white">Coverage (%) ↑</th>
-        <th colspan="2" class="p-1 border-l border-white">Property Distribution ↓</th>
-      </tr>
-      <tr class="bg-blue-500 text-white text-xs">
-        <th></th>
-        <th class="p-1">Structural</th>
-        <th class="p-1">Composition</th>
-        <th class="p-1">Recall</th>
-        <th class="p-1">Precision</th>
-        <th class="p-1">Density</th>
-        <th class="p-1"># Elements</th>
-      </tr>
-    </thead>
-    <tbody class="text-sm">
-      <tr class="hover:bg-gray-100">
-        <td class="p-1 font-bold border-t">LLaMA-2</td>
-        <td class="p-1 border-t border-l">93.46</td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">91.11</span></td>
-        <td class="p-1 border-t border-l">90.69</td>
-        <td class="p-1 border-t border-l">93.60</td>
-        <td class="p-1 border-t border-l">3.61</td>
-        <td class="p-1 border-t border-l">1.10</td>
-      </tr>
-      <tr class="hover:bg-gray-100">
-        <td class="p-1 font-bold border-t">CDVAE</td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.98</span></td>
-        <td class="p-1 border-t border-l">86.08</td>
-        <td class="p-1 border-t border-l">99.09</td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.61</span></td>
-        <td class="p-1 border-t border-l">0.56</td>
-        <td class="p-1 border-t border-l">1.11</td>
-      </tr>
-      <tr class="hover:bg-gray-100">
-        <td class="p-1 font-bold border-t">FlowMM</td>
-        <td class="p-1 border-t border-l">99.27</td>
-        <td class="p-1 border-t border-l">82.61</td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">99.68</span></td>
-        <td class="p-1 border-t border-l">99.50</td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.16</span></td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.17</span></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+| Model   | Validity (%) Structural | Validity (%) Composition | Coverage (%) Recall | Coverage (%) Precision | Property Distribution Density ↓ | Property Distribution # Elements ↓ |
+| :------ | :---------------------: | :----------------------: | :-----------------: | :--------------------: | :-----------------------------: | :--------------------------------: |
+| LLaMA-2 |          93.46          |        **91.11**         |        90.69        |         93.60          |              3.61               |                1.10                |
+| CDVAE   |        **99.98**        |          86.08           |        99.09        |       **99.61**        |              0.56               |                1.11                |
+| FlowMM  |          99.27          |          82.61           |      **99.68**      |         99.50          |            **0.16**             |              **0.17**              |
 
 </div>
 
@@ -564,34 +409,11 @@ table thead tr th {
 
 #### Crystal Structure Prediction
 
-<div class="border-2 rounded-lg overflow-hidden mt-2">
-  <table class="w-full text-center text-sm">
-    <thead class="bg-purple-600 text-white">
-      <tr>
-        <th class="p-1">Model</th>
-        <th class="p-1 border-l border-white">Match Rate (%) ↑</th>
-        <th class="p-1 border-l border-white">RMSE ↓</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="hover:bg-gray-100">
-        <td class="p-1 font-bold border-t">LLaMA-2</td>
-        <td class="p-1 border-t border-l">54.79</td>
-        <td class="p-1 border-t border-l">0.0626</td>
-      </tr>
-      <tr class="hover:bg-gray-100">
-        <td class="p-1 font-bold border-t">CDVAE</td>
-        <td class="p-1 border-t border-l">28.01</td>
-        <td class="p-1 border-t border-l">0.1909</td>
-      </tr>
-      <tr class="hover:bg-gray-100">
-        <td class="p-1 font-bold border-t">FlowMM</td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">62.51</span></td>
-        <td class="p-1 border-t border-l"><span class="font-bold text-green-600">0.0472</span></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+| Model   | Match Rate (%) ↑ |   RMSE ↓   |
+| :------ | :--------------: | :--------: |
+| LLaMA-2 |      54.79       |   0.0626   |
+| CDVAE   |      28.01       |   0.1909   |
+| FlowMM  |    **62.51**     | **0.0472** |
 
 </div>
 
@@ -614,53 +436,39 @@ These results suggest that flow matching's deterministic approach to learning tr
 -->
 
 ---
+
 layout: default
 clicksStart: 4
+
 ---
 
 # Analysis and Conclusions
 
-<div class="grid grid-cols-3 gap-4">
-  <div v-click class="border-2 p-3 rounded-lg bg-purple-50">
-    <h3 class="text-lg font-bold text-purple-700 mb-2">CDVAE</h3>
-    <ul class="text-sm space-y-1">
-      <li>Pioneering work in material generation</li>
-      <li>Excellent structural validity</li>
-      <li>Established important benchmarks</li>
-    </ul>
-  </div>
-
-  <div v-click class="border-2 p-3 rounded-lg bg-yellow-50">
-    <h3 class="text-lg font-bold text-yellow-700 mb-2">LLaMA-2</h3>
-    <ul class="text-sm space-y-1">
-      <li>Surprisingly strong performance</li>
-      <li>Best compositional validity</li>
-      <li>Pre-training provides advantages</li>
-    </ul>
-  </div>
-
-  <div v-click class="border-2 p-3 rounded-lg bg-blue-50">
-    <h3 class="text-lg font-bold text-blue-700 mb-2">FlowMM</h3>
-    <ul class="text-sm space-y-1">
-      <li>Overall winner across most metrics</li>
-      <li>Superior property distribution matching</li>
-      <li>Deterministic approach better captures real distributions</li>
-    </ul>
-  </div>
+<div v-click>
+  ### CDVAE
+  - Pioneering work in material generation
+  - Excellent structural validity
+  - Established important benchmarks
 </div>
 
-<div v-click class="mt-4 border-2 p-3 rounded-lg bg-green-50">
-<h3 class="text-lg font-bold text-green-700 mb-1">Future Directions</h3>
-<div class="grid grid-cols-2 gap-2">
-<div class="text-sm font-bold text-center">
+<div v-click>
+  ### LLaMA-2
+  - Surprisingly strong performance
+  - Best compositional validity
+  - Pre-training provides advantages
+</div>
 
-FlowMM + LLM Hybrid Models (see [FlowLLM @ NeurIPS 24](https://arxiv.org/abs/2410.23405))
+<div v-click>
+  ### FlowMM
+  - Overall winner across most metrics
+  - Superior property distribution matching
+  - Deterministic approach better captures real distributions
+</div>
 
-</div>
-<div class="text-sm font-bold text-center">
-Scaling to Complex Structures
-</div>
-</div>
+<div v-click>
+  ### Future Directions
+  FlowMM + LLM Hybrid Models (see [FlowLLM @ NeurIPS 24](https://arxiv.org/abs/2410.23405))
+  Scaling to Complex Structures
 </div>
 
 <!--
@@ -679,28 +487,18 @@ Let's analyze what we've learned from our comparative study of these three appro
 
 # Thank you! --- Questions?
 
-<div class="grid grid-cols-5 gap-4 items-center">
-  <div class="col-span-4">
-    <div class="bg-white p-4 rounded-lg shadow">
-      <img v-click="[0,1]" src="/image-9.png" class="vclick-display-none" />
-      <img v-click="1" src="/image-6.png" class="vclick-display-none" />
-    </div>
+<img v-click="[0,1]" src="/image-9.png" class="vclick-display-none" />
+<img v-click="1" src="/image-6.png" class="vclick-display-none" />
 
-  </div>
-  <div class="col-span-1 flex flex-col items-center gap-4">
-    <div class="bg-white p-3 rounded-lg">
-      <QRCode data="https://ece6254.nima.sh" />
-    </div>
-    <a href="https://ece6254.nima.sh" class="text-white bg-blue-600 px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-colors">
-      Interactive Demo: ece6254.nima.sh
-    </a>
-    <div class="text-white text-xs mt-2">
-      20K generated structures in UMAP space<br>
-      Colored by generating model<br>
-      Embeddings extracted with JMP
-    </div>
-  </div>
-</div>
+<QRCode data="https://ece6254.nima.sh" />
+
+<a href="https://ece6254.nima.sh">
+  Interactive Demo: ece6254.nima.sh
+</a>
+
+20K generated structures in UMAP space<br>
+Colored by generating model<br>
+Embeddings extracted with JMP
 
 <!--
 Here we're visualizing 20,000 different material structures generated by our three models. This visualization gives us a qualitative way to compare the distribution of materials created by each approach.
