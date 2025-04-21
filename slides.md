@@ -62,7 +62,7 @@ Good morning. This project explores how we can use AI to discover new materials 
 </div>
 
 <!--
-[click] Every technology starts with a material discovery, but the traditional path from lab to market takes 20+ years.
+[click] Every technology starts with a material discovery, but the lab-to-market process takes 20+ years.
 
 [click] The core challenge is the vastness of the combinatorial space.
 
