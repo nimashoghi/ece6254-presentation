@@ -293,9 +293,9 @@ layout: default
 <!--
 The third approach we explore is FlowMM.
 
-[click] Diffusion models like CDVAE follow Stochastic Differential Equations that combine deterministic drift with random Brownian motion. This approach uses Langevin dynamics which performs a non-optimal random walk through probability space, requiring many sampling steps and making generation less efficient (as shown in the top figure).
+[click] Diffusion methods like CDVAE use Langevin dynamics which performs a non-optimal random walk through probability space, requiring many sampling steps and making generation less efficient (top figure).
 
-[click] Flow Matching instead learns deterministic and smooth paths directly from noise to data. It focuses on learning a vector field that optimally transports points between distributions using Ordinary Differential Equations.
+[click] Flow Matching instead learns deterministic and smooth paths directly from noise to data (bottom figure). It focuses on learning a vector field that optimally transports points between distributions using Ordinary Differential Equations.
 
 [click] Flow Matching offers key advantages:
 - Faster sampling (50-250 steps vs 1000+ for diffusion)
