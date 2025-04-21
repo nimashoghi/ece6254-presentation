@@ -336,13 +336,12 @@ layout: default
 <!--
 [click] For training:
 - Define physics-informed base distributions and deterministic paths between initial and target distributions, e.g., simple linear interpolation
-- Learn vector field $v_\theta$ that transforms these distributions into realistic crystal structures
-- Carefully designed to preserve crystal symmetries (translation, rotation, permutation)
+- Our NN learns the vector field $v_\theta$ that transforms these distributions into realistic crystal structures
 
 [click] For sampling:
 
 - Draw samples from base distributions
-- Solve an ODE from t=0 to t=1 using 50-250 steps (vs. 1000+ for diffusion)
+- Solve an ODE from t=0 to t=1 using 50-250 steps (vs. 1000+ for diffusion) (e.g., Newton's method)
 
 -->
 
@@ -394,14 +393,12 @@ layout: default
 <!--
 [click]
 
-- **MP-20 dataset**: 45 231 experimentally verified inorganic materials from Materials Project
+- Inorganic materials from Materials Project
 
-[click] However, evaluating generative models for materials presents unique challenges:
+[click] Unique evaluation challenges:
 
 - **DFT bottleneck**: gold‐standard stability checks are too slow at scale
 - **Proxy metrics**: approximate validity and quality without full quantum sims
-- **Physical invariances**: rotation, translation, atom permutation, cell choice
-- **Key trade‐off**: generating diverse structures vs. ensuring physical realism
 
 -->
 
