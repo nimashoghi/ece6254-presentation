@@ -70,7 +70,7 @@ Let's understand why materials discovery is so important and challenging.
 
 [click] The challenge is finding viable materials in an astronomically large search space. There are approximately 10²⁰ possible inorganic materials, but only about 1 in 100,000 structures are chemically stable enough to synthesize.
 
-[click] This is where generative machine learning becomes our "virtual lab." By training AI on databases of known stable materials, we can generate novel candidates that have a much higher probability of stability. This approach could revolutionize how we discover materials for critical applications like next-generation batteries, carbon capture technologies, and targeted drug delivery systems.
+[click] This is where generative machine learning becomes our "virtual lab." By training AI on databases of known stable materials, such as the ones on this slide, we can generate novel candidates that have a much higher probability of stability. This approach could revolutionize how we discover materials for critical applications like next-generation batteries, carbon capture technologies, and targeted drug delivery systems.
 
 -->
 
@@ -104,12 +104,9 @@ clicksStart: 2
 </div>
 
 <!--
-Let me explain what materials are at the atomic level.
+[click] At the lowest level, materials are collections of atoms arranged in 3D space (top figure).
 
-[click] Materials are collections of atoms arranged in 3D space. What makes this complex is that real materials form infinitely repeating crystalline structures.
-
-- This unit cell shows the basic building block of atoms
-- The pattern repeats infinitely to form the complete material
+There's 1 caveat: Materials form infinitely repeating crystalline structures. When we think of a material, we think of the smallest repeating unit that defines the material's structure, and this **unit cell** is then assumed to repeat infinitely in all directions (bottom figure).
 
 [click] To generate a new material, our AI needs to learn the three key components:
 - The unit cell/lattice: A repeating 3D box defined by vectors
@@ -309,11 +306,11 @@ layout: default
 </div>
 
 <!--
-Let me explain how Flow Matching differs from diffusion models and why it's better for our materials task.
+The third approach we explore is Flow Matching, which offers a fundamentally more efficient way to generate materials.
 
-[click] Diffusion models use a stochastic process - they gradually add random noise to data, then learn to reverse this noise step by step. They're based on Stochastic Differential Equations which incorporate both deterministic and random components. This randomness makes them less efficient and harder to control.
+[click] Diffusion models (like CDVAE) use a stochastic process - they gradually add random noise to data, then learn to reverse this noise step by step. This approach follows Stochastic Differential Equations that incorporate both deterministic drift and random Brownian motion. While effective, Langevin dynamics performs a non-optimal random walk through probability space, requiring many sampling steps and making the generation process less efficient (as seen on the top figure).
 
-[click] Flow Matching instead learns deterministic paths directly from noise to data. It focuses on learning a vector field that optimally transports points between distributions using Ordinary Differential Equations. The paths are smooth and direct, following principles of optimal transport.
+[click] Flow Matching instead learns deterministic and smooth paths directly from noise to data. It focuses on learning a vector field that optimally transports points between distributions using Ordinary Differential Equations.
 
 [click] This approach offers several key advantages:
 - Sampling requires significantly fewer steps (50-250 vs 1000+ for diffusion)
